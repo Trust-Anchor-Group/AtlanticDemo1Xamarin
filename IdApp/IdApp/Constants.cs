@@ -158,12 +158,12 @@ namespace IdApp
         public static class Domains
 		{
             /// <summary>
-            /// Neuro-Access domain.
+            /// AtlanticDemo domain.
             /// </summary>
             public const string IdDomain = "id.tagroot.io";
 
             /// <summary>
-            /// Neuro-Access onboarding domain.
+            /// AtlanticDemo onboarding domain.
             /// </summary>
             public const string OnboardingDomain = "onboarding.id.tagroot.io";
         }
@@ -325,7 +325,7 @@ namespace IdApp
 			/// <summary>
 			/// ResolutionGroupName used for resolving Effects.
 			/// </summary>
-			public const string ResolutionGroupName = "com.tag.NeuroAccess";
+			public const string ResolutionGroupName = "com.tag.AtlanticDemo";
 
 			/// <summary>
 			/// PasswordMaskTogglerEffect.
@@ -393,7 +393,7 @@ namespace IdApp
 			/// <summary>
 			/// Resource where Android App can be downloaded.
 			/// </summary>
-			public const string AndroidApp = "https://play.google.com/store/apps/details?id=com.tag.NeuroAccess";
+			public const string AndroidApp = "https://play.google.com/store/apps/details?id=com.tag.AtlanticDemo";
 
 			/// <summary>
 			/// Resource where iPhone App can be downloaded.

@@ -23,7 +23,7 @@ using Xamarin.Forms;
 namespace IdApp.Pages.Main.Shell
 {
 	/// <summary>
-	/// The Xamarin Forms Shell implementation of the Neuro-Access App.
+	/// The Xamarin Forms Shell implementation of the AtlanticDemo App.
 	/// </summary>
 	public partial class AppShell : ShellBasePage
 	{

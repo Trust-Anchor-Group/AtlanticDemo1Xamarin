@@ -17,19 +17,19 @@
 	<key>MinimumOSVersion</key>
 	<string>12.0</string>
 	<key>CFBundleDisplayName</key>
-	<string>Neuro-Access</string>
+	<string>AtlanticDemo</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.trustanchorgroup.NeuroAccess</string>
+	<string>com.trustanchorgroup.AtlanticDemo</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
-	<string>Neuro Access</string>
+	<string>Atlantic Demo</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Neuro-Access needs access to the camera to take photos for your digital ID, and when you want it to scan QR codes.</string>
+	<string>AtlanticDemo needs access to the camera to take photos for your digital ID, and when you want it to scan QR codes.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Neuro-Access needs access to the photo gallery for you to be able to select a profile photo for your ID, get QR codes from other apps, or share images with contacts in chats.</string>
+	<string>AtlanticDemo needs access to the photo gallery for you to be able to select a profile photo for your ID, get QR codes from other apps, or share images with contacts in chats.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Neuro-Access needs to be able to add photos to your galleries, if you want to save photos you take for later use.</string>
+	<string>AtlanticDemo needs to be able to add photos to your galleries, if you want to save photos you take for later use.</string>
 	<key>CFBundleLocalizations</key>
 	<array>
 		<string>en</string>
@@ -55,14 +55,14 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>0</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcons.appiconset</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleURLName</key>
-			<string>Neuro-Access</string>
+			<string>AtlanticDemo</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>iotid</string>

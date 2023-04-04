@@ -17,10 +17,10 @@ set zipalign="C:\Program Files (x86)\Android\android-sdk\build-tools\32.0.0\zipa
 REM Path to JarSigner
 set jarsigner="C:\Program Files (x86)\Android\android-sdk\build-tools\32.0.0\apksigner.bat"
 REM Path to APK file
-set apkPath=..\IdApp\IdApp.Android\bin\%buildmode%\com.tag.NeuroAccess.aab
+set apkPath=..\IdApp\IdApp.Android\bin\%buildmode%\com.tag.AtlanticDemo.aab
 
 REM Path to signed and aligned APK file
-set alignedApkPath=..\IdApp\IdApp.Android\bin\%buildmode%\com.tag.NeuroAccess_signed_aligned.aab
+set alignedApkPath=..\IdApp\IdApp.Android\bin\%buildmode%\com.tag.AtlanticDemo_signed_aligned.aab
 
 REM Jar Signer specifics
 set jarsignerparams=sign --min-sdk-version 21 --ks %keystore% --ks-pass pass:%keystorepassword% %apkPath%
@@ -82,4 +82,4 @@ goto End
 :End
 
 
-REM C:\Program Files\Microsoft\jdk-11.0.12.7-hotspot\bin\jarsigner.exe -keystore "D:\work\Keystore\Trust Anchor Group AB\Trust Anchor Group AB.keystore" -storepass qa0HYlEX8V5pAq5hVbTX9qiKz8pBv1omk7PQa_8ttbk -keypass Password -digestalg SHA-256 -sigalg SHA256withRSA -signedjar bin\Release\com.tag.NeuroAccess-Signed.aab obj\Release\110\android\bin\com.tag.NeuroAccess.aab  "TAGDemo Cert"
+REM C:\Program Files\Microsoft\jdk-11.0.12.7-hotspot\bin\jarsigner.exe -keystore "D:\work\Keystore\Trust Anchor Group AB\Trust Anchor Group AB.keystore" -storepass qa0HYlEX8V5pAq5hVbTX9qiKz8pBv1omk7PQa_8ttbk -keypass Password -digestalg SHA-256 -sigalg SHA256withRSA -signedjar bin\Release\com.tag.AtlanticDemo-Signed.aab obj\Release\110\android\bin\com.tag.AtlanticDemo.aab  "TAGDemo Cert"
