@@ -1,15 +1,12 @@
 {
-  "images": [
+  "images" : [
     {
-      "appearances": [],
-      "scale": "1x",
-      "idiom": "iphone",
-      "filename": "background.png"
+      "filename" : "background.png",
+      "idiom" : "universal"
     }
   ],
-  "properties": {},
-  "info": {
-    "version": 1,
-    "author": ""
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
   }
 }
