@@ -18,6 +18,37 @@ namespace IdApp.Services.Tag
 	/// </summary>
 	public enum RegistrationStep
 	{
+#if ATLANTICAPP
+		/// <summary>
+		/// Get Phone Number
+		/// </summary>
+		GetPhoneNumber = 0,
+
+		/// <summary>
+		/// Validate Phone Number
+		/// </summary>
+		ValidatePhoneNumber = 1,
+
+		/// <summary>
+		/// Register an identity
+		/// </summary>
+		RegisterIdentity = 2,
+
+		/// <summary>
+		/// Have the identity validated.
+		/// </summary>
+		ValidateIdentity = 3,
+
+		/// <summary>
+		/// Create a PIN code
+		/// </summary>
+		Pin = 4,
+
+		/// <summary>
+		/// Profile is completed.
+		/// </summary>
+		Complete = 5
+#else
 		/// <summary>
 		/// Validate Phone Number and e-mail address
 		/// </summary>
@@ -47,6 +78,7 @@ namespace IdApp.Services.Tag
 		/// Profile is completed.
 		/// </summary>
 		Complete = 5
+#endif
 	}
 
 	/// <inheritdoc/>
@@ -81,7 +113,11 @@ namespace IdApp.Services.Tag
 		private long? httpFileUploadMaxSize;
 		private bool isTest;
 		private DateTime? testOtpTimestamp;
+#if ATLANTICAPP
+		private RegistrationStep step = RegistrationStep.GetPhoneNumber;
+#else
 		private RegistrationStep step = RegistrationStep.ValidateContactInfo;
+#endif
 		private bool suppressPropertyChangedEvents;
 		private bool defaultXmppConnectivity;
 
@@ -512,6 +548,32 @@ namespace IdApp.Services.Tag
 				await this.SetStep(stepToRevertTo.Value);
 			else
 			{
+#if ATLANTICAPP
+				switch (this.Step)
+				{
+					case RegistrationStep.GetPhoneNumber:
+						// Do nothing
+						break;
+
+					case RegistrationStep.ValidatePhoneNumber:
+						await this.SetStep(RegistrationStep.GetPhoneNumber);
+						break;
+
+						/*!!!
+					case RegistrationStep.RegisterIdentity:
+						await this.SetStep(RegistrationStep.ValidateContactInfo);
+						break;
+
+					case RegistrationStep.ValidateIdentity:
+						await this.SetStep(RegistrationStep.RegisterIdentity);
+						break;
+						*/
+
+					case RegistrationStep.Pin:
+						await this.SetStep(RegistrationStep.ValidateIdentity);
+						break;
+				}
+#else
 				switch (this.Step)
 				{
 					case RegistrationStep.ValidateContactInfo:
@@ -534,6 +596,7 @@ namespace IdApp.Services.Tag
 						await this.SetStep(RegistrationStep.ValidateIdentity);
 						break;
 				}
+#endif
 			}
 		}
 
@@ -543,6 +606,32 @@ namespace IdApp.Services.Tag
 				await this.SetStep(stepToGoTo.Value);
 			else
 			{
+#if ATLANTICAPP
+				switch (this.Step)
+				{
+					case RegistrationStep.GetPhoneNumber:
+						await this.SetStep(RegistrationStep.ValidatePhoneNumber);
+						break;
+
+						/*!!!
+					case RegistrationStep.ValidatePhoneNumber:
+						await this.SetStep(this.LegalIdentity is null ? RegistrationStep.Account : RegistrationStep.RegisterIdentity);
+						break;
+
+					case RegistrationStep.RegisterIdentity:
+						await this.SetStep(RegistrationStep.ValidateIdentity);
+						break;
+						*/
+
+					case RegistrationStep.ValidateIdentity:
+						await this.SetStep(RegistrationStep.Pin);
+						break;
+
+					case RegistrationStep.Pin:
+						await this.SetStep(RegistrationStep.Complete);
+						break;
+				}
+#else
 				switch (this.Step)
 				{
 					case RegistrationStep.ValidateContactInfo:
@@ -565,6 +654,7 @@ namespace IdApp.Services.Tag
 						await this.SetStep(RegistrationStep.Complete);
 						break;
 				}
+#endif
 			}
 		}
 
@@ -588,22 +678,38 @@ namespace IdApp.Services.Tag
 			this.ApiKey = Key;
 			this.ApiSecret = Secret;
 
+#if ATLANTICAPP
+			/*!!!
 			if (!string.IsNullOrWhiteSpace(this.Domain) && this.Step == RegistrationStep.ValidateContactInfo)
 				await this.IncrementConfigurationStep();
+			*/
+#else
+			if (!string.IsNullOrWhiteSpace(this.Domain) && this.Step == RegistrationStep.ValidateContactInfo)
+				await this.IncrementConfigurationStep();
+#endif
 		}
 
 		/// <inheritdoc/>
 		public async Task ClearDomain()
 		{
 			this.Domain = string.Empty;
+#if ATLANTICAPP
+			await this.DecrementConfigurationStep(RegistrationStep.GetPhoneNumber);
+#else
 			await this.DecrementConfigurationStep(RegistrationStep.ValidateContactInfo);
+#endif
 		}
 
 		/// <inheritdoc/>
 		public async Task RevalidateContactInfo()
 		{
+#if ATLANTICAPP
+			if (!string.IsNullOrWhiteSpace(this.Domain) && this.Step == RegistrationStep.GetPhoneNumber)
+				await this.IncrementConfigurationStep();
+#else
 			if (!string.IsNullOrWhiteSpace(this.Domain) && this.Step == RegistrationStep.ValidateContactInfo)
 				await this.IncrementConfigurationStep();
+#endif
 		}
 
 		/// <inheritdoc/>
@@ -621,8 +727,15 @@ namespace IdApp.Services.Tag
 			this.ApiKey = string.Empty;
 			this.ApiSecret = string.Empty;
 
+#if ATLANTICAPP
+			/*!!!
 			if (!string.IsNullOrWhiteSpace(this.Account) && this.Step == RegistrationStep.Account)
 				await this.IncrementConfigurationStep();
+			*/
+#else
+			if (!string.IsNullOrWhiteSpace(this.Account) && this.Step == RegistrationStep.Account)
+				await this.IncrementConfigurationStep();
+#endif
 		}
 
 		/// <inheritdoc/>
@@ -635,6 +748,8 @@ namespace IdApp.Services.Tag
 			this.ApiKey = string.Empty;
 			this.ApiSecret = string.Empty;
 
+#if ATLANTICAPP
+			/*!!!
 			if (!string.IsNullOrWhiteSpace(this.Account) && this.Step == RegistrationStep.Account && this.LegalIdentity is not null)
 			{
 				switch (this.LegalIdentity.State)
@@ -653,6 +768,27 @@ namespace IdApp.Services.Tag
 						break;
 				}
 			}
+			*/
+#else
+			if (!string.IsNullOrWhiteSpace(this.Account) && this.Step == RegistrationStep.Account && this.LegalIdentity is not null)
+			{
+				switch (this.LegalIdentity.State)
+				{
+					case IdentityState.Created:
+						await this.IncrementConfigurationStep(RegistrationStep.ValidateIdentity);
+						break;
+
+					case IdentityState.Approved:
+						await this.IncrementConfigurationStep(
+							this.HasPin ? RegistrationStep.Complete : RegistrationStep.Pin);
+						break;
+
+					default:
+						await this.IncrementConfigurationStep();
+						break;
+				}
+			}
+#endif
 		}
 
 		/// <inheritdoc/>
@@ -665,7 +801,11 @@ namespace IdApp.Services.Tag
 
 			if (GoToPrevStep)
 			{
+#if ATLANTICAPP
+				await this.DecrementConfigurationStep(RegistrationStep.GetPhoneNumber);
+#else
 				await this.DecrementConfigurationStep(RegistrationStep.ValidateContactInfo);
+#endif
 			}
 		}
 
@@ -674,11 +814,21 @@ namespace IdApp.Services.Tag
 		{
 			this.LegalIdentity = Identity;
 
+#if ATLANTICAPP
+			/*!!!
 			if (this.Step == RegistrationStep.RegisterIdentity && Identity is not null &&
 				(Identity.State == IdentityState.Created || Identity.State == IdentityState.Approved))
 			{
 				await this.IncrementConfigurationStep();
 			}
+			*/
+#else
+			if (this.Step == RegistrationStep.RegisterIdentity && Identity is not null &&
+				(Identity.State == IdentityState.Created || Identity.State == IdentityState.Approved))
+			{
+				await this.IncrementConfigurationStep();
+			}
+#endif
 		}
 
 		/// <inheritdoc/>
@@ -694,14 +844,22 @@ namespace IdApp.Services.Tag
 		public async Task RevokeLegalIdentity(LegalIdentity revokedIdentity)
 		{
 			this.LegalIdentity = revokedIdentity;
+#if ATLANTICAPP
+			await this.DecrementConfigurationStep(RegistrationStep.GetPhoneNumber);
+#else
 			await this.DecrementConfigurationStep(RegistrationStep.ValidateContactInfo);
+#endif
 		}
 
 		/// <inheritdoc/>
 		public async Task CompromiseLegalIdentity(LegalIdentity compromisedIdentity)
 		{
 			this.LegalIdentity = compromisedIdentity;
+#if ATLANTICAPP
+			await this.DecrementConfigurationStep(RegistrationStep.GetPhoneNumber);
+#else
 			await this.DecrementConfigurationStep(RegistrationStep.ValidateContactInfo);
+#endif
 		}
 
 		/// <inheritdoc/>
@@ -714,7 +872,12 @@ namespace IdApp.Services.Tag
 		/// <inheritdoc/>
 		public async Task ClearIsValidated()
 		{
+#if ATLANTICAPP
+			/*!!! await this.DecrementConfigurationStep(RegistrationStep.RegisterIdentity);
+			 */
+#else
 			await this.DecrementConfigurationStep(RegistrationStep.RegisterIdentity);
+#endif
 		}
 
 		/// <inheritdoc/>
@@ -767,7 +930,7 @@ namespace IdApp.Services.Tag
 			this.LogJid = logJid;
 		}
 
-		#endregion
+#endregion
 
 		/// <inheritdoc/>
 		public string ComputePinHash(string pin)
@@ -812,7 +975,11 @@ namespace IdApp.Services.Tag
 			this.httpFileUploadMaxSize = null;
 			this.isTest = false;
 			this.TestOtpTimestamp = null;
+#if ATLANTICAPP
+			this.step = RegistrationStep.GetPhoneNumber;
+#else
 			this.step = RegistrationStep.ValidateContactInfo;
+#endif
 			this.defaultXmppConnectivity = false;
 
 			this.IsDirty = true;

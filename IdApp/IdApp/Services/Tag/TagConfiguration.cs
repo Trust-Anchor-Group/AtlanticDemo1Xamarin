@@ -128,7 +128,11 @@ namespace IdApp.Services
 		/// <summary>
 		/// Current step in the registration process.
 		/// </summary>
+#if ATLANTICAPP
+		[DefaultValue(Tag.RegistrationStep.GetPhoneNumber)]
+#else
 		[DefaultValue(Tag.RegistrationStep.ValidateContactInfo)]
+#endif
 		public Tag.RegistrationStep Step { get; set; }
 	}
 }

@@ -21,16 +21,22 @@ namespace IdApp.Pages.Registration.Registration
 		/// </summary>
 		private RegistrationViewModel()
 		{
+#if ATLANTICAPP
+			this.GoToPrevCommand = new Command(() => this.GoToPrev(), () => (RegistrationStep)this.CurrentStep > RegistrationStep.GetPhoneNumber);
+#else
 			this.GoToPrevCommand = new Command(() => this.GoToPrev(), () => (RegistrationStep)this.CurrentStep > RegistrationStep.ValidateContactInfo);
+#endif
 			this.CurrentStepChangedCommand = new Command(() => this.DoStepChanged());
 
 			this.RegistrationSteps = new ObservableCollection<RegistrationStepViewModel>
 			{
+				/*
 				this.AddChildViewModel(new ValidateContactInfo.ValidateContactInfoViewModel()),
 				this.AddChildViewModel(new ChooseAccount.ChooseAccountViewModel()),
 				this.AddChildViewModel(new RegisterIdentity.RegisterIdentityViewModel()),
 				this.AddChildViewModel(new ValidateIdentity.ValidateIdentityViewModel()),
 				this.AddChildViewModel(new DefinePin.DefinePinViewModel())
+				*/
 			};
 		}
 
@@ -173,6 +179,39 @@ namespace IdApp.Pages.Registration.Registration
 			{
 				RegistrationStep Step = ((RegistrationStepViewModel)Sender).Step;
 
+#if ATLANTICAPP
+				switch (Step)
+				{
+					/*!!!
+					case RegistrationStep.Account:
+						// User connected to an existing account (as opposed to creating a new one). Copy values from the legal identity.
+						if (this.TagProfile.LegalIdentity is not null)
+						{
+							RegisterIdentity.RegisterIdentityViewModel vm = (RegisterIdentity.RegisterIdentityViewModel)this.RegistrationSteps[(int)RegistrationStep.RegisterIdentity];
+							vm.PopulateFromTagProfile();
+						}
+
+						await this.SyncTagProfileStep();
+						break;
+
+					case RegistrationStep.RegisterIdentity:
+						await this.SyncTagProfileStep();
+						break;
+
+					case RegistrationStep.ValidateIdentity:
+						await this.SyncTagProfileStep();
+						break;
+					*/
+
+					case RegistrationStep.Pin:
+						await App.Current.SetAppShellPageAsync();
+						break;
+
+					default: // RegistrationStep.ValidateContactInfo
+						await this.SyncTagProfileStep();
+						break;
+				}
+#else
 				switch (Step)
 				{
 					case RegistrationStep.Account:
@@ -202,6 +241,7 @@ namespace IdApp.Pages.Registration.Registration
 						await this.SyncTagProfileStep();
 						break;
 				}
+#endif
 			}
 			catch (Exception Exception)
 			{
@@ -220,6 +260,41 @@ namespace IdApp.Pages.Registration.Registration
 			{
 				RegistrationStep CurrentStep = (RegistrationStep)this.CurrentStep;
 
+#if ATLANTICAPP
+				switch (CurrentStep)
+				{
+					/*!!!
+					case RegistrationStep.Account:
+						this.RegistrationSteps[this.CurrentStep].ClearStepState();
+						await this.TagProfile.ClearAccount();
+						break;
+
+					case RegistrationStep.RegisterIdentity:
+						this.RegistrationSteps[(int)RegistrationStep.Account].ClearStepState();
+						await this.TagProfile.ClearAccount(false);
+						this.RegistrationSteps[(int)RegistrationStep.RegisterIdentity].ClearStepState();
+						await this.TagProfile.ClearLegalIdentity();
+						await this.TagProfile.InvalidateContactInfo();
+						break;
+
+					case RegistrationStep.ValidateIdentity:
+						RegisterIdentity.RegisterIdentityViewModel vm = (RegisterIdentity.RegisterIdentityViewModel)this.RegistrationSteps[(int)RegistrationStep.RegisterIdentity];
+						vm.PopulateFromTagProfile();
+						this.RegistrationSteps[this.CurrentStep].ClearStepState();
+						await this.TagProfile.ClearIsValidated();
+						break;
+					*/
+
+					case RegistrationStep.Pin:
+						this.RegistrationSteps[this.CurrentStep].ClearStepState();
+						await this.TagProfile.RevertPinStep();
+						break;
+
+					default: // RegistrationStep.Operator
+						await this.TagProfile.ClearDomain();
+						break;
+				}
+#else
 				switch (CurrentStep)
 				{
 					case RegistrationStep.Account:
@@ -251,6 +326,7 @@ namespace IdApp.Pages.Registration.Registration
 						await this.TagProfile.ClearDomain();
 						break;
 				}
+#endif
 
 				await this.SyncTagProfileStep();
 			}

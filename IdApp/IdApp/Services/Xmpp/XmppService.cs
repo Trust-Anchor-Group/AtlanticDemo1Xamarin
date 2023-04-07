@@ -268,7 +268,11 @@ namespace IdApp.Services.Xmpp
 
 		private bool ShouldCreateClient()
 		{
+#if ATLANTICAPP
+			return this.TagProfile.Step > RegistrationStep.ValidatePhoneNumber && !this.XmppParametersCurrent();
+#else
 			return this.TagProfile.Step > RegistrationStep.Account && !this.XmppParametersCurrent();
+#endif
 		}
 
 		private void RecreateReconnectTimer()
@@ -422,8 +426,13 @@ namespace IdApp.Services.Xmpp
 
 			if (this.ShouldCreateClient())
 				await this.CreateXmppClient(this.TagProfile.Step <= RegistrationStep.RegisterIdentity, null);
+#if ATLANTICAPP
+			else if (this.TagProfile.Step <= RegistrationStep.ValidatePhoneNumber)
+				await this.DestroyXmppClient();
+#else
 			else if (this.TagProfile.Step <= RegistrationStep.Account)
 				await this.DestroyXmppClient();
+#endif
 		}
 
 		private Task XmppClient_Error(object Sender, Exception e)

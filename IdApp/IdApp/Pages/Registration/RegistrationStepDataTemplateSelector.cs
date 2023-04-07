@@ -43,6 +43,12 @@ namespace IdApp.Pages.Registration
         {
             RegistrationStepViewModel viewModel = (RegistrationStepViewModel)item;
 
+#if ATLANTICAPP
+			return viewModel.Step switch
+			{
+				RegistrationStep.Pin => this.DefinePin,
+			};
+#else
 			return viewModel.Step switch
 			{
 				RegistrationStep.Account => this.ChooseAccount,
@@ -51,6 +57,7 @@ namespace IdApp.Pages.Registration
 				RegistrationStep.Pin => this.DefinePin,
 				_ => this.ValidateContactInfo,
 			};
+#endif
 		}
 	}
 }

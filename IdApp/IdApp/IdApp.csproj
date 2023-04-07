@@ -17,7 +17,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebugType>portable</DebugType>
     <DebugSymbols>true</DebugSymbols>
-    <DocumentationFile>IdApp.xml</DocumentationFile>
+    <DocumentationFile>AtlanticApp.xml</DocumentationFile>
+    <DefineConstants>$(DefineConstants);ATLANTICAPP</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>$(DefineConstants);ATLANTICAPP</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
@@ -30,6 +35,59 @@
     <None Remove="Services\Data\PersonalNumbers\PersonalNumberSchemes.xml" />
     <None Remove="Helpers\" />
     <None Remove="Controls\Extended\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Pages\ContentBasePage.xaml" />
+    <EmbeddedResource Remove="Pages\BetweenMainPage.xaml" />
+    <EmbeddedResource Remove="Pages\BootstrapErrorPage.xaml" />
+    <EmbeddedResource Remove="Pages\Main\Loading\LoadingPage.xaml" />
+    <EmbeddedResource Remove="Pages\Registration\Registration\RegistrationPage.xaml" />
+    <EmbeddedResource Remove="Pages\Registration\ChooseAccount\ChooseAccountView.xaml" />
+    <Compile Remove="Pages\Registration\ChooseAccount\ChooseAccountView.xaml.cs" />
+    <Compile Remove="Pages\Registration\ChooseAccount\ChooseAccountViewModel.cs" />
+    <EmbeddedResource Remove="Pages\Registration\RegisterIdentity\RegisterIdentityView.xaml" />
+    <Compile Remove="Pages\Registration\RegisterIdentity\RegisterIdentityView.xaml.cs" />
+    <Compile Remove="Pages\Registration\RegisterIdentity\RegisterIdentityViewModel.cs" />
+    <EmbeddedResource Remove="Pages\Registration\ValidateContactInfo\ValidateContactInfoView.xaml" />
+    <Compile Remove="Pages\Registration\ValidateContactInfo\ValidateContactInfoView.xaml.cs" />
+    <Compile Remove="Pages\Registration\ValidateContactInfo\ValidateContactInfoViewModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Pages\ContentBasePage.xaml.cs">
+      <DependentUpon>ContentBasePageAtlantic.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\BetweenMainPage.xaml.cs">
+      <DependentUpon>BetweenMainPageAtlantic.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\BootstrapErrorPage.xaml.cs">
+      <DependentUpon>BootstrapErrorPageAtlantic.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Main\Loading\LoadingPage.xaml.cs">
+      <DependentUpon>LoadingPageAtlantic.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Registration\Registration\RegistrationPage.xaml.cs">
+      <DependentUpon>RegistrationPageAtlantic.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Pages\ContentBasePageAtlantic.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\BetweenMainPageAtlantic.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\BootstrapErrorPageAtlantic.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Main\Loading\LoadingPageAtlantic.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Registration\Registration\RegistrationPageAtlantic.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -89,15 +147,6 @@
     <EmbeddedResource Update="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\BetweenMainPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Pages\BootstrapErrorPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Pages\ContentBasePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Pages\Main\Calculator\CalculatorPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -110,22 +159,7 @@
     <EmbeddedResource Update="Controls\MainTabBar\MainTabBarView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\Registration\ChooseAccount\ChooseAccountView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Pages\Registration\ValidateContactInfo\ValidateContactInfoView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Pages\Main\Loading\LoadingPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Pages\Registration\DefinePin\DefinePinView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Pages\Registration\RegisterIdentity\RegisterIdentityView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Pages\Registration\Registration\RegistrationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Registration\ValidateIdentity\ValidateIdentityView.xaml">
@@ -209,15 +243,6 @@
     </Compile>
     <Compile Update="Popups\Photos\Image\ImageView.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
-    </Compile>
-    <Compile Update="Pages\Main\Loading\LoadingPage.xaml.cs">
-      <DependentUpon>LoadingPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Pages\Registration\ChooseAccount\ChooseAccountView.xaml.cs">
-      <DependentUpon>ChooseAccountView.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Pages\Registration\ValidateContactInfo\ValidateContactInfoView.xaml.cs">
-      <DependentUpon>ValidateContactInfoView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 

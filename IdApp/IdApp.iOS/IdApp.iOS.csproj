@@ -48,7 +48,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\iPhone\Debug</OutputPath>
-    <DefineConstants>DEBUG</DefineConstants>
+    <DefineConstants>DEBUG;__IOS__;__MOBILE__;__UNIFIED__;ATLANTICAPP</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
@@ -70,6 +70,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>SdkOnly</MtouchLink>
     <CodesignProvision>AtlanticDemo Provisioning Profile</CodesignProvision>
+    <DefineConstants>__IOS__;__MOBILE__;__UNIFIED__;HOTRESTART;ATLANTICAPP</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
     <AppExtensionDebugBundleId />

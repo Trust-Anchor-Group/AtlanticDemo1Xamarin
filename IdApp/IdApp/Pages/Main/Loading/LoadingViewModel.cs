@@ -27,7 +27,11 @@ namespace IdApp.Pages.Main.Loading
 			await base.OnAppearing();
 
 			this.IsBusy = true;
+#if ATLANTICAPP
+			this.DisplayConnectionText = this.TagProfile.Step > RegistrationStep.ValidatePhoneNumber;
+#else
 			this.DisplayConnectionText = this.TagProfile.Step > RegistrationStep.Account;
+#endif
 			this.XmppService.Loaded += this.XmppService_Loaded;
 		}
 

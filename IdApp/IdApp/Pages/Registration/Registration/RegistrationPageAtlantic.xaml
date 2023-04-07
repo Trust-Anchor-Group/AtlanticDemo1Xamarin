@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:ContentBasePage xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:views="clr-namespace:IdApp.Pages;assembly=IdApp"
+                       xmlns:resx="clr-namespace:IdApp.Resx;assembly=IdApp"
+                       xmlns:registration="clr-namespace:IdApp.Pages.Registration;assembly=IdApp"
+                       xmlns:model="clr-namespace:IdApp.Pages.Registration.Registration;assembly=IdApp"
+                       x:DataType="model:RegistrationViewModel"
+                       x:Class="IdApp.Pages.Registration.Registration.RegistrationPage"
+                       Shell.FlyoutBehavior="Disabled"
+                       Shell.NavBarIsVisible="False">
+	<StackLayout>
+		<StackLayout Orientation="Vertical">
+			<!-- HEADING -->
+			<Grid Padding="{StaticResource DefaultMargin}" ColumnDefinitions="36,*" RowDefinitions="auto">
+				<Label Grid.Column="0"
+					   FontSize="24"
+					   Text="{x:Static resx:FontAwesome.ArrowACircleLeft}"
+					   TextColor="{StaticResource TextColorLightTheme}"
+					   FontFamily="{StaticResource FontAwesomeSolid}"
+					   VerticalOptions="Center"
+					   Margin="0,-12,0,-6"
+					   IsVisible="{Binding Path=CanGoBack}">
+					<Label.GestureRecognizers>
+						<TapGestureRecognizer Command="{Binding Path=GoToPrevCommand}"/>
+					</Label.GestureRecognizers>
+				</Label>
+				<Label Grid.Column="1"
+					   Text="{Binding Path=CurrentStepTitle}"
+					   HorizontalOptions="StartAndExpand"
+					   VerticalOptions="CenterAndExpand"
+					   TextColor="{StaticResource TextColorLightTheme}"
+					   FontSize="24"
+					   Margin="0,-8,0,0" />
+			</Grid>
+		</StackLayout>
+		<!-- CONTENT -->
+		<CarouselView x:Name="CarouselView"
+					  IsSwipeEnabled="False"
+					  HorizontalOptions="FillAndExpand"
+					  VerticalOptions="FillAndExpand"
+					  Margin="0,-6,0,-6"
+					  CurrentItemChangedCommand="{Binding Path=CurrentStepChangedCommand}"
+					  Position="{Binding Path=CurrentStep, Mode=TwoWay}"
+					  ItemsSource="{Binding Path=RegistrationSteps}"
+					  ItemTemplate="{StaticResource StepTemplateSelector}"
+					  />
+	</StackLayout>
+</views:ContentBasePage>
