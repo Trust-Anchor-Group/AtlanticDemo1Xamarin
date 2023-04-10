@@ -26,6 +26,7 @@
 		<x:Int32 x:Key="DefaultMargin">12</x:Int32>
 		<x:Int32 x:Key="DefaultColumnSpacing">8</x:Int32>
 		<x:Int32 x:Key="DefaultRawSpacing">8</x:Int32>
+		<x:Int32 x:Key="LargeRawSpacing">24</x:Int32>
 
 	</Application.Resources>
 </Application>

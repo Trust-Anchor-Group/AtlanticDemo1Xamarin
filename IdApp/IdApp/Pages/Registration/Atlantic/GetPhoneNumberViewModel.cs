@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -8,26 +7,9 @@ using Waher.Content;
 using Xamarin.Forms;
 using IdApp.Services.Tag;
 using Xamarin.CommunityToolkit.Helpers;
-using Rg.Plugins.Popup.Services;
 
 namespace IdApp.Pages.Registration.Atlantic
 {
-	/// <summary>
-	/// For what purpose the app will be used
-	/// </summary>
-	public enum PurposeUse
-	{
-		/// <summary>
-		/// For work or personal use
-		/// </summary>
-		WorkOrPersonal = 0,
-
-		/// <summary>
-		/// For educational or experimental use
-		/// </summary>
-		EducationalOrExperimental = 1
-	}
-
 	/// <summary>
 	/// The view model to bind to when showing Step 1 of the registration flow: choosing an operator.
 	/// </summary>
@@ -212,6 +194,7 @@ namespace IdApp.Pages.Registration.Atlantic
 					}
 					else
 					{
+						this.TagProfile.SetPhone(TrimmedNumber);
 						this.StartTimer("phone");
 
 						/*!!! go to next verification step */

@@ -10,6 +10,33 @@
                        Shell.FlyoutBehavior="Disabled"
                        Shell.NavBarIsVisible="False">
 	<StackLayout>
+		<StackLayout.Resources>
+			<ResourceDictionary>
+				<DataTemplate x:Key="GetPhoneNumberTemplate">
+					<GetPhoneNumberView xmlns="clr-namespace:IdApp.Pages.Registration.Atlantic;assembly=IdApp"/>
+				</DataTemplate>
+				<DataTemplate x:Key="ValidatePhoneNumberTemplate">
+					<ValidatePhoneNumberView xmlns="clr-namespace:IdApp.Pages.Registration.Atlantic;assembly=IdApp"/>
+				</DataTemplate>
+				<!--
+				<DataTemplate x:Key="ValidatePhoneNumberTemplate">
+					<ValidatePhoneNumberView xmlns="clr-namespace:IdApp.Pages.Registration.Atlantic;assembly=IdApp"/>
+				</DataTemplate>
+				-->
+				<DataTemplate x:Key="ValidateIdentityTemplate">
+					<ValidateIdentityView xmlns="clr-namespace:IdApp.Pages.Registration.ValidateIdentity;assembly=IdApp"/>
+				</DataTemplate>
+				<DataTemplate x:Key="DefinePinTemplate">
+					<DefinePinView xmlns="clr-namespace:IdApp.Pages.Registration.DefinePin;assembly=IdApp"/>
+				</DataTemplate>
+				<registration:RegistrationStepDataTemplateSelector x:Key="StepTemplateSelector"
+																   GetPhoneNumber="{StaticResource GetPhoneNumberTemplate}"
+																   ValidatePhoneNumber="{StaticResource ValidatePhoneNumberTemplate}"
+																   ValidateIdentity="{StaticResource ValidateIdentityTemplate}"
+																   DefinePin="{StaticResource DefinePinTemplate}"/>
+			</ResourceDictionary>
+		</StackLayout.Resources>
+
 		<StackLayout Orientation="Vertical">
 			<!-- HEADING -->
 			<Grid Padding="{StaticResource DefaultMargin}" ColumnDefinitions="36,*" RowDefinitions="auto">

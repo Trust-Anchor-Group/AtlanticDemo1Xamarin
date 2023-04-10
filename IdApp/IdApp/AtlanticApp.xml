@@ -645,6 +645,101 @@
             Resource where iPhone App can be downloaded.
             </summary>
         </member>
+        <member name="T:IdApp.Controls.Extended.ExEntryCode">
+            <summary>
+            public class used by IdApp.ExEntry
+            </summary>
+        </member>
+        <member name="M:IdApp.Controls.Extended.ExEntryCode.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:IdApp.Controls.Extended.ExEntryCode"/> class.
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntryCode.ReturnTypeProperty">
+            <summary>
+             The ReturnTypeProperty
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntryCode.TextProperty">
+            <summary>
+             The TextProperty
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntryCode.LengthProperty">
+            <summary>
+             The LengthProperty
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntryCode.FieldHeightRequestProperty">
+            <summary>
+             The FieldHeightRequestProperty
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntryCode.FieldWidthRequestProperty">
+            <summary>
+             The FieldWidthRequestProperty
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntryCode.ReturnType">
+            <summary>
+            Gets or sets ReturnType
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntryCode.BackgroundColor">
+            <summary>
+            Gets or sets the BackgroundColor
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntryCode.Text">
+            <summary>
+            Gets or sets the Text
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntryCode.Length">
+            <summary>
+            Gets or sets the Length
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntryCode.FieldHeightRequest">
+            <summary>
+            Gets or sets the FieldHeightRequest
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntryCode.FieldWidthRequest">
+            <summary>
+            Gets or sets the FieldWidthRequest
+            </summary>
+        </member>
+        <member name="E:IdApp.Controls.Extended.ExEntryCode.TextChanged">
+            <summary>
+            Evento TextChanged
+            </summary>
+        </member>
+        <member name="E:IdApp.Controls.Extended.ExEntryCode.Focused">
+            <summary>
+            Event sent when the entry is focused.
+            </summary>
+        </member>
+        <member name="E:IdApp.Controls.Extended.ExEntryCode.Unfocused">
+            <summary>
+            Event sent when the entry is unfocused.
+            </summary>
+        </member>
+        <member name="M:IdApp.Controls.Extended.ExEntryCode.OnPropertyChanged(System.String)">
+            <summary>
+            Change the value of PropossalMesage between StyleId Entry/ExEntry
+            </summary>
+        </member>
+        <member name="M:IdApp.Controls.Extended.ExEntryCode.Focus">
+            <summary>
+            Method sent when the entry is focused..
+            </summary>
+        </member>
+        <member name="M:IdApp.Controls.Extended.ExEntryCode.Unfocus">
+            <summary>
+             Method sent when the entry is unfocused..
+            </summary>
+        </member>
         <member name="T:IdApp.Controls.FlipView.FlipView">
             <summary>
             The FlipView is a user control that holds two child controls: a <see cref="P:IdApp.Controls.FlipView.FlipView.FrontView"/> and a <see cref="P:IdApp.Controls.FlipView.FlipView.BackView"/>.
@@ -4409,21 +4504,6 @@
             Creates a new instance of the <see cref="T:IdApp.Pages.Registration.Atlantic.GetPhoneNumberView"/> class.
             </summary>
         </member>
-        <member name="T:IdApp.Pages.Registration.Atlantic.PurposeUse">
-            <summary>
-            For what purpose the app will be used
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.Atlantic.PurposeUse.WorkOrPersonal">
-            <summary>
-            For work or personal use
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.Atlantic.PurposeUse.EducationalOrExperimental">
-            <summary>
-            For educational or experimental use
-            </summary>
-        </member>
         <member name="T:IdApp.Pages.Registration.Atlantic.GetPhoneNumberViewModel">
             <summary>
             The view model to bind to when showing Step 1 of the registration flow: choosing an operator.
@@ -4481,6 +4561,57 @@
         <member name="P:IdApp.Pages.Registration.Atlantic.GetPhoneNumberViewModel.SendPhoneNrCodeCommand">
             <summary>
             The command to bind to for sending and verification a code to the provided phone number.
+            </summary>
+        </member>
+        <member name="T:IdApp.Pages.Registration.Atlantic.ValidatePhoneNumberView">
+            <summary>
+            A view to display the 'choose operator' during the registration process.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.ValidatePhoneNumberView.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:IdApp.Pages.Registration.Atlantic.ValidatePhoneNumberView"/> class.
+            </summary>
+        </member>
+        <member name="T:IdApp.Pages.Registration.Atlantic.ValidatePhoneNumberViewModel">
+            <summary>
+            The view model to bind to when showing Step 1 of the registration flow: choosing an operator.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.ValidatePhoneNumberViewModel.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:IdApp.Pages.Registration.Atlantic.ValidatePhoneNumberViewModel"/> class.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.ValidatePhoneNumberViewModel.OnInitialize">
+            <summary>
+            Override this method to do view model specific setup when it's parent page/view appears on screen.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.ValidatePhoneNumberViewModel.OnDispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.ValidatePhoneNumberViewModel.DoAssignProperties">
+            <inheritdoc />
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidatePhoneNumberViewModel.PhoneNrVerificationCodeProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.Atlantic.ValidatePhoneNumberViewModel.PhoneNrVerificationCode"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidatePhoneNumberViewModel.PhoneNrVerificationCode">
+            <summary>
+            Phone number
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidatePhoneNumberViewModel.VerifyPhoneCodeButtonEnabled">
+            <summary>
+            If Phone number is valid or not
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidatePhoneNumberViewModel.VerifyPhoneNrCodeCommand">
+            <summary>
+            The command to bind to for sending a phone message code verification request.
             </summary>
         </member>
         <member name="T:IdApp.Pages.Registration.DefinePin.DefinePinView">
