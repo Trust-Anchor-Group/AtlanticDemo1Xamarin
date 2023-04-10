@@ -23,21 +23,29 @@ namespace IdApp.Pages.Registration.Registration
 		{
 #if ATLANTICAPP
 			this.GoToPrevCommand = new Command(() => this.GoToPrev(), () => (RegistrationStep)this.CurrentStep > RegistrationStep.GetPhoneNumber);
-#else
-			this.GoToPrevCommand = new Command(() => this.GoToPrev(), () => (RegistrationStep)this.CurrentStep > RegistrationStep.ValidateContactInfo);
-#endif
 			this.CurrentStepChangedCommand = new Command(() => this.DoStepChanged());
 
 			this.RegistrationSteps = new ObservableCollection<RegistrationStepViewModel>
 			{
-				/*
+				this.AddChildViewModel(new Atlantic.GetPhoneNumberViewModel()),
+				this.AddChildViewModel(new Atlantic.ValidatePhoneNumberViewModel()),
+//				this.AddChildViewModel(new RegisterIdentity.RegisterIdentityViewModel()),
+				this.AddChildViewModel(new ValidateIdentity.ValidateIdentityViewModel()),
+				this.AddChildViewModel(new DefinePin.DefinePinViewModel())
+			};
+#else
+			this.GoToPrevCommand = new Command(() => this.GoToPrev(), () => (RegistrationStep)this.CurrentStep > RegistrationStep.ValidateContactInfo);
+			this.CurrentStepChangedCommand = new Command(() => this.DoStepChanged());
+
+			this.RegistrationSteps = new ObservableCollection<RegistrationStepViewModel>
+			{
 				this.AddChildViewModel(new ValidateContactInfo.ValidateContactInfoViewModel()),
 				this.AddChildViewModel(new ChooseAccount.ChooseAccountViewModel()),
 				this.AddChildViewModel(new RegisterIdentity.RegisterIdentityViewModel()),
 				this.AddChildViewModel(new ValidateIdentity.ValidateIdentityViewModel()),
 				this.AddChildViewModel(new DefinePin.DefinePinViewModel())
-				*/
 			};
+#endif
 		}
 
 		/// <summary>
@@ -182,26 +190,29 @@ namespace IdApp.Pages.Registration.Registration
 #if ATLANTICAPP
 				switch (Step)
 				{
-					/*!!!
-					case RegistrationStep.Account:
+					case RegistrationStep.GetPhoneNumber:
+						await this.SyncTagProfileStep();
+						break;
+
+					case RegistrationStep.ValidatePhoneNumber:
+						await this.SyncTagProfileStep();
+						break;
+
+					case RegistrationStep.RegisterIdentity:
+						/*!!!
 						// User connected to an existing account (as opposed to creating a new one). Copy values from the legal identity.
 						if (this.TagProfile.LegalIdentity is not null)
 						{
 							RegisterIdentity.RegisterIdentityViewModel vm = (RegisterIdentity.RegisterIdentityViewModel)this.RegistrationSteps[(int)RegistrationStep.RegisterIdentity];
 							vm.PopulateFromTagProfile();
 						}
-
-						await this.SyncTagProfileStep();
-						break;
-
-					case RegistrationStep.RegisterIdentity:
+						*/
 						await this.SyncTagProfileStep();
 						break;
 
 					case RegistrationStep.ValidateIdentity:
 						await this.SyncTagProfileStep();
 						break;
-					*/
 
 					case RegistrationStep.Pin:
 						await App.Current.SetAppShellPageAsync();

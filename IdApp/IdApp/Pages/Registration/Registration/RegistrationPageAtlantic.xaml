@@ -43,10 +43,9 @@
 				<Label Grid.Column="0"
 					   FontSize="24"
 					   Text="{x:Static resx:FontAwesome.ArrowACircleLeft}"
-					   TextColor="{StaticResource TextColorLightTheme}"
+					   TextColor="Black"
 					   FontFamily="{StaticResource FontAwesomeSolid}"
 					   VerticalOptions="Center"
-					   Margin="0,-12,0,-6"
 					   IsVisible="{Binding Path=CanGoBack}">
 					<Label.GestureRecognizers>
 						<TapGestureRecognizer Command="{Binding Path=GoToPrevCommand}"/>
@@ -56,9 +55,8 @@
 					   Text="{Binding Path=CurrentStepTitle}"
 					   HorizontalOptions="StartAndExpand"
 					   VerticalOptions="CenterAndExpand"
-					   TextColor="{StaticResource TextColorLightTheme}"
-					   FontSize="24"
-					   Margin="0,-8,0,0" />
+					   TextColor="Black"
+					   FontSize="24" />
 			</Grid>
 		</StackLayout>
 		<!-- CONTENT -->
@@ -66,7 +64,6 @@
 					  IsSwipeEnabled="False"
 					  HorizontalOptions="FillAndExpand"
 					  VerticalOptions="FillAndExpand"
-					  Margin="0,-6,0,-6"
 					  CurrentItemChangedCommand="{Binding Path=CurrentStepChangedCommand}"
 					  Position="{Binding Path=CurrentStep, Mode=TwoWay}"
 					  ItemsSource="{Binding Path=RegistrationSteps}"

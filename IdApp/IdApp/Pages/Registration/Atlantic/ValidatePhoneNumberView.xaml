@@ -9,7 +9,7 @@
 	x:DataType="model:ValidatePhoneNumberViewModel"
 	x:Class="IdApp.Pages.Registration.Atlantic.ValidatePhoneNumberView">
 
-	<Grid Margin="0" Padding="{StaticResource DefaultMargin}" RowDefinitions="*,auto,*,auto">
+	<Grid Margin="0" Padding="{StaticResource DefaultMargins}" RowDefinitions="*,auto,*,auto">
 		<!-- <Image Source="tag_bg2.jpg" Aspect="AspectFill" /> -->
 
 		<StackLayout Grid.Row="0"/>
@@ -24,6 +24,15 @@
 
 		<StackLayout Grid.Row="2"/>
 
-		<ActivityIndicator Grid.Row="3" IsVisible="{Binding Path=IsBusy}" IsRunning="{Binding Path=IsBusy}" Style="{StaticResource AccentIndicator}" />
+		<ActivityIndicator Grid.Row="3" IsRunning="{Binding Path=IsBusy}">
+			<ActivityIndicator.Triggers>
+				<DataTrigger TargetType="ActivityIndicator" Binding="{Binding IsBusy}" Value="False">
+					<Setter Property="Color" Value="Transparent" />
+				</DataTrigger>
+				<DataTrigger TargetType="ActivityIndicator" Binding="{Binding IsBusy}" Value="True">
+					<Setter Property="Color" Value="Black" />
+				</DataTrigger>
+			</ActivityIndicator.Triggers>
+		</ActivityIndicator>
 	</Grid>
 </registration:RegistrationStepView>

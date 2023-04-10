@@ -194,12 +194,10 @@ namespace IdApp.Pages.Registration.Atlantic
 					}
 					else
 					{
-						this.TagProfile.SetPhone(TrimmedNumber);
 						this.StartTimer("phone");
 
-						/*!!! go to next verification step */
-						await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["SuccessTitle"],
-							LocalizationResourceManager.Current["SendPhoneNumberWarning"]);
+						await this.TagProfile.ValidatePhoneNumber(TrimmedNumber);
+						this.OnStepCompleted(EventArgs.Empty);
 					}
 				}
 				else

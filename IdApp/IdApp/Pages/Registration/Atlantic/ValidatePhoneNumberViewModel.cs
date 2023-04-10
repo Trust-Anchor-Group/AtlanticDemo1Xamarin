@@ -104,8 +104,8 @@ namespace IdApp.Pages.Registration.Atlantic
 
 			try
 			{
-				string TrimmedNumber = this.TagProfile.PhoneNumber;
-				bool IsTest = false;
+				string TrimmedNumber = this.TagProfile.TrimmedNumber;
+				bool IsTest = true;
 
 				object Result = await InternetContent.PostAsync(
 					new Uri("https://" + Constants.Domains.IdDomain + "/ID/VerifyNumber.ws"),
@@ -126,6 +126,7 @@ namespace IdApp.Pages.Registration.Atlantic
 					Response.TryGetValue("Temporary", out Obj) && Obj is bool IsTemporary)
 				{
 					this.TagProfile.SetIsTest(IsTest);
+					this.TagProfile.SetPhone(TrimmedNumber);
 					this.TagProfile.SetTestOtpTimestamp(IsTemporary ? DateTime.Now : null);
 
 					bool DefaultConnectivity;
@@ -141,16 +142,21 @@ namespace IdApp.Pages.Registration.Atlantic
 
 					await this.TagProfile.SetDomain(Domain, DefaultConnectivity, Key, Secret);
 
-					/*!!! next step */
+					/*!!! create an account based on the phone number */
+
 					this.OnStepCompleted(EventArgs.Empty);
 				}
 				else
 				{
+					await this.TagProfile.InvalidatePhoneNumber();
+
 					await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["ErrorTitle"], LocalizationResourceManager.Current["UnableToVerifyCode"], LocalizationResourceManager.Current["Ok"]);
 				}
 			}
 			catch (Exception ex)
 			{
+				await this.TagProfile.InvalidatePhoneNumber();
+
 				this.LogService.LogException(ex);
 				await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["ErrorTitle"], ex.Message, LocalizationResourceManager.Current["Ok"]);
 			}

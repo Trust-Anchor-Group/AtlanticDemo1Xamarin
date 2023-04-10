@@ -23,10 +23,13 @@
                 Value="FontAwesome5Free-Solid" />
         </OnPlatform>
 
-		<x:Int32 x:Key="DefaultMargin">12</x:Int32>
-		<x:Int32 x:Key="DefaultColumnSpacing">8</x:Int32>
-		<x:Int32 x:Key="DefaultRawSpacing">8</x:Int32>
-		<x:Int32 x:Key="LargeRawSpacing">24</x:Int32>
+		<x:Double x:Key="DefaultMargin">12</x:Double>
+		<x:Double x:Key="DefaultColumnSpacing">8</x:Double>
+		<x:Double x:Key="DefaultRawSpacing">8</x:Double>
+		<x:Double x:Key="LargeRawSpacing">24</x:Double>
+
+		<Thickness x:Key="DefaultMargins">12</Thickness>
+
 
 	</Application.Resources>
 </Application>

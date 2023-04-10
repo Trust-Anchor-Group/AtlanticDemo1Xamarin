@@ -42,6 +42,13 @@ namespace IdApp.Services.Tag
 		/// </summary>
 		string ApiSecret { get; }
 
+#if ATLANTICAPP
+		/// <summary>
+		/// Phone number to validate.
+		/// </summary>
+		string TrimmedNumber { get; }
+#endif
+
 		/// <summary>
 		/// Verified phone number.
 		/// </summary>
@@ -204,6 +211,15 @@ namespace IdApp.Services.Tag
 		/// </summary>
 		Task ClearDomain();
 
+#if ATLANTICAPP
+		/// <summary>
+		/// </summary>
+		Task ValidatePhoneNumber(string PhoneNumber);
+
+		/// <summary>
+		/// </summary>
+		Task InvalidatePhoneNumber();
+#else
 		/// <summary>
 		/// An alternative Step 1, used for accounts with an obsoleted identity, - validate contact info (the same or updated) without changing account data.
 		/// </summary>
@@ -213,6 +229,7 @@ namespace IdApp.Services.Tag
 		/// Revert an alternative Step 1, used for accounts with an obsoleted identity, - invalidate contact info without erasing the legal identity or otherwise changing the account.
 		/// </summary>
 		Task InvalidateContactInfo();
+#endif
 
 		/// <summary>
 		/// Step 2 - set the account name and password for a <em>new</em> account.

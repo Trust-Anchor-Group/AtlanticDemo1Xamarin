@@ -100,6 +100,7 @@ namespace IdApp.Services.Tag
 		private string domain;
 		private string apiKey;
 		private string apiSecret;
+		private string trimmedNumber;
 		private string phoneNumber;
 		private string eMail;
 		private string account;
@@ -309,6 +310,13 @@ namespace IdApp.Services.Tag
 					this.FlagAsDirty(nameof(this.ApiSecret));
 				}
 			}
+		}
+
+		/// <inheritdoc/>
+		public string TrimmedNumber
+		{
+			get => this.trimmedNumber;
+			private set => this.trimmedNumber = value;
 		}
 
 		/// <inheritdoc/>
@@ -679,10 +687,7 @@ namespace IdApp.Services.Tag
 			this.ApiSecret = Secret;
 
 #if ATLANTICAPP
-			/*!!!
-			if (!string.IsNullOrWhiteSpace(this.Domain) && this.Step == RegistrationStep.ValidateContactInfo)
-				await this.IncrementConfigurationStep();
-			*/
+			await Task.CompletedTask;
 #else
 			if (!string.IsNullOrWhiteSpace(this.Domain) && this.Step == RegistrationStep.ValidateContactInfo)
 				await this.IncrementConfigurationStep();
@@ -700,16 +705,27 @@ namespace IdApp.Services.Tag
 #endif
 		}
 
+#if ATLANTICAPP
+		/// <summary>
+		/// </summary>
+		public async Task ValidatePhoneNumber(string PhoneNumber)
+		{
+			this.TrimmedNumber = PhoneNumber;
+			await this.IncrementConfigurationStep();
+		}
+
+		/// <summary>
+		/// </summary>
+		public async Task InvalidatePhoneNumber()
+		{
+			await this.DecrementConfigurationStep();
+		}
+#else
 		/// <inheritdoc/>
 		public async Task RevalidateContactInfo()
 		{
-#if ATLANTICAPP
-			if (!string.IsNullOrWhiteSpace(this.Domain) && this.Step == RegistrationStep.GetPhoneNumber)
-				await this.IncrementConfigurationStep();
-#else
 			if (!string.IsNullOrWhiteSpace(this.Domain) && this.Step == RegistrationStep.ValidateContactInfo)
 				await this.IncrementConfigurationStep();
-#endif
 		}
 
 		/// <inheritdoc/>
@@ -717,6 +733,7 @@ namespace IdApp.Services.Tag
 		{
 			await this.DecrementConfigurationStep();
 		}
+#endif
 
 		/// <inheritdoc/>
 		public async Task SetAccount(string accountName, string clientPasswordHash, string clientPasswordHashMethod)

@@ -4828,19 +4828,14 @@
             A data template selector for displaying various types of registration steps.
             </summary>
         </member>
-        <member name="P:IdApp.Pages.Registration.RegistrationStepDataTemplateSelector.ValidateContactInfo">
+        <member name="P:IdApp.Pages.Registration.RegistrationStepDataTemplateSelector.GetPhoneNumber">
             <summary>
-            The template for validating contact information.
+            The template for geting the phone number.
             </summary>
         </member>
-        <member name="P:IdApp.Pages.Registration.RegistrationStepDataTemplateSelector.ChooseAccount">
+        <member name="P:IdApp.Pages.Registration.RegistrationStepDataTemplateSelector.ValidatePhoneNumber">
             <summary>
-            The choose account template.
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.RegistrationStepDataTemplateSelector.RegisterIdentity">
-            <summary>
-            The register identity template.
+            The template for validating the phone number.
             </summary>
         </member>
         <member name="P:IdApp.Pages.Registration.RegistrationStepDataTemplateSelector.ValidateIdentity">
@@ -10745,6 +10740,11 @@
             API Secret, for creating new account.
             </summary>
         </member>
+        <member name="P:IdApp.Services.Tag.ITagProfile.TrimmedNumber">
+            <summary>
+            Phone number to validate.
+            </summary>
+        </member>
         <member name="P:IdApp.Services.Tag.ITagProfile.PhoneNumber">
             <summary>
             Verified phone number.
@@ -10907,14 +10907,12 @@
             Revert Step 1.
             </summary>
         </member>
-        <member name="M:IdApp.Services.Tag.ITagProfile.RevalidateContactInfo">
+        <member name="M:IdApp.Services.Tag.ITagProfile.ValidatePhoneNumber(System.String)">
             <summary>
-            An alternative Step 1, used for accounts with an obsoleted identity, - validate contact info (the same or updated) without changing account data.
             </summary>
         </member>
-        <member name="M:IdApp.Services.Tag.ITagProfile.InvalidateContactInfo">
+        <member name="M:IdApp.Services.Tag.ITagProfile.InvalidatePhoneNumber">
             <summary>
-            Revert an alternative Step 1, used for accounts with an obsoleted identity, - invalidate contact info without erasing the legal identity or otherwise changing the account.
             </summary>
         </member>
         <member name="M:IdApp.Services.Tag.ITagProfile.SetAccount(System.String,System.String,System.String)">
@@ -11209,6 +11207,9 @@
         <member name="P:IdApp.Services.Tag.TagProfile.ApiSecret">
             <inheritdoc/>
         </member>
+        <member name="P:IdApp.Services.Tag.TagProfile.TrimmedNumber">
+            <inheritdoc/>
+        </member>
         <member name="P:IdApp.Services.Tag.TagProfile.PhoneNumber">
             <inheritdoc/>
         </member>
@@ -11278,11 +11279,13 @@
         <member name="M:IdApp.Services.Tag.TagProfile.ClearDomain">
             <inheritdoc/>
         </member>
-        <member name="M:IdApp.Services.Tag.TagProfile.RevalidateContactInfo">
-            <inheritdoc/>
+        <member name="M:IdApp.Services.Tag.TagProfile.ValidatePhoneNumber(System.String)">
+            <summary>
+            </summary>
         </member>
-        <member name="M:IdApp.Services.Tag.TagProfile.InvalidateContactInfo">
-            <inheritdoc/>
+        <member name="M:IdApp.Services.Tag.TagProfile.InvalidatePhoneNumber">
+            <summary>
+            </summary>
         </member>
         <member name="M:IdApp.Services.Tag.TagProfile.SetAccount(System.String,System.String,System.String)">
             <inheritdoc/>
