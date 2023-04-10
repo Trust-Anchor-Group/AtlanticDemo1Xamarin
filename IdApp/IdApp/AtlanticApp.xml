@@ -4399,6 +4399,90 @@
             Content-Type of associated media.
             </summary>
         </member>
+        <member name="T:IdApp.Pages.Registration.Atlantic.GetPhoneNumberView">
+            <summary>
+            A view to display the 'choose operator' during the registration process.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.GetPhoneNumberView.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:IdApp.Pages.Registration.Atlantic.GetPhoneNumberView"/> class.
+            </summary>
+        </member>
+        <member name="T:IdApp.Pages.Registration.Atlantic.PurposeUse">
+            <summary>
+            For what purpose the app will be used
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.PurposeUse.WorkOrPersonal">
+            <summary>
+            For work or personal use
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.PurposeUse.EducationalOrExperimental">
+            <summary>
+            For educational or experimental use
+            </summary>
+        </member>
+        <member name="T:IdApp.Pages.Registration.Atlantic.GetPhoneNumberViewModel">
+            <summary>
+            The view model to bind to when showing Step 1 of the registration flow: choosing an operator.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.GetPhoneNumberViewModel.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:IdApp.Pages.Registration.Atlantic.GetPhoneNumberViewModel"/> class.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.GetPhoneNumberViewModel.OnInitialize">
+            <summary>
+            Override this method to do view model specific setup when it's parent page/view appears on screen.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.GetPhoneNumberViewModel.OnDispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.GetPhoneNumberViewModel.DoAssignProperties">
+            <inheritdoc />
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.GetPhoneNumberViewModel.OnStepCompleted(System.EventArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.GetPhoneNumberViewModel.CountPhoneSecondsProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.Atlantic.GetPhoneNumberViewModel.CountPhoneSeconds"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.GetPhoneNumberViewModel.CountPhoneSeconds">
+            <summary>
+            how long the phone button will stay disabled
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.GetPhoneNumberViewModel.PhoneNumberProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.Atlantic.GetPhoneNumberViewModel.PhoneNumber"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.GetPhoneNumberViewModel.PhoneNumber">
+            <summary>
+            Phone number
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.GetPhoneNumberViewModel.PhoneButtonEnabled">
+            <summary>
+            If send code Phone button is disabled or not
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.GetPhoneNumberViewModel.PhoneButtonLabel">
+            <summary>
+            The label of the SendPhoneNrCodeButton
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.GetPhoneNumberViewModel.SendPhoneNrCodeCommand">
+            <summary>
+            The command to bind to for sending and verification a code to the provided phone number.
+            </summary>
+        </member>
         <member name="T:IdApp.Pages.Registration.DefinePin.DefinePinView">
             <summary>
             A view to display the 'choose pin' during the registration process.
