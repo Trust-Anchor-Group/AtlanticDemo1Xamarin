@@ -331,7 +331,11 @@ namespace IdApp.Services.Xmpp
 							ClientsThread?.Start();
 							try
 							{
+#if ATLANTICAPP
+								await this.CreateXmppClient(this.TagProfile.Step < RegistrationStep.ValidateIdentity, ClientsThread);
+#else
 								await this.CreateXmppClient(this.TagProfile.Step <= RegistrationStep.RegisterIdentity, ClientsThread);
+#endif
 							}
 							finally
 							{
@@ -424,12 +428,14 @@ namespace IdApp.Services.Xmpp
 			if (!this.IsLoaded)
 				return;
 
-			if (this.ShouldCreateClient())
-				await this.CreateXmppClient(this.TagProfile.Step <= RegistrationStep.RegisterIdentity, null);
 #if ATLANTICAPP
+			if (this.ShouldCreateClient())
+				await this.CreateXmppClient(this.TagProfile.Step < RegistrationStep.ValidateIdentity, null);
 			else if (this.TagProfile.Step <= RegistrationStep.ValidatePhoneNumber)
 				await this.DestroyXmppClient();
 #else
+			if (this.ShouldCreateClient())
+				await this.CreateXmppClient(this.TagProfile.Step <= RegistrationStep.RegisterIdentity, null);
 			else if (this.TagProfile.Step <= RegistrationStep.Account)
 				await this.DestroyXmppClient();
 #endif
@@ -538,7 +544,7 @@ namespace IdApp.Services.Xmpp
 			}
 		}
 
-		#endregion
+#endregion
 
 		#region State
 

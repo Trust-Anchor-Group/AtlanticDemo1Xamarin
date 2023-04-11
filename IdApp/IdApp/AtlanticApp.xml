@@ -645,6 +645,296 @@
             Resource where iPhone App can be downloaded.
             </summary>
         </member>
+        <member name="T:IdApp.Controls.Extended.ExEntry">
+            <summary>
+            public class used by IdApp.ExEntry
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntry.KeyBoardEntryProperty">
+            <summary>
+            The Key Board property
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntry.ClearButtonVisibilityEntryProperty">
+            <summary>
+            The Clear Button Visibility property
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntry.RequiredProperty">
+            <summary>
+            The Required property
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntry.EntryTextProperty">
+            <summary>
+            The Entry Text property
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntry.MaxLengthProperty">
+            <summary>
+            The Entry Text property
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntry.ReturnTypeProperty">
+            <summary>
+            The Return Type property
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntry.PlaceHolderProperty">
+            <summary>
+            The PlaceHolder property
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntry.PlaceholderColorProperty">
+            <summary>
+            The PlaceHolder Color property
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntry.IsSpellCheckEnabledProperty">
+            <summary>
+            The Is SpellCheck Enabled property
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntry.IsTextPredictionEnabledProperty">
+            <summary>
+            The Is Text Prediction Enabled property
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntry.EntryStyleProperty">
+            <summary>
+            Entry Style propery
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntry.IconLeftProperty">
+            <summary>
+            The Icon Left property
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntry.IconRightProperty">
+            <summary>
+            The Icon Right property
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntry.HexColorIconLeftProperty">
+            <summary>
+            The Color Icon Left property
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntry.HexColorIconRightProperty">
+            <summary>
+            The Color Icon Right property
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntry.HeightIconLeftProperty">
+            <summary>
+            The Height Icon Left property
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntry.HeightIconRightProperty">
+            <summary>
+            The Height Icon Right property
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntry.WidthIconLeftProperty">
+            <summary>
+            The Width Icon Left property
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntry.WidthIconRightProperty">
+            <summary>
+            The Width Icon Right property
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntry.EntryBehaviorsProperty">
+            <summary>
+            The Behaviors property
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntry.EntryIsReadOnlyProperty">
+            <summary>
+            The IsReadOnly property
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntry.RightImageCommandProperty">
+            <summary>
+            The Entry Command Property
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntry.EntryReturnCommandProperty">
+            <summary>
+            The Entry ReturnCommand Property
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntry.EntryIsPasswordProperty">
+            <summary>
+            The Entry IsPassword Property
+            </summary>
+        </member>
+        <member name="F:IdApp.Controls.Extended.ExEntry.EntryTextHorizontalAlignmentProperty">
+            <summary>
+            The Entry Text Horizontal Alignment Property
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntry.EntryText">
+            <summary>
+            Gets or sets the entry text
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntry.MaxLength">
+            <summary>
+            Gets or sets the max length entry text
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntry.IsSpellCheckEnabled">
+            <summary>
+            Gets or sets the Is Spell Check Enabled
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntry.IsTextPredictionEnabled">
+            <summary>
+            Gets or sets the Is Text Prediction Enabled
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntry.ReturnType">
+            <summary>
+            Gets or sets the ReturnType
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntry.KeyBoardEntry">
+            <summary>
+            Gets or sets the KeyBoard Entry
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntry.ClearButtonVisibilityEntry">
+            <summary>
+            Gets or sets the Clear Button Visibility Entry
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntry.Required">
+            <summary>
+            Gets or sets the required
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntry.PlaceHolder">
+            <summary>
+            Gets or sets the PlaceHolder
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntry.PlaceholderColor">
+            <summary>
+            Gets or sets the PlaceHolder Color
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntry.EntryStyle">
+            <summary>
+            Gets or sets the Entry Style
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntry.IconLeft">
+            <summary>
+            Gets or sets the Icon Left
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntry.IconRight">
+            <summary>
+            Gets or sets the Icon Right
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntry.HexColorIconLeft">
+            <summary>
+            Gets or sets Color Icon Left
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntry.HexColorIconRight">
+            <summary>
+            Gets or sets Color Icon Right
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntry.HeightIconLeft">
+            <summary>
+            Gets or sets the Height Icon Left
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntry.HeightIconRight">
+            <summary>
+            Gets or sets the Height Icon Right
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntry.WidthIconLeft">
+            <summary>
+            Gets or sets Width Icon Left
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntry.WidthIconRight">
+            <summary>
+            Gets or sets Width Icon Right
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntry.EntryBehaviors">
+            <summary>
+            Gets or sets Width Icon Right
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntry.EntryIsReadOnly">
+            <summary>
+            Gets or sets Entry Is Read Only
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntry.RightImageCommand">
+            <summary>
+            Gets or sets Entry Command
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntry.EntryReturnCommand">
+            <summary>
+            Gets or sets Entry Return Command
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntry.EntryIsPassword">
+            <summary>
+            Gets or sets Entry Return Command
+            </summary>
+        </member>
+        <member name="P:IdApp.Controls.Extended.ExEntry.EntryTextHorizontalAlignment">
+            <summary>
+            Gets or sets Entry Horizontal Text Alignment
+            </summary>
+        </member>
+        <member name="M:IdApp.Controls.Extended.ExEntry.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:IdApp.Controls.Extended.ExEntry"/> class.
+            </summary>
+        </member>
+        <member name="E:IdApp.Controls.Extended.ExEntry.TextChanged">
+            <summary>
+            Evento TextChanged
+            </summary>
+        </member>
+        <member name="E:IdApp.Controls.Extended.ExEntry.EntryFocused">
+            <summary>
+            Event sent when the entry is focused.
+            </summary>
+        </member>
+        <member name="E:IdApp.Controls.Extended.ExEntry.EntryUnfocused">
+            <summary>
+            Event sent when the entry is unfocused.
+            </summary>
+        </member>
+        <member name="E:IdApp.Controls.Extended.ExEntry.EntryCompleted">
+            <summary>
+            Event sent when the entry is completed.
+            </summary>
+        </member>
+        <member name="E:IdApp.Controls.Extended.ExEntry.RightImageClicked">
+            <summary>
+            Event sent when the entry is completed.
+            </summary>
+        </member>
+        <member name="M:IdApp.Controls.Extended.ExEntry.OnPropertyChanged(System.String)">
+            <summary>
+            Change the value of PropossalMesage between StyleId Entry/ExEntry
+            </summary>
+        </member>
         <member name="T:IdApp.Controls.Extended.ExEntryCode">
             <summary>
             public class used by IdApp.ExEntry
@@ -4494,6 +4784,128 @@
             Content-Type of associated media.
             </summary>
         </member>
+        <member name="T:IdApp.Pages.Registration.Atlantic.DefinePinView">
+            <summary>
+            A view to display the 'choose pin' during the registration process.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.DefinePinView.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:IdApp.Pages.Registration.Atlantic.DefinePinView"/> class.
+            </summary>
+        </member>
+        <member name="T:IdApp.Pages.Registration.Atlantic.DefinePinViewModel">
+            <summary>
+            The view model to bind to when showing Step 5 of the registration flow: defining a PIN.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:IdApp.Pages.Registration.Atlantic.DefinePinViewModel"/> class.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.OnInitialize">
+            <inheritdoc />
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.OnDispose">
+            <inheritdoc />
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.ClearStepState">
+            <inheritdoc />
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.ContinueCommand">
+            <summary>
+            The command to bind to for continuing to the next step in the registration flow.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.SkipCommand">
+            <summary>
+            The command to bind to for skipping this step and moving on to the next step in the registration flow.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.PinProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.Pin"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.Pin">
+            <summary>
+            The PIn code entered by the user.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.RetypedPinProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.RetypedPin"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.RetypedPin">
+            <summary>
+            The retyped pin to use for validation against <see cref="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.Pin"/>.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.EnteringPinStartedProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.EnteringPinStarted"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.EnteringPinStarted">
+            <summary>
+            Gets or sets a value indicating if the user has started entering PIN.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.EnteringRetypedPinStartedProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.EnteringRetypedPinStarted"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.EnteringRetypedPinStarted">
+            <summary>
+            Gets or sets a value indicating if the user has started entering retyped PIN.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.PinStrength">
+            <summary>
+            Gets the value indicating how strong the <see cref="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.Pin"/> is.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.PinsMatch">
+            <summary>
+            Gets the value indicating whether the entered <see cref="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.Pin"/> is the same as the entered <see cref="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.RetypedPin"/>.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.IsConnectedProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.IsConnected"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.IsConnected">
+            <summary>
+            Gets or sets if the app is connected to an XMPP server.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.ConnectionStateTextProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.ConnectionStateText"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.ConnectionStateText">
+            <summary>
+            The user friendly connection state text to display to the user.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.YouCanProtectYourWalletPinInfoProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.YouCanProtectYourWalletPinInfo"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.YouCanProtectYourWalletPinInfo">
+            <summary>
+            Enter PIN text to display to the user.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.OnPropertyChanged(System.String)">
+            <inheritdoc/>
+        </member>
         <member name="T:IdApp.Pages.Registration.Atlantic.GetPhoneNumberView">
             <summary>
             A view to display the 'choose operator' during the registration process.
@@ -4563,6 +4975,353 @@
             The command to bind to for sending and verification a code to the provided phone number.
             </summary>
         </member>
+        <member name="T:IdApp.Pages.Registration.Atlantic.GetPhotoImageView">
+            <summary>
+            A view to display the 'choose operator' during the registration process.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.GetPhotoImageView.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:IdApp.Pages.Registration.Atlantic.GetPhotoImageView"/> class.
+            </summary>
+        </member>
+        <member name="T:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel">
+            <summary>
+            The view model to bind to when showing Step 1 of the registration flow: choosing an operator.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.#ctor(IdApp.Services.Tag.RegistrationStep)">
+            <summary>
+            Creates a new instance of the <see cref="T:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel"/> class.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.OnInitialize">
+            <summary>
+            Override this method to do view model specific setup when it's parent page/view appears on screen.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.OnDispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.DoAssignProperties">
+            <inheritdoc />
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.PhoneNrVerificationCodeProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.PhoneNrVerificationCode"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.PhoneNrVerificationCode">
+            <summary>
+            Phone number
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.VerifyPhoneCodeButtonEnabled">
+            <summary>
+            If Phone number is valid or not
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.VerifyPhoneNrCodeCommand">
+            <summary>
+            The command to bind to for sending a phone message code verification request.
+            </summary>
+        </member>
+        <member name="T:IdApp.Pages.Registration.Atlantic.ValidateIdentityView">
+            <summary>
+            A view to display the 'validate identity' during the registration process.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.ValidateIdentityView.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:IdApp.Pages.Registration.Atlantic.ValidateIdentityView"/> class.
+            </summary>
+        </member>
+        <member name="T:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel">
+            <summary>
+            The view model to bind to when showing Step 4 of the registration flow: validating an identity.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel"/> class.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.OnInitialize">
+            <inheritdoc />
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.OnDispose">
+            <inheritdoc />
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Photos">
+            <summary>
+            The list of photos associated with this legal identity.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.InviteReviewerCommand">
+            <summary>
+            The command to bind to for inviting a reviewer to approve the user's identity.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.ContinueCommand">
+            <summary>
+            The command to bind to for continuing to the next step in the registration process.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.CreatedProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Created"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Created">
+            <summary>
+            Gets or sets the Created time stamp of the legal identity.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.UpdatedProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Updated"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Updated">
+            <summary>
+            Gets or sets the Updated time stamp of the legal identity.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.LegalIdProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.LegalId"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.LegalId">
+            <summary>
+            Gets or sets the Id of the legal identity.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.LegalIdentity">
+            <summary>
+            Gets or sets the legal identity.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.BareJidProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.BareJid"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.BareJid">
+            <summary>
+            Gets or sets the Bare Jid registered with the XMPP server.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.StateProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.State"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.State">
+            <summary>
+            The current state of the user's legal identity.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.FromProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.From"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.From">
+            <summary>
+            Gets or sets the From time stamp (validity range) of the user's identity.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.ToProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.To"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.To">
+            <summary>
+            Gets or sets the To time stamp (validity range) of the user's identity.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.FirstNameProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.FirstName"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.FirstName">
+            <summary>
+            The user's first name
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.MiddleNamesProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.MiddleNames"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.MiddleNames">
+            <summary>
+            The user's middle name(s)
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.LastNamesProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.LastNames"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.LastNames">
+            <summary>
+            The user's last name(s)
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.PersonalNumberProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.PersonalNumber"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.PersonalNumber">
+            <summary>
+            The user's personal number
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.AddressProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Address"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Address">
+            <summary>
+            The user's address, line 1.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Address2Property">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Address2"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Address2">
+            <summary>
+            The user's address, line 2.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.ZipCodeProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.ZipCode"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.ZipCode">
+            <summary>
+            The user's zip code
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.AreaProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Area"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Area">
+            <summary>
+            The user's area
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.CityProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.City"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.City">
+            <summary>
+            The user's city
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.RegionProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Region"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Region">
+            <summary>
+            The user's region
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.CountryProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Country"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Country">
+            <summary>
+            Gets or sets the user's country.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.CountryCodeProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.CountryCode"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.CountryCode">
+            <summary>
+            Gets or sets the user's country.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.PhoneNrProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.PhoneNr"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.PhoneNr">
+            <summary>
+            Gets or sets the user's country.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.EMailProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.EMail"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.EMail">
+            <summary>
+            Gets or sets the user's country.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.IsApprovedProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.IsApproved"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.IsApproved">
+            <summary>
+            Gets or sets if the user's identity is approved or not.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.IsCreatedProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.IsCreated"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.IsCreated">
+            <summary>
+            Gets or sets if the user's identity has been created.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.IsConnectedProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.IsConnected"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.IsConnected">
+            <summary>
+            Gets or sets if the app is connected to an XMPP server.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.ConnectionStateTextProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.ConnectionStateText"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.ConnectionStateText">
+            <summary>
+            The user friendly connection state text to display to the user.
+            </summary>
+        </member>
         <member name="T:IdApp.Pages.Registration.Atlantic.ValidatePhoneNumberView">
             <summary>
             A view to display the 'choose operator' during the registration process.
@@ -4613,128 +5372,6 @@
             <summary>
             The command to bind to for sending a phone message code verification request.
             </summary>
-        </member>
-        <member name="T:IdApp.Pages.Registration.DefinePin.DefinePinView">
-            <summary>
-            A view to display the 'choose pin' during the registration process.
-            </summary>
-        </member>
-        <member name="M:IdApp.Pages.Registration.DefinePin.DefinePinView.#ctor">
-            <summary>
-            Creates a new instance of the <see cref="T:IdApp.Pages.Registration.DefinePin.DefinePinView"/> class.
-            </summary>
-        </member>
-        <member name="T:IdApp.Pages.Registration.DefinePin.DefinePinViewModel">
-            <summary>
-            The view model to bind to when showing Step 5 of the registration flow: defining a PIN.
-            </summary>
-        </member>
-        <member name="M:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.#ctor">
-            <summary>
-            Creates a new instance of the <see cref="T:IdApp.Pages.Registration.DefinePin.DefinePinViewModel"/> class.
-            </summary>
-        </member>
-        <member name="M:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.OnInitialize">
-            <inheritdoc />
-        </member>
-        <member name="M:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.OnDispose">
-            <inheritdoc />
-        </member>
-        <member name="M:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.ClearStepState">
-            <inheritdoc />
-        </member>
-        <member name="P:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.ContinueCommand">
-            <summary>
-            The command to bind to for continuing to the next step in the registration flow.
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.SkipCommand">
-            <summary>
-            The command to bind to for skipping this step and moving on to the next step in the registration flow.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.PinProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.Pin"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.Pin">
-            <summary>
-            The PIn code entered by the user.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.RetypedPinProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.RetypedPin"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.RetypedPin">
-            <summary>
-            The retyped pin to use for validation against <see cref="P:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.Pin"/>.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.EnteringPinStartedProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.EnteringPinStarted"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.EnteringPinStarted">
-            <summary>
-            Gets or sets a value indicating if the user has started entering PIN.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.EnteringRetypedPinStartedProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.EnteringRetypedPinStarted"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.EnteringRetypedPinStarted">
-            <summary>
-            Gets or sets a value indicating if the user has started entering retyped PIN.
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.PinStrength">
-            <summary>
-            Gets the value indicating how strong the <see cref="P:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.Pin"/> is.
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.PinsMatch">
-            <summary>
-            Gets the value indicating whether the entered <see cref="P:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.Pin"/> is the same as the entered <see cref="P:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.RetypedPin"/>.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.IsConnectedProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.IsConnected"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.IsConnected">
-            <summary>
-            Gets or sets if the app is connected to an XMPP server.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.ConnectionStateTextProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.ConnectionStateText"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.ConnectionStateText">
-            <summary>
-            The user friendly connection state text to display to the user.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.YouCanProtectYourWalletPinInfoProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.YouCanProtectYourWalletPinInfo"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.YouCanProtectYourWalletPinInfo">
-            <summary>
-            Enter PIN text to display to the user.
-            </summary>
-        </member>
-        <member name="M:IdApp.Pages.Registration.DefinePin.DefinePinViewModel.OnPropertyChanged(System.String)">
-            <inheritdoc/>
         </member>
         <member name="T:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel">
             <summary>
@@ -4836,6 +5473,11 @@
         <member name="P:IdApp.Pages.Registration.RegistrationStepDataTemplateSelector.ValidatePhoneNumber">
             <summary>
             The template for validating the phone number.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.RegistrationStepDataTemplateSelector.GetPhotoImage">
+            <summary>
+            The photo image template.
             </summary>
         </member>
         <member name="P:IdApp.Pages.Registration.RegistrationStepDataTemplateSelector.ValidateIdentity">
@@ -5044,302 +5686,6 @@
             </summary>
             <param name="Sender">The event sender.</param>
             <param name="e">The default event args.</param>
-        </member>
-        <member name="T:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityView">
-            <summary>
-            A view to display the 'validate identity' during the registration process.
-            </summary>
-        </member>
-        <member name="M:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityView.#ctor">
-            <summary>
-            Creates a new instance of the <see cref="T:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityView"/> class.
-            </summary>
-        </member>
-        <member name="T:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel">
-            <summary>
-            The view model to bind to when showing Step 4 of the registration flow: validating an identity.
-            </summary>
-        </member>
-        <member name="M:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.#ctor">
-            <summary>
-            Creates a new instance of the <see cref="T:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel"/> class.
-            </summary>
-        </member>
-        <member name="M:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OnInitialize">
-            <inheritdoc />
-        </member>
-        <member name="M:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.OnDispose">
-            <inheritdoc />
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.Photos">
-            <summary>
-            The list of photos associated with this legal identity.
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.InviteReviewerCommand">
-            <summary>
-            The command to bind to for inviting a reviewer to approve the user's identity.
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.ContinueCommand">
-            <summary>
-            The command to bind to for continuing to the next step in the registration process.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.CreatedProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.Created"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.Created">
-            <summary>
-            Gets or sets the Created time stamp of the legal identity.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.UpdatedProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.Updated"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.Updated">
-            <summary>
-            Gets or sets the Updated time stamp of the legal identity.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.LegalIdProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.LegalId"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.LegalId">
-            <summary>
-            Gets or sets the Id of the legal identity.
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.LegalIdentity">
-            <summary>
-            Gets or sets the legal identity.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.BareJidProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.BareJid"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.BareJid">
-            <summary>
-            Gets or sets the Bare Jid registered with the XMPP server.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.StateProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.State"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.State">
-            <summary>
-            The current state of the user's legal identity.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.FromProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.From"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.From">
-            <summary>
-            Gets or sets the From time stamp (validity range) of the user's identity.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.ToProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.To"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.To">
-            <summary>
-            Gets or sets the To time stamp (validity range) of the user's identity.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.FirstNameProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.FirstName"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.FirstName">
-            <summary>
-            The user's first name
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.MiddleNamesProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.MiddleNames"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.MiddleNames">
-            <summary>
-            The user's middle name(s)
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.LastNamesProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.LastNames"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.LastNames">
-            <summary>
-            The user's last name(s)
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.PersonalNumberProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.PersonalNumber"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.PersonalNumber">
-            <summary>
-            The user's personal number
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.AddressProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.Address"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.Address">
-            <summary>
-            The user's address, line 1.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.Address2Property">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.Address2"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.Address2">
-            <summary>
-            The user's address, line 2.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.ZipCodeProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.ZipCode"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.ZipCode">
-            <summary>
-            The user's zip code
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.AreaProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.Area"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.Area">
-            <summary>
-            The user's area
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.CityProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.City"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.City">
-            <summary>
-            The user's city
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.RegionProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.Region"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.Region">
-            <summary>
-            The user's region
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.CountryProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.Country"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.Country">
-            <summary>
-            Gets or sets the user's country.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.CountryCodeProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.CountryCode"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.CountryCode">
-            <summary>
-            Gets or sets the user's country.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.PhoneNrProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.PhoneNr"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.PhoneNr">
-            <summary>
-            Gets or sets the user's country.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.EMailProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.EMail"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.EMail">
-            <summary>
-            Gets or sets the user's country.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.IsApprovedProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.IsApproved"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.IsApproved">
-            <summary>
-            Gets or sets if the user's identity is approved or not.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.IsCreatedProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.IsCreated"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.IsCreated">
-            <summary>
-            Gets or sets if the user's identity has been created.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.IsConnectedProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.IsConnected"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.IsConnected">
-            <summary>
-            Gets or sets if the app is connected to an XMPP server.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.ConnectionStateTextProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.ConnectionStateText"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.ValidateIdentity.ValidateIdentityViewModel.ConnectionStateText">
-            <summary>
-            The user friendly connection state text to display to the user.
-            </summary>
         </member>
         <member name="T:IdApp.Pages.ShellBasePage">
             <summary>
@@ -11121,9 +11467,16 @@
             Validate Phone Number
             </summary>
         </member>
-        <member name="F:IdApp.Services.Tag.RegistrationStep.RegisterIdentity">
+        <member name="F:IdApp.Services.Tag.RegistrationStep.GetUserPhotoImage">
             <summary>
-            Register an identity
+            </summary>
+        </member>
+        <member name="F:IdApp.Services.Tag.RegistrationStep.GetIdFacePhotoImage">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:IdApp.Services.Tag.RegistrationStep.GetIdBackPhotoImage">
+            <summary>
             </summary>
         </member>
         <member name="F:IdApp.Services.Tag.RegistrationStep.ValidateIdentity">

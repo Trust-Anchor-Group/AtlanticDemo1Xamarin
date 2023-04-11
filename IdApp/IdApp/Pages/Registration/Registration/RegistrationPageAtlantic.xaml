@@ -18,20 +18,19 @@
 				<DataTemplate x:Key="ValidatePhoneNumberTemplate">
 					<ValidatePhoneNumberView xmlns="clr-namespace:IdApp.Pages.Registration.Atlantic;assembly=IdApp"/>
 				</DataTemplate>
-				<!--
-				<DataTemplate x:Key="ValidatePhoneNumberTemplate">
-					<ValidatePhoneNumberView xmlns="clr-namespace:IdApp.Pages.Registration.Atlantic;assembly=IdApp"/>
+				<DataTemplate x:Key="GetPhotoImageTemplate">
+					<GetPhotoImageView xmlns="clr-namespace:IdApp.Pages.Registration.Atlantic;assembly=IdApp"/>
 				</DataTemplate>
-				-->
 				<DataTemplate x:Key="ValidateIdentityTemplate">
-					<ValidateIdentityView xmlns="clr-namespace:IdApp.Pages.Registration.ValidateIdentity;assembly=IdApp"/>
+					<ValidateIdentityView xmlns="clr-namespace:IdApp.Pages.Registration.Atlantic;assembly=IdApp"/>
 				</DataTemplate>
 				<DataTemplate x:Key="DefinePinTemplate">
-					<DefinePinView xmlns="clr-namespace:IdApp.Pages.Registration.DefinePin;assembly=IdApp"/>
+					<DefinePinView xmlns="clr-namespace:IdApp.Pages.Registration.Atlantic;assembly=IdApp"/>
 				</DataTemplate>
 				<registration:RegistrationStepDataTemplateSelector x:Key="StepTemplateSelector"
 																   GetPhoneNumber="{StaticResource GetPhoneNumberTemplate}"
 																   ValidatePhoneNumber="{StaticResource ValidatePhoneNumberTemplate}"
+																   GetPhotoImage="{StaticResource GetPhotoImageTemplate}"
 																   ValidateIdentity="{StaticResource ValidateIdentityTemplate}"
 																   DefinePin="{StaticResource DefinePinTemplate}"/>
 			</ResourceDictionary>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pancakeview:PancakeView
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:ffsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+	xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+	x:Class="IdApp.Controls.Extended.ExEntry">
+
+	<pancakeview:PancakeView.GestureRecognizers>
+		<TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+	</pancakeview:PancakeView.GestureRecognizers>
+
+	<Grid RowDefinitions="auto" ColumnDefinitions="auto,*,auto" WidthRequest="500"
+		  VerticalOptions="Center">
+		<ffsvg:SvgCachedImage x:Name="Image1" Grid.Column="0" VerticalOptions="Center" />
+
+		<Entry x:Name="InnerEntry" Grid.Column="1"
+			   VerticalTextAlignment="Center"
+			   VerticalOptions="Center" HorizontalOptions="FillAndExpand"
+			   TextChanged="OnTextChanged" Completed="OnSendCompleted"
+			   Focused="OnEntryFocused" Unfocused="OnEntryUnfocused"/>
+
+
+		<ffsvg:SvgCachedImage x:Name="Image2" Grid.Column="2" VerticalOptions="Center"  >
+			<ffsvg:SvgCachedImage.GestureRecognizers>
+				<TapGestureRecognizer x:Name="RightImageGestureRecognizer" Tapped="OnRightImageCommand"/>
+			</ffsvg:SvgCachedImage.GestureRecognizers>
+		</ffsvg:SvgCachedImage>
+	</Grid>
+</pancakeview:PancakeView>

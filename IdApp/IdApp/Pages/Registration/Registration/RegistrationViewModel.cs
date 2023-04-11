@@ -29,9 +29,11 @@ namespace IdApp.Pages.Registration.Registration
 			{
 				this.AddChildViewModel(new Atlantic.GetPhoneNumberViewModel()),
 				this.AddChildViewModel(new Atlantic.ValidatePhoneNumberViewModel()),
-//				this.AddChildViewModel(new RegisterIdentity.RegisterIdentityViewModel()),
-				this.AddChildViewModel(new ValidateIdentity.ValidateIdentityViewModel()),
-				this.AddChildViewModel(new DefinePin.DefinePinViewModel())
+				this.AddChildViewModel(new Atlantic.GetPhotoImageViewModel(RegistrationStep.GetUserPhotoImage)),
+				this.AddChildViewModel(new Atlantic.GetPhotoImageViewModel(RegistrationStep.GetIdFacePhotoImage)),
+				this.AddChildViewModel(new Atlantic.GetPhotoImageViewModel(RegistrationStep.GetIdBackPhotoImage)),
+				this.AddChildViewModel(new Atlantic.ValidateIdentityViewModel()),
+				this.AddChildViewModel(new Atlantic.DefinePinViewModel())
 			};
 #else
 			this.GoToPrevCommand = new Command(() => this.GoToPrev(), () => (RegistrationStep)this.CurrentStep > RegistrationStep.ValidateContactInfo);
@@ -191,24 +193,24 @@ namespace IdApp.Pages.Registration.Registration
 				switch (Step)
 				{
 					case RegistrationStep.GetPhoneNumber:
-						await this.SyncTagProfileStep();
-						break;
-
 					case RegistrationStep.ValidatePhoneNumber:
+					case RegistrationStep.GetUserPhotoImage:
+					case RegistrationStep.GetIdFacePhotoImage:
+					case RegistrationStep.GetIdBackPhotoImage:
 						await this.SyncTagProfileStep();
 						break;
 
-					case RegistrationStep.RegisterIdentity:
-						/*!!!
-						// User connected to an existing account (as opposed to creating a new one). Copy values from the legal identity.
-						if (this.TagProfile.LegalIdentity is not null)
-						{
-							RegisterIdentity.RegisterIdentityViewModel vm = (RegisterIdentity.RegisterIdentityViewModel)this.RegistrationSteps[(int)RegistrationStep.RegisterIdentity];
-							vm.PopulateFromTagProfile();
-						}
-						*/
-						await this.SyncTagProfileStep();
-						break;
+					/*!!!
+				case RegistrationStep.RegisterIdentity:
+					// User connected to an existing account (as opposed to creating a new one). Copy values from the legal identity.
+					if (this.TagProfile.LegalIdentity is not null)
+					{
+						RegisterIdentity.RegisterIdentityViewModel vm = (RegisterIdentity.RegisterIdentityViewModel)this.RegistrationSteps[(int)RegistrationStep.RegisterIdentity];
+						vm.PopulateFromTagProfile();
+					}
+					await this.SyncTagProfileStep();
+					break;
+					*/
 
 					case RegistrationStep.ValidateIdentity:
 						await this.SyncTagProfileStep();

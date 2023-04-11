@@ -30,24 +30,31 @@ namespace IdApp.Services.Tag
 		ValidatePhoneNumber = 1,
 
 		/// <summary>
-		/// Register an identity
 		/// </summary>
-		RegisterIdentity = 2,
+		GetUserPhotoImage = 2,
+
+		/// <summary>
+		/// </summary>
+		GetIdFacePhotoImage = 3,
+
+		/// <summary>
+		/// </summary>
+		GetIdBackPhotoImage = 4,
 
 		/// <summary>
 		/// Have the identity validated.
 		/// </summary>
-		ValidateIdentity = 3,
+		ValidateIdentity = 5,
 
 		/// <summary>
 		/// Create a PIN code
 		/// </summary>
-		Pin = 4,
+		Pin = 6,
 
 		/// <summary>
 		/// Profile is completed.
 		/// </summary>
-		Complete = 5
+		Complete = 7
 #else
 		/// <summary>
 		/// Validate Phone Number and e-mail address
@@ -567,15 +574,21 @@ namespace IdApp.Services.Tag
 						await this.SetStep(RegistrationStep.GetPhoneNumber);
 						break;
 
-						/*!!!
-					case RegistrationStep.RegisterIdentity:
-						await this.SetStep(RegistrationStep.ValidateContactInfo);
+					case RegistrationStep.GetUserPhotoImage:
+						await this.SetStep(RegistrationStep.ValidatePhoneNumber);
+						break;
+
+					case RegistrationStep.GetIdFacePhotoImage:
+						await this.SetStep(RegistrationStep.GetUserPhotoImage);
+						break;
+
+					case RegistrationStep.GetIdBackPhotoImage:
+						await this.SetStep(RegistrationStep.GetIdFacePhotoImage);
 						break;
 
 					case RegistrationStep.ValidateIdentity:
-						await this.SetStep(RegistrationStep.RegisterIdentity);
+						await this.SetStep(RegistrationStep.GetUserPhotoImage);
 						break;
-						*/
 
 					case RegistrationStep.Pin:
 						await this.SetStep(RegistrationStep.ValidateIdentity);
@@ -621,15 +634,21 @@ namespace IdApp.Services.Tag
 						await this.SetStep(RegistrationStep.ValidatePhoneNumber);
 						break;
 
-						/*!!!
 					case RegistrationStep.ValidatePhoneNumber:
-						await this.SetStep(this.LegalIdentity is null ? RegistrationStep.Account : RegistrationStep.RegisterIdentity);
+						await this.SetStep(RegistrationStep.GetUserPhotoImage);
 						break;
 
-					case RegistrationStep.RegisterIdentity:
+					case RegistrationStep.GetUserPhotoImage:
+						await this.SetStep(RegistrationStep.GetIdFacePhotoImage);
+						break;
+
+					case RegistrationStep.GetIdFacePhotoImage:
+						await this.SetStep(RegistrationStep.GetIdBackPhotoImage);
+						break;
+
+					case RegistrationStep.GetIdBackPhotoImage:
 						await this.SetStep(RegistrationStep.ValidateIdentity);
 						break;
-						*/
 
 					case RegistrationStep.ValidateIdentity:
 						await this.SetStep(RegistrationStep.Pin);

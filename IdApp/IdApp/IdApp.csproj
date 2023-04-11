@@ -52,6 +52,12 @@
     <EmbeddedResource Remove="Pages\Registration\ValidateContactInfo\ValidateContactInfoView.xaml" />
     <Compile Remove="Pages\Registration\ValidateContactInfo\ValidateContactInfoView.xaml.cs" />
     <Compile Remove="Pages\Registration\ValidateContactInfo\ValidateContactInfoViewModel.cs" />
+    <EmbeddedResource Remove="Pages\Registration\ValidateIdentity\ValidateIdentityView.xaml" />
+    <Compile Remove="Pages\Registration\ValidateIdentity\ValidateIdentityView.xaml.cs" />
+    <Compile Remove="Pages\Registration\ValidateIdentity\ValidateIdentityViewModel.cs" />
+    <EmbeddedResource Remove="Pages\Registration\DefinePin\DefinePinView.xaml" />
+    <Compile Remove="Pages\Registration\DefinePin\DefinePinView.xaml.cs" />
+    <Compile Remove="Pages\Registration\DefinePin\DefinePinViewModel.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -136,6 +142,7 @@
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2545" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.5" />
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
     <PackageReference Include="ZXing.Net.Mobile.Forms" Version="3.1.0-beta2" />
   </ItemGroup>
 
@@ -157,12 +164,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Controls\MainTabBar\MainTabBarView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Pages\Registration\DefinePin\DefinePinView.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Pages\Registration\ValidateIdentity\ValidateIdentityView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Main\ScanQrCode\ScanQrCodePage.xaml">

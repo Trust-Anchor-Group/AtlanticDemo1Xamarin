@@ -5,6 +5,7 @@
 	xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
 	xmlns:registration="clr-namespace:IdApp.Pages.Registration;assembly=IdApp"
 	xmlns:model="clr-namespace:IdApp.Pages.Registration.Atlantic;assembly=IdApp"
+	xmlns:controls="clr-namespace:IdApp.Controls.Extended"
 	x:DataType="model:GetPhoneNumberViewModel"
 	x:Class="IdApp.Pages.Registration.Atlantic.GetPhoneNumberView">
 
@@ -14,9 +15,9 @@
 		<StackLayout Grid.Row="0"/>
 
 		<StackLayout Grid.Row="1" Spacing="{StaticResource LargeRawSpacing}" >
-			<Entry Placeholder="{xct:Translate Text=EnterPhoneNumber}"
-				   ClearButtonVisibility="WhileEditing" Keyboard="Plain" ReturnType="Done"
-				   Text="{Binding Path=PhoneNumber, Mode=TwoWay}" />
+			<controls:ExEntry PlaceHolder="{xct:Translate Text=EnterPhoneNumber}"
+				   ClearButtonVisibilityEntry="WhileEditing" KeyBoardEntry="Plain" ReturnType="Done"
+				   EntryText="{Binding Path=PhoneNumber, Mode=TwoWay}" />
 
 			<Button Text="{Binding Path=PhoneButtonLabel}"
 					Command="{Binding Path=SendPhoneNrCodeCommand}"
