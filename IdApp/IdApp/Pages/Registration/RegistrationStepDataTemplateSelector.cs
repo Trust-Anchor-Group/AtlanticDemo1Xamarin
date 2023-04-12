@@ -25,6 +25,11 @@ namespace IdApp.Pages.Registration
         public DataTemplate GetPhotoImage { get; set; }
 
 		/// <summary>
+		/// The register identity template.
+		/// </summary>
+		public DataTemplate RegisterIdentity { get; set; }
+
+		/// <summary>
 		/// The validate identity template.
 		/// </summary>
 		public DataTemplate ValidateIdentity { get; set; }
@@ -78,6 +83,7 @@ namespace IdApp.Pages.Registration
 				RegistrationStep.GetUserPhotoImage => this.GetPhotoImage,
 				RegistrationStep.GetIdFacePhotoImage => this.GetPhotoImage,
 				RegistrationStep.GetIdBackPhotoImage => this.GetPhotoImage,
+				RegistrationStep.RegisterIdentity => this.RegisterIdentity,
 				RegistrationStep.ValidateIdentity => this.ValidateIdentity,
 				RegistrationStep.Pin => this.DefinePin,
 				_ => this.GetPhoneNumber,

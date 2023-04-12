@@ -1,5 +1,5 @@
 ﻿using IdApp.Extensions;
-using IdApp.Pages.Registration.RegisterIdentity;
+using IdApp.Pages.Registration.Atlantic;
 using IdApp.Services.Tag;
 using System;
 using System.Collections.Generic;

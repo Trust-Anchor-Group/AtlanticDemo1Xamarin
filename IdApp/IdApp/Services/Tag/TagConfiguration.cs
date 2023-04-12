@@ -39,6 +39,12 @@ namespace IdApp.Services
 		/// Verified Phone Number
 		/// </summary>
 		[DefaultValueStringEmpty]
+		public string TrimmedNumber { get; set; }
+
+		/// <summary>
+		/// Verified Phone Number
+		/// </summary>
+		[DefaultValueStringEmpty]
 		public string PhoneNumber { get; set; }
 
 		/// <summary>

@@ -7,6 +7,7 @@ using Waher.Content;
 using Xamarin.Forms;
 using IdApp.Services.Tag;
 using Xamarin.CommunityToolkit.Helpers;
+using Waher.Networking.XMPP;
 
 namespace IdApp.Pages.Registration.Atlantic
 {
@@ -141,10 +142,7 @@ namespace IdApp.Pages.Registration.Atlantic
 					}
 
 					await this.TagProfile.SetDomain(Domain, DefaultConnectivity, Key, Secret);
-
-					/*!!! create an account based on the phone number */
-
-					this.OnStepCompleted(EventArgs.Empty);
+					await this.CreateAccount();
 				}
 				else
 				{
@@ -164,6 +162,48 @@ namespace IdApp.Pages.Registration.Atlantic
 			{
 				this.BeginInvokeSetIsDone(this.VerifyPhoneNrCodeCommand);
 			}
+		}
+
+		#endregion
+
+		#region Account
+
+		private async Task<bool> CreateAccount()
+		{
+			try
+			{
+				string AccountName = $"A{this.TagProfile.TrimmedNumber}";
+				string passwordToUse = this.CryptoService.CreateRandomPassword();
+
+				(string hostName, int portNumber, bool isIpAddress) = await this.NetworkService.LookupXmppHostnameAndPort(this.TagProfile.Domain);
+
+				async Task OnConnected(XmppClient client)
+				{
+					if (this.TagProfile.NeedsUpdating())
+						await this.XmppService.DiscoverServices(client);
+
+					await this.TagProfile.SetAccount(AccountName, client.PasswordHash, client.PasswordHashMethod);
+					this.OnStepCompleted(EventArgs.Empty);
+				}
+
+				(bool succeeded, string errorMessage) = await this.XmppService.TryConnectAndCreateAccount(this.TagProfile.Domain,
+					isIpAddress, hostName, portNumber, AccountName, passwordToUse, Constants.LanguageCodes.Default,
+					this.TagProfile.ApiKey, this.TagProfile.ApiSecret, typeof(App).Assembly, OnConnected);
+
+				if (succeeded)
+					return true;
+
+				await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["ErrorTitle"], errorMessage, LocalizationResourceManager.Current["Ok"]);
+			}
+			catch (Exception ex)
+			{
+				this.LogService.LogException(ex);
+				string userMessage = string.Format(LocalizationResourceManager.Current["UnableToConnectTo"], this.TagProfile.Domain);
+				string message = userMessage + Environment.NewLine + ex.Message;
+				await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["ErrorTitle"], message, LocalizationResourceManager.Current["Ok"]);
+			}
+
+			return false;
 		}
 
 		#endregion

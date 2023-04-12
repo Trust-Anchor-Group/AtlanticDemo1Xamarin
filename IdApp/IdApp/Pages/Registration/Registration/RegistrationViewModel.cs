@@ -32,6 +32,7 @@ namespace IdApp.Pages.Registration.Registration
 				this.AddChildViewModel(new Atlantic.GetPhotoImageViewModel(RegistrationStep.GetUserPhotoImage)),
 				this.AddChildViewModel(new Atlantic.GetPhotoImageViewModel(RegistrationStep.GetIdFacePhotoImage)),
 				this.AddChildViewModel(new Atlantic.GetPhotoImageViewModel(RegistrationStep.GetIdBackPhotoImage)),
+				this.AddChildViewModel(new Atlantic.RegisterIdentityViewModel()),
 				this.AddChildViewModel(new Atlantic.ValidateIdentityViewModel()),
 				this.AddChildViewModel(new Atlantic.DefinePinViewModel())
 			};
@@ -200,17 +201,15 @@ namespace IdApp.Pages.Registration.Registration
 						await this.SyncTagProfileStep();
 						break;
 
-					/*!!!
 				case RegistrationStep.RegisterIdentity:
 					// User connected to an existing account (as opposed to creating a new one). Copy values from the legal identity.
 					if (this.TagProfile.LegalIdentity is not null)
 					{
-						RegisterIdentity.RegisterIdentityViewModel vm = (RegisterIdentity.RegisterIdentityViewModel)this.RegistrationSteps[(int)RegistrationStep.RegisterIdentity];
+						Atlantic.RegisterIdentityViewModel vm = (Atlantic.RegisterIdentityViewModel)this.RegistrationSteps[(int)RegistrationStep.RegisterIdentity];
 						vm.PopulateFromTagProfile();
 					}
 					await this.SyncTagProfileStep();
 					break;
-					*/
 
 					case RegistrationStep.ValidateIdentity:
 						await this.SyncTagProfileStep();

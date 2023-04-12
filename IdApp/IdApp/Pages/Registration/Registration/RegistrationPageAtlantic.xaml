@@ -21,6 +21,9 @@
 				<DataTemplate x:Key="GetPhotoImageTemplate">
 					<GetPhotoImageView xmlns="clr-namespace:IdApp.Pages.Registration.Atlantic;assembly=IdApp"/>
 				</DataTemplate>
+				<DataTemplate x:Key="RegisterIdentityTemplate">
+					<RegisterIdentityView xmlns="clr-namespace:IdApp.Pages.Registration.Atlantic;assembly=IdApp"/>
+				</DataTemplate>
 				<DataTemplate x:Key="ValidateIdentityTemplate">
 					<ValidateIdentityView xmlns="clr-namespace:IdApp.Pages.Registration.Atlantic;assembly=IdApp"/>
 				</DataTemplate>
@@ -31,6 +34,7 @@
 																   GetPhoneNumber="{StaticResource GetPhoneNumberTemplate}"
 																   ValidatePhoneNumber="{StaticResource ValidatePhoneNumberTemplate}"
 																   GetPhotoImage="{StaticResource GetPhotoImageTemplate}"
+																   RegisterIdentity="{StaticResource RegisterIdentityTemplate}"
 																   ValidateIdentity="{StaticResource ValidateIdentityTemplate}"
 																   DefinePin="{StaticResource DefinePinTemplate}"/>
 			</ResourceDictionary>

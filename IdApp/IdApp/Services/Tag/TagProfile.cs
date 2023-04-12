@@ -42,19 +42,24 @@ namespace IdApp.Services.Tag
 		GetIdBackPhotoImage = 4,
 
 		/// <summary>
+		/// Register an identity
+		/// </summary>
+		RegisterIdentity = 5,
+
+		/// <summary>
 		/// Have the identity validated.
 		/// </summary>
-		ValidateIdentity = 5,
+		ValidateIdentity = 6,
 
 		/// <summary>
 		/// Create a PIN code
 		/// </summary>
-		Pin = 6,
+		Pin = 7,
 
 		/// <summary>
 		/// Profile is completed.
 		/// </summary>
-		Complete = 7
+		Complete = 8
 #else
 		/// <summary>
 		/// Validate Phone Number and e-mail address
@@ -176,6 +181,9 @@ namespace IdApp.Services.Tag
 				Domain = this.Domain,
 				ApiKey = this.ApiKey,
 				ApiSecret = this.ApiSecret,
+#if ATLANTICAPP
+				TrimmedNumber = this.TrimmedNumber,
+#endif
 				PhoneNumber = this.PhoneNumber,
 				EMail = this.EMail,
 				DefaultXmppConnectivity = this.DefaultXmppConnectivity,
@@ -210,6 +218,9 @@ namespace IdApp.Services.Tag
 				this.Domain = configuration.Domain;
 				this.ApiKey = configuration.ApiKey;
 				this.ApiSecret = configuration.ApiSecret;
+#if ATLANTICAPP
+				this.TrimmedNumber = configuration.TrimmedNumber;
+#endif
 				this.PhoneNumber = configuration.PhoneNumber;
 				this.EMail = configuration.EMail;
 				this.DefaultXmppConnectivity = configuration.DefaultXmppConnectivity;
@@ -323,7 +334,14 @@ namespace IdApp.Services.Tag
 		public string TrimmedNumber
 		{
 			get => this.trimmedNumber;
-			private set => this.trimmedNumber = value;
+			private set
+			{
+				if (!string.Equals(this.trimmedNumber, value))
+				{
+					this.trimmedNumber = value;
+					this.FlagAsDirty(nameof(this.TrimmedNumber));
+				}
+			}
 		}
 
 		/// <inheritdoc/>
@@ -586,6 +604,10 @@ namespace IdApp.Services.Tag
 						await this.SetStep(RegistrationStep.GetIdFacePhotoImage);
 						break;
 
+					case RegistrationStep.RegisterIdentity:
+						await this.SetStep(RegistrationStep.GetIdBackPhotoImage);
+						break;
+
 					case RegistrationStep.ValidateIdentity:
 						await this.SetStep(RegistrationStep.GetUserPhotoImage);
 						break;
@@ -647,6 +669,10 @@ namespace IdApp.Services.Tag
 						break;
 
 					case RegistrationStep.GetIdBackPhotoImage:
+						await this.SetStep(RegistrationStep.RegisterIdentity);
+						break;
+
+					case RegistrationStep.RegisterIdentity:
 						await this.SetStep(RegistrationStep.ValidateIdentity);
 						break;
 
@@ -764,10 +790,8 @@ namespace IdApp.Services.Tag
 			this.ApiSecret = string.Empty;
 
 #if ATLANTICAPP
-			/*!!!
-			if (!string.IsNullOrWhiteSpace(this.Account) && this.Step == RegistrationStep.Account)
+			if (!string.IsNullOrWhiteSpace(this.Account) && this.Step == RegistrationStep.ValidatePhoneNumber)
 				await this.IncrementConfigurationStep();
-			*/
 #else
 			if (!string.IsNullOrWhiteSpace(this.Account) && this.Step == RegistrationStep.Account)
 				await this.IncrementConfigurationStep();
@@ -998,6 +1022,9 @@ namespace IdApp.Services.Tag
 			this.domain = string.Empty;
 			this.apiKey = string.Empty;
 			this.apiSecret = string.Empty;
+#if ATLANTICAPP
+			this.trimmedNumber = string.Empty;
+#endif
 			this.phoneNumber = string.Empty;
 			this.eMail = string.Empty;
 			this.account = string.Empty;

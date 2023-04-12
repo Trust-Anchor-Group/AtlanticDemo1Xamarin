@@ -7,7 +7,7 @@ using Waher.Networking.XMPP;
 using Waher.Networking.XMPP.HttpFileUpload;
 using Waher.Networking.XMPP.ServiceDiscovery;
 using Waher.Runtime.Inventory;
-using IdApp.Pages.Registration.RegisterIdentity;
+using IdApp.Pages.Registration.Atlantic;
 using Waher.Networking.XMPP.Contracts;
 using Waher.Persistence;
 using Waher.Runtime.Temporary;
@@ -83,7 +83,7 @@ namespace IdApp.Services.Xmpp
 		/// <param name="appAssembly">The current app's main assembly.</param>
 		/// <param name="connectedFunc">A callback to use if and when connected.</param>
 		/// <returns>If connected. If not, any error message.</returns>
-		Task<(bool succeeded, string errorMessage)> TryConnect(string domain, bool isIpAddress, string hostName, int portNumber, 
+		Task<(bool succeeded, string errorMessage)> TryConnect(string domain, bool isIpAddress, string hostName, int portNumber,
             string languageCode, Assembly appAssembly, Func<XmppClient, Task> connectedFunc);
 
         /// <summary>
@@ -101,8 +101,8 @@ namespace IdApp.Services.Xmpp
         /// <param name="appAssembly">The current app's main assembly.</param>
         /// <param name="connectedFunc">A callback to use if and when connected.</param>
         /// <returns>If connected. If not, any error message.</returns>
-        Task<(bool succeeded, string errorMessage)> TryConnectAndCreateAccount(string domain, bool isIpAddress, string hostName, 
-            int portNumber, string userName, string password, string languageCode, string ApiKey, string ApiSecret, 
+        Task<(bool succeeded, string errorMessage)> TryConnectAndCreateAccount(string domain, bool isIpAddress, string hostName,
+            int portNumber, string userName, string password, string languageCode, string ApiKey, string ApiSecret,
             Assembly appAssembly, Func<XmppClient, Task> connectedFunc);
 
         /// <summary>
@@ -119,8 +119,8 @@ namespace IdApp.Services.Xmpp
         /// <param name="appAssembly">The current app's main assembly.</param>
         /// <param name="connectedFunc">A callback to use if and when connected.</param>
         /// <returns>If connected. If not, any error message.</returns>
-        Task<(bool succeeded, string errorMessage)> TryConnectAndConnectToAccount(string domain, bool isIpAddress, string hostName, 
-            int portNumber, string userName, string password, string passwordMethod, string languageCode, Assembly appAssembly, 
+        Task<(bool succeeded, string errorMessage)> TryConnectAndConnectToAccount(string domain, bool isIpAddress, string hostName,
+            int portNumber, string userName, string password, string passwordMethod, string languageCode, Assembly appAssembly,
             Func<XmppClient, Task> connectedFunc);
 
 		#endregion

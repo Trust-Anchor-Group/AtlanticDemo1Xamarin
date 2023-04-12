@@ -5026,6 +5026,370 @@
             The command to bind to for sending a phone message code verification request.
             </summary>
         </member>
+        <member name="T:IdApp.Pages.Registration.Atlantic.RegisterIdentityModel">
+            <summary>
+            The data model for registering an identity.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityModel.FirstName">
+            <summary>
+            First name
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityModel.MiddleNames">
+            <summary>
+            Middle name(s) as one string
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityModel.LastNames">
+            <summary>
+            Last name(s) as one string
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityModel.PersonalNumber">
+            <summary>
+            Personal number
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityModel.Address">
+            <summary>
+            Address, line 1
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityModel.Address2">
+            <summary>
+            Address, line 2
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityModel.ZipCode">
+            <summary>
+            Zip code (postal code)
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityModel.Area">
+            <summary>
+            Area
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityModel.City">
+            <summary>
+            City
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityModel.Region">
+            <summary>
+            Region
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityModel.Country">
+            <summary>
+            Country
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityModel.PhoneNr">
+            <summary>
+            Phone Number
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityModel.EMail">
+            <summary>
+            EMail
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityModel.DeviceId">
+            <summary>
+            Device Id
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityModel.Jid">
+            <summary>
+            Jabber Id
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.RegisterIdentityModel.ToProperties(IdApp.Services.Xmpp.IXmppService)">
+            <summary>
+            Converts the <see cref="T:IdApp.Pages.Registration.Atlantic.RegisterIdentityModel"/> to an array of <inheritdoc cref="T:Waher.Networking.XMPP.Contracts.Property"/>.
+            </summary>
+            <param name="XmppService">The XMPP service to use for accessing the Bare Jid.</param>
+            <returns>The <see cref="T:IdApp.Pages.Registration.Atlantic.RegisterIdentityModel"/> as a list of properties.</returns>
+        </member>
+        <member name="T:IdApp.Pages.Registration.Atlantic.RegisterIdentityView">
+            <summary>
+            A view to display the 'register identity' during the registration process.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.RegisterIdentityView.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:IdApp.Pages.Registration.Atlantic.RegisterIdentityView"/> class.
+            </summary>
+        </member>
+        <member name="T:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel">
+            <summary>
+            The view model to bind to when showing Step 3 of the registration flow: registering an identity.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.#ctor">
+            <summary>
+            Creates a new instance of the <see cref="T:IdApp.Pages.Registration.Atlantic.RegisterIdentityModel"/> class.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.OnInitialize">
+            <inheritdoc />
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.OnDispose">
+            <inheritdoc />
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.IsTest">
+            <summary>
+            True if the user choose the educational or experimental purpose.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.RegisterCommand">
+            <summary>
+            The command to bind to for performing the 'register' action.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.TakePhotoCommand">
+            <summary>
+            The command to bind to for taking a photo with the camera.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.PickPhotoCommand">
+            <summary>
+            The command to bind to for selecting a photo from the camera roll.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.EPassportCommand">
+            <summary>
+            The command to bind to for scanning an ePassport or eID.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.RemovePhotoCommand">
+            <summary>
+            The command to bind to for removing the currently selected photo.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.HasPhotoProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.HasPhoto"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.HasPhoto">
+            <summary>
+            Gets or sets whether the user has selected a photo for their account or not.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.ImageProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.HasPhoto"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.Image">
+            <summary>
+            The image source, i.e. the file representing the selected photo.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.ImageRotationProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.ImageRotation"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.ImageRotation">
+            <summary>
+            Gets or sets whether the current user has a photo associated with the account.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.Countries">
+            <summary>
+            The list of all available countries a user can select from.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.SelectedCountryProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.HasPhoto"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.SelectedCountry">
+            <summary>
+            The user selected country from the list of <see cref="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.Countries"/>.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.FirstNameProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.FirstName"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.FirstName">
+            <summary>
+            The user's first name
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.MiddleNamesProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.MiddleNames"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.MiddleNames">
+            <summary>
+            The user's middle name(s)
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.LastNamesProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.LastNames"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.LastNames">
+            <summary>
+            The user's last name(s)
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.PersonalNumberProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.PersonalNumber"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.PersonalNumber">
+            <summary>
+            The user's personal number
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.PersonalNumberPlaceholderProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.PersonalNumberPlaceholder"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.PersonalNumberPlaceholder">
+            <summary>
+            The personal number placeholder, used as a guide to the user to enter the correct format, which depends on the <see cref="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.SelectedCountry"/>.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.AddressProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.Address"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.Address">
+            <summary>
+            The user's address, line 1.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.Address2Property">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.Address2"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.Address2">
+            <summary>
+            The user's address, line 2.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.ZipCodeProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.ZipCode"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.ZipCode">
+            <summary>
+            The user's zip code
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.AreaProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.Area"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.Area">
+            <summary>
+            The user's area
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.CityProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.City"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.City">
+            <summary>
+            The user's city
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.RegionProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.Region"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.Region">
+            <summary>
+            The user's region
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.DeviceIdProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.DeviceId"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.DeviceId">
+            <summary>
+            The device id.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.LegalIdentity">
+            <summary>
+            The user's legal identity, set when the registration has occurred.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.IsConnectedProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.HasPhoto"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.IsConnected">
+            <summary>
+            Gets or sets whether the app is connected to an XMPP server.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.ConnectionStateTextProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.ConnectionStateText"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.ConnectionStateText">
+            <summary>
+            The user friendly connection state text to display to the user.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.AddPhoto(System.Byte[],System.String,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Adds a photo from the specified path to use as a profile photo.
+            </summary>
+            <param name="Bin">Binary content</param>
+            <param name="ContentType">Content-Type</param>
+            <param name="Rotation">Rotation to use, to display the image correctly.</param>
+            <param name="saveLocalCopy">Set to <c>true</c> to save a local copy, <c>false</c> otherwise.</param>
+            <param name="showAlert">Set to <c>true</c> to show an alert if photo is too large; <c>false</c> otherwise.</param>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.AddPhoto(System.String,System.Boolean)">
+            <summary>
+            Adds a photo from the specified path to use as a profile photo.
+            </summary>
+            <param name="FilePath">The full path to the file.</param>
+            <param name="SaveLocalCopy">Set to <c>true</c> to save a local copy, <c>false</c> otherwise.</param>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.DoSaveState">
+            <inheritdoc />
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.DoRestoreState">
+            <inheritdoc />
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.ClearStepState">
+            <inheritdoc />
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.PopulateFromTagProfile">
+            <summary>
+            Copies values from the existing TAG Profile's Legal identity.
+            </summary>
+        </member>
         <member name="T:IdApp.Pages.Registration.Atlantic.ValidateIdentityView">
             <summary>
             A view to display the 'validate identity' during the registration process.
@@ -5373,93 +5737,6 @@
             The command to bind to for sending a phone message code verification request.
             </summary>
         </member>
-        <member name="T:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel">
-            <summary>
-            The data model for registering an identity.
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.FirstName">
-            <summary>
-            First name
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.MiddleNames">
-            <summary>
-            Middle name(s) as one string
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.LastNames">
-            <summary>
-            Last name(s) as one string
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.PersonalNumber">
-            <summary>
-            Personal number
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.Address">
-            <summary>
-            Address, line 1
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.Address2">
-            <summary>
-            Address, line 2
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.ZipCode">
-            <summary>
-            Zip code (postal code)
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.Area">
-            <summary>
-            Area
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.City">
-            <summary>
-            City
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.Region">
-            <summary>
-            Region
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.Country">
-            <summary>
-            Country
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.PhoneNr">
-            <summary>
-            Phone Number
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.EMail">
-            <summary>
-            EMail
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.DeviceId">
-            <summary>
-            Device Id
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.Jid">
-            <summary>
-            Jabber Id
-            </summary>
-        </member>
-        <member name="M:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel.ToProperties(IdApp.Services.Xmpp.IXmppService)">
-            <summary>
-            Converts the <see cref="T:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel"/> to an array of <inheritdoc cref="T:Waher.Networking.XMPP.Contracts.Property"/>.
-            </summary>
-            <param name="XmppService">The XMPP service to use for accessing the Bare Jid.</param>
-            <returns>The <see cref="T:IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel"/> as a list of properties.</returns>
-        </member>
         <member name="T:IdApp.Pages.Registration.RegistrationStepDataTemplateSelector">
             <summary>
             A data template selector for displaying various types of registration steps.
@@ -5478,6 +5755,11 @@
         <member name="P:IdApp.Pages.Registration.RegistrationStepDataTemplateSelector.GetPhotoImage">
             <summary>
             The photo image template.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.RegistrationStepDataTemplateSelector.RegisterIdentity">
+            <summary>
+            The register identity template.
             </summary>
         </member>
         <member name="P:IdApp.Pages.Registration.RegistrationStepDataTemplateSelector.ValidateIdentity">
@@ -11479,6 +11761,11 @@
             <summary>
             </summary>
         </member>
+        <member name="F:IdApp.Services.Tag.RegistrationStep.RegisterIdentity">
+            <summary>
+            Register an identity
+            </summary>
+        </member>
         <member name="F:IdApp.Services.Tag.RegistrationStep.ValidateIdentity">
             <summary>
             Have the identity validated.
@@ -11760,6 +12047,11 @@
         <member name="P:IdApp.Services.TagConfiguration.ApiSecret">
             <summary>
             API Secret
+            </summary>
+        </member>
+        <member name="P:IdApp.Services.TagConfiguration.TrimmedNumber">
+            <summary>
+            Verified Phone Number
             </summary>
         </member>
         <member name="P:IdApp.Services.TagConfiguration.PhoneNumber">
@@ -12512,7 +12804,7 @@
             <param name="ContentType">Internet content type.</param>
             <param name="ContentSize">Size of content.</param>
         </member>
-        <member name="M:IdApp.Services.Xmpp.IXmppService.AddLegalIdentity(IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel,IdApp.Services.LegalIdentityAttachment[])">
+        <member name="M:IdApp.Services.Xmpp.IXmppService.AddLegalIdentity(IdApp.Pages.Registration.Atlantic.RegisterIdentityModel,IdApp.Services.LegalIdentityAttachment[])">
             <summary>
             Adds a legal identity.
             </summary>
@@ -12815,7 +13107,7 @@
             <param name="ContentType">Internet content type.</param>
             <param name="ContentSize">Size of content.</param>
         </member>
-        <member name="M:IdApp.Services.Xmpp.XmppService.AddLegalIdentity(IdApp.Pages.Registration.RegisterIdentity.RegisterIdentityModel,IdApp.Services.LegalIdentityAttachment[])">
+        <member name="M:IdApp.Services.Xmpp.XmppService.AddLegalIdentity(IdApp.Pages.Registration.Atlantic.RegisterIdentityModel,IdApp.Services.LegalIdentityAttachment[])">
             <summary>
             Adds a legal identity.
             </summary>

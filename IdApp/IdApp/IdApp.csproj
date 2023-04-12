@@ -49,6 +49,7 @@
     <EmbeddedResource Remove="Pages\Registration\RegisterIdentity\RegisterIdentityView.xaml" />
     <Compile Remove="Pages\Registration\RegisterIdentity\RegisterIdentityView.xaml.cs" />
     <Compile Remove="Pages\Registration\RegisterIdentity\RegisterIdentityViewModel.cs" />
+    <Compile Remove="Pages\Registration\RegisterIdentity\RegisterIdentityModel.cs" />
     <EmbeddedResource Remove="Pages\Registration\ValidateContactInfo\ValidateContactInfoView.xaml" />
     <Compile Remove="Pages\Registration\ValidateContactInfo\ValidateContactInfoView.xaml.cs" />
     <Compile Remove="Pages\Registration\ValidateContactInfo\ValidateContactInfoViewModel.cs" />
