@@ -26,8 +26,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resx\Fonts\SegoeUI-Bold.ttf" />
+    <None Remove="Resx\Fonts\SegoeUI-BoldItalic.ttf" />
+    <None Remove="Resx\Fonts\SegoeUI-Italic.ttf" />
+    <None Remove="Resx\Fonts\SegoeUI-Regular.ttf" />
+    <None Remove="Resx\Fonts\SegoeUI.ttf" />
+    <None Remove="Resx\Pngs\logo.png" />
     <None Remove="Resx\Svgs\camera.svg" />
     <None Remove="Resx\Svgs\check.svg" />
+    <None Remove="Resx\Svgs\chevron-right.svg" />
+    <None Remove="Resx\Svgs\fingerprint.svg" />
     <None Remove="Resx\Svgs\images.svg" />
     <None Remove="Resx\Svgs\passport.svg" />
     <None Remove="Resx\Svgs\trash.svg" />
@@ -98,8 +106,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resx\Fonts\SegoeUI-Bold.ttf" />
+    <EmbeddedResource Include="Resx\Fonts\SegoeUI-BoldItalic.ttf" />
+    <EmbeddedResource Include="Resx\Fonts\SegoeUI-Italic.ttf" />
+    <EmbeddedResource Include="Resx\Fonts\SegoeUI-Regular.ttf" />
+    <EmbeddedResource Include="Resx\Pngs\logo.png" />
     <EmbeddedResource Include="Resx\Svgs\camera.svg" />
     <EmbeddedResource Include="Resx\Svgs\check.svg" />
+    <EmbeddedResource Include="Resx\Svgs\chevron-right.svg" />
+    <EmbeddedResource Include="Resx\Svgs\fingerprint.svg" />
     <EmbeddedResource Include="Resx\Svgs\images.svg" />
     <EmbeddedResource Include="Resx\Svgs\passport.svg" />
     <EmbeddedResource Include="Resx\Svgs\trash.svg" />

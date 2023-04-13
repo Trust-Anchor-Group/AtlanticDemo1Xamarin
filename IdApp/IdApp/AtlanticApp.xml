@@ -7681,6 +7681,11 @@
               Looks up a localized string similar to New Contract.
             </summary>
         </member>
+        <member name="P:IdApp.Resx.AppResources.Next">
+            <summary>
+              Looks up a localized string similar to Next.
+            </summary>
+        </member>
         <member name="P:IdApp.Resx.AppResources.No">
             <summary>
               Looks up a localized string similar to No.
@@ -9942,19 +9947,24 @@
             link
             </summary>
         </member>
+        <member name="T:IdApp.Resx.Pngs">
+            <summary>
+            A list of png resources.
+            </summary>
+        </member>
+        <member name="F:IdApp.Resx.Pngs.AtlanticLogo">
+            <summary>
+            Atlantic Logo
+            </summary>
+        </member>
         <member name="T:IdApp.Resx.Svgs">
             <summary>
             A list of svg resources
             </summary>
         </member>
-        <member name="F:IdApp.Resx.Svgs.Passport">
+        <member name="F:IdApp.Resx.Svgs.Fingerprint">
             <summary>
-            The passport icon
-            </summary>
-        </member>
-        <member name="F:IdApp.Resx.Svgs.Images">
-            <summary>
-            The images icon
+            Fingerptint icon
             </summary>
         </member>
         <member name="F:IdApp.Resx.Svgs.Camera">
@@ -9962,19 +9972,9 @@
             The camera icon
             </summary>
         </member>
-        <member name="F:IdApp.Resx.Svgs.Trash">
+        <member name="F:IdApp.Resx.Svgs.ChevronRight">
             <summary>
-            The trash icon
-            </summary>
-        </member>
-        <member name="F:IdApp.Resx.Svgs.Xmark">
-            <summary>
-            The x-mark icon
-            </summary>
-        </member>
-        <member name="F:IdApp.Resx.Svgs.Check">
-            <summary>
-            The check icon
+            The chevron right icon
             </summary>
         </member>
         <member name="T:IdApp.Services.AttachmentCache.AttachmentCacheService">

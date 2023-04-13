@@ -5,6 +5,22 @@
 	/// </summary>
 	public static class Svgs
 	{
+#if ATLANTICAPP
+		/// <summary>
+		/// Fingerptint icon
+		/// </summary>
+		public const string Fingerprint = "resource://IdApp.Resx.Svgs.fingerprint.svg";
+
+		/// <summary>
+		/// The camera icon
+		/// </summary>
+		public const string Camera = "resource://IdApp.Resx.Svgs.camera.svg";
+
+		/// <summary>
+		/// The chevron right icon
+		/// </summary>
+		public const string ChevronRight = "resource://IdApp.Resx.Svgs.chevron-right.svg";
+#else
 		/// <summary>
 		/// The passport icon
 		/// </summary>
@@ -34,5 +50,6 @@
 		/// The check icon
 		/// </summary>
 		public const string Check = "resource://IdApp.Resx.Svgs.check.svg";
+#endif
 	}
 }

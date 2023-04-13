@@ -36,7 +36,7 @@
                             </Grid>
                         </Frame>
 
-
+<!--
 						<Frame Style="{StaticResource TintedSvgIconButton}"
 							   Grid.Column="1" HorizontalOptions="Center"
 							   IsVisible="{Binding Path=HasPhoto}"
@@ -79,6 +79,7 @@
 									Source="{x:Static resx:Svgs.Passport}" TintColor="White" />
 							</Frame>
                         </StackLayout>
+-->						
                     </Grid>
                 </Frame>
                 <!-- END HEADER -->

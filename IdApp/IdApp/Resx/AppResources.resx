@@ -2241,4 +2241,7 @@
   <data name="SellEDalerDescription" xml:space="preserve">
     <value>Provide the amount of eDaler do you want to sell below, and press the Sell button. A web page may be opened where you have to fill in further information for the payment processor to validate your requst.</value>
   </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
 </root>

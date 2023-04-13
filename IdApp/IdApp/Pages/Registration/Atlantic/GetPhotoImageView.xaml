@@ -2,10 +2,12 @@
 <registration:RegistrationStepView
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:resx="clr-namespace:IdApp.Resx"
 	xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
 	xmlns:registration="clr-namespace:IdApp.Pages.Registration;assembly=IdApp"
 	xmlns:model="clr-namespace:IdApp.Pages.Registration.Atlantic;assembly=IdApp"
-	xmlns:controls="clr-namespace:IdApp.Controls.Extended"
+	xmlns:extended="clr-namespace:IdApp.Controls.Extended"
+	xmlns:controls="clr-namespace:IdApp.Controls"
 	x:DataType="model:GetPhotoImageViewModel"
 	x:Class="IdApp.Pages.Registration.Atlantic.GetPhotoImageView">
 
@@ -15,7 +17,7 @@
 		<StackLayout Grid.Row="0"/>
 
 		<StackLayout Grid.Row="1" Spacing="{StaticResource LargeRawSpacing}" >
-			<controls:ExEntryCode Length="6" Text="{Binding Path=PhoneNrVerificationCode}" />
+			<extended:ExEntryCode Length="6" Text="{Binding Path=PhoneNrVerificationCode}" />
 
 			<Button Text="{xct:Translate Text=VerifyCode}"
 					Command="{Binding Path=VerifyPhoneNrCodeCommand}"

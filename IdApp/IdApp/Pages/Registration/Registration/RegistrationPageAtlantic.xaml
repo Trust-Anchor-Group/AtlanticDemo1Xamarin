@@ -1,14 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<views:ContentBasePage xmlns="http://xamarin.com/schemas/2014/forms"
-                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                       xmlns:views="clr-namespace:IdApp.Pages;assembly=IdApp"
-                       xmlns:resx="clr-namespace:IdApp.Resx;assembly=IdApp"
-                       xmlns:registration="clr-namespace:IdApp.Pages.Registration;assembly=IdApp"
-                       xmlns:model="clr-namespace:IdApp.Pages.Registration.Registration;assembly=IdApp"
-                       x:DataType="model:RegistrationViewModel"
-                       x:Class="IdApp.Pages.Registration.Registration.RegistrationPage"
-                       Shell.FlyoutBehavior="Disabled"
-                       Shell.NavBarIsVisible="False">
+<views:ContentBasePage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:views="clr-namespace:IdApp.Pages;assembly=IdApp"
+	xmlns:resx="clr-namespace:IdApp.Resx;assembly=IdApp"
+	xmlns:registration="clr-namespace:IdApp.Pages.Registration;assembly=IdApp"
+	xmlns:model="clr-namespace:IdApp.Pages.Registration.Registration;assembly=IdApp"
+	xmlns:controls="clr-namespace:IdApp.Controls"
+	xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+	x:DataType="model:RegistrationViewModel"
+	x:Class="IdApp.Pages.Registration.Registration.RegistrationPage"
+	Shell.FlyoutBehavior="Disabled"
+	Shell.NavBarIsVisible="False">
+
 	<StackLayout>
 		<StackLayout.Resources>
 			<ResourceDictionary>
@@ -42,24 +46,13 @@
 
 		<StackLayout Orientation="Vertical">
 			<!-- HEADING -->
-			<Grid Padding="{StaticResource DefaultMargin}" ColumnDefinitions="36,*" RowDefinitions="auto">
-				<Label Grid.Column="0"
-					   FontSize="24"
-					   Text="{x:Static resx:FontAwesome.ArrowACircleLeft}"
-					   TextColor="Black"
-					   FontFamily="{StaticResource FontAwesomeSolid}"
-					   VerticalOptions="Center"
-					   IsVisible="{Binding Path=CanGoBack}">
-					<Label.GestureRecognizers>
-						<TapGestureRecognizer Command="{Binding Path=GoToPrevCommand}"/>
-					</Label.GestureRecognizers>
-				</Label>
-				<Label Grid.Column="1"
-					   Text="{Binding Path=CurrentStepTitle}"
-					   HorizontalOptions="StartAndExpand"
-					   VerticalOptions="CenterAndExpand"
-					   TextColor="Black"
-					   FontSize="24" />
+			<Grid Padding="{StaticResource DefaultMargin}" ColumnDefinitions="auto,*,auto" RowDefinitions="auto" >
+				<ffimage:CachedImage Grid.Column="0" Grid.ColumnSpan="2" Source="{x:Static resx:Pngs.AtlanticLogo}" Aspect="Fill" HeightRequest="87" />
+				<controls:TintedSvgCachedImage Grid.Column="2" HeightRequest="60" WidthRequest="60" VerticalOptions="Center"
+											   Source="{x:Static resx:Svgs.Fingerprint}" TintColor="{StaticResource PrimaryForegrowndColor}" />
+				<ImageButton Grid.Column="0" WidthRequest="60" BackgroundColor="Transparent"
+							 IsVisible="{Binding Path=CanGoBack}"
+							 Command="{Binding GoToPrevCommand}"/>
 			</Grid>
 		</StackLayout>
 		<!-- CONTENT -->
