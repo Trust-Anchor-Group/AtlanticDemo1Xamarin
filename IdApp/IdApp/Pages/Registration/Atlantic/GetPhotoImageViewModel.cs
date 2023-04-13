@@ -1,203 +1,526 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Waher.Content;
 using Xamarin.Forms;
+using IdApp.Services;
 using IdApp.Services.Tag;
 using Xamarin.CommunityToolkit.Helpers;
+using SkiaSharp;
+using System.IO;
+using IdApp.Services.UI.Photos;
+using IdApp.Extensions;
+using Xamarin.Essentials;
 
 namespace IdApp.Pages.Registration.Atlantic
 {
 	/// <summary>
-	/// The view model to bind to when showing Step 1 of the registration flow: choosing an operator.
+	/// The view model to bind to when showing Step 3 of the registration flow: registering an identity.
 	/// </summary>
 	public class GetPhotoImageViewModel : RegistrationStepViewModel
 	{
+		private const string selfiePhotoFileName = "SelfiePhoto.jpg";
+		private const string idFacePhotoFileName = "IdFacePhoto.jpg";
+		private const string idBackPhotoFileName = "IdBackPhoto.jpg";
+
+		private readonly string localSelfiePhotoFileName;
+		private readonly string localIdFacePhotoFileName;
+		private readonly string localIdBackPhotoFileName;
+
+		private LegalIdentityAttachment thePhoto;
+
 		/// <summary>
-		/// Creates a new instance of the <see cref="GetPhotoImageViewModel"/> class.
+		/// Creates a new instance of the <see cref="RegisterIdentityModel"/> class.
 		/// </summary>
 		public GetPhotoImageViewModel(RegistrationStep RegistrationStep) : base(RegistrationStep)
 		{
-			this.VerifyPhoneNrCodeCommand = new Command(async () => await this.VerifyPhoneNrCode(), this.VerifyPhoneNrCodeCanExecute);
+			this.Title = LocalizationResourceManager.Current["PersonalLegalInformation"];
 
-			this.Title = LocalizationResourceManager.Current["ContactInformation"];
+			this.NextCommand = new Command(async _ => await this.AddPhoto(), _ => this.HasPhoto);
+
+			this.TakePhotoCommand = new Command(async _ => {
+				switch (this.Step)
+				{
+					case RegistrationStep.GetUserPhotoImage:
+						await this.TakePhoto(0);
+						break;
+					case RegistrationStep.GetIdFacePhotoImage:
+						await this.TakePhoto(1);
+						break;
+					case RegistrationStep.GetIdBackPhotoImage:
+						await this.TakePhoto(2);
+						break;
+				};
+			}, _ => !this.IsBusy);
+
+			this.localSelfiePhotoFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), selfiePhotoFileName);
+			this.localIdFacePhotoFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), idFacePhotoFileName);
+			this.localIdBackPhotoFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), idBackPhotoFileName);
 		}
 
-		/// <summary>
-		/// Override this method to do view model specific setup when it's parent page/view appears on screen.
-		/// </summary>
+		/// <inheritdoc />
 		protected override async Task OnInitialize()
 		{
 			await base.OnInitialize();
 
-			this.EvaluateAllCommands();
-		}
-
-		/// <inheritdoc/>
-		protected override Task OnDispose()
-		{
-			return base.OnDispose();
+			this.NextCommand.ChangeCanExecute();
 		}
 
 		/// <inheritdoc />
-		public override Task DoAssignProperties()
+		protected override async Task OnDispose()
 		{
-			this.EvaluateAllCommands();
-
-			return base.DoAssignProperties();
+			await base.OnDispose();
 		}
-
-		private void EvaluateAllCommands()
-		{
-			this.EvaluateCommands(this.VerifyPhoneNrCodeCommand);
-		}
-
 
 		#region Properties
 
 		/// <summary>
-		/// See <see cref="PhoneNrVerificationCode"/>
+		/// The command to bind to for taking a photo with the camera.
 		/// </summary>
-		public static readonly BindableProperty PhoneNrVerificationCodeProperty =
-			BindableProperty.Create(nameof(PhoneNrVerificationCode), typeof(string), typeof(ValidatePhoneNumberViewModel), default(string));
+		public ICommand TakePhotoCommand { get; }
 
 		/// <summary>
-		/// Phone number
+		/// The command to bind to for performing the 'register' action.
 		/// </summary>
-		public string PhoneNrVerificationCode
+		public ICommand NextCommand { get; }
+
+		/// <summary>
+		/// The <see cref="HasPhoto"/>
+		/// </summary>
+		public static readonly BindableProperty HasPhotoProperty =
+			BindableProperty.Create(nameof(HasPhoto), typeof(bool), typeof(GetPhotoImageViewModel), default(bool));
+
+		/// <summary>
+		/// Gets or sets whether the user has selected a photo for their account or not.
+		/// </summary>
+		public bool HasPhoto
 		{
-			get => (string)this.GetValue(PhoneNrVerificationCodeProperty);
-			set
-			{
-				this.SetValue(PhoneNrVerificationCodeProperty, value);
-				this.OnPropertyChanged(nameof(this.VerifyPhoneCodeButtonEnabled));
-			}
+			get => (bool)this.GetValue(HasPhotoProperty);
+			set => this.SetValue(HasPhotoProperty, value);
 		}
 
 		/// <summary>
-		/// If Phone number is valid or not
 		/// </summary>
-		public bool VerifyPhoneCodeButtonEnabled => this.IsVerificationCode(this.PhoneNrVerificationCode);
+		public static readonly BindableProperty ImageProperty =
+			BindableProperty.Create(nameof(Image), typeof(ImageSource), typeof(GetPhotoImageViewModel), default(ImageSource), propertyChanged: (b, oldValue, newValue) =>
+			{
+				GetPhotoImageViewModel viewModel = (GetPhotoImageViewModel)b;
+				viewModel.HasPhoto = (newValue is not null);
+			});
 
 		/// <summary>
-		/// The command to bind to for sending a phone message code verification request.
+		/// The image source, i.e. the file representing the selected photo.
 		/// </summary>
-		public ICommand VerifyPhoneNrCodeCommand { get; }
+		public ImageSource Image
+		{
+			get => (ImageSource)this.GetValue(ImageProperty);
+			set => this.SetValue(ImageProperty, value);
+		}
+
+		/// <summary>
+		/// See <see cref="ImageRotation"/>
+		/// </summary>
+		public static readonly BindableProperty ImageRotationProperty =
+			BindableProperty.Create(nameof(ImageRotation), typeof(int), typeof(Main.Main.MainViewModel), default(int));
+
+		/// <summary>
+		/// Gets or sets whether the current user has a photo associated with the account.
+		/// </summary>
+		public int ImageRotation
+		{
+			get => (int)this.GetValue(ImageRotationProperty);
+			set => this.SetValue(ImageRotationProperty, value);
+		}
 
 		#endregion
 
-		#region Commands
-
-		#region Phone Numbers
-
-		private async Task VerifyPhoneNrCode()
+		private static void OnPropertyChanged(BindableObject b, object oldValue, object newValue)
 		{
-			if (!this.NetworkService.IsOnline)
-			{
-				await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["ErrorTitle"], LocalizationResourceManager.Current["NetworkSeemsToBeMissing"]);
-				return;
-			}
+			GetPhotoImageViewModel viewModel = (GetPhotoImageViewModel)b;
+			viewModel.NextCommand.ChangeCanExecute();
+		}
 
-			this.SetIsBusy(this.VerifyPhoneNrCodeCommand);
-
+		private async Task StoreCapturedPhoto(string CapturedPhotoPath, int PhotoIndex)
+		{
 			try
 			{
-				string TrimmedNumber = this.TagProfile.TrimmedNumber;
-				bool IsTest = true;
-
-				object Result = await InternetContent.PostAsync(
-					new Uri("https://" + Constants.Domains.IdDomain + "/ID/VerifyNumber.ws"),
-					new Dictionary<string, object>()
-					{
-						{ "Nr", TrimmedNumber },
-						{ "Code", int.Parse(this.PhoneNrVerificationCode) },
-						{ "Test", IsTest }
-					}, new KeyValuePair<string, string>("Accept", "application/json"));
-
-				this.PhoneNrVerificationCode = string.Empty;
-
-				if (Result is Dictionary<string, object> Response &&
-					Response.TryGetValue("Status", out object Obj) && Obj is bool Status && Status &&
-					Response.TryGetValue("Domain", out Obj) && Obj is string Domain &&
-					Response.TryGetValue("Key", out Obj) && Obj is string Key &&
-					Response.TryGetValue("Secret", out Obj) && Obj is string Secret &&
-					Response.TryGetValue("Temporary", out Obj) && Obj is bool IsTemporary)
+				if (PhotoIndex == 0)
 				{
-					this.TagProfile.SetIsTest(IsTest);
-					this.TagProfile.SetPhone(TrimmedNumber);
-					this.TagProfile.SetTestOtpTimestamp(IsTemporary ? DateTime.Now : null);
-
-					bool DefaultConnectivity;
-					try
-					{
-						(string HostName, int PortNumber, bool IsIpAddress) = await this.NetworkService.LookupXmppHostnameAndPort(Domain);
-						DefaultConnectivity = HostName == Domain && PortNumber == Waher.Networking.XMPP.XmppCredentials.DefaultPort;
-					}
-					catch (Exception)
-					{
-						DefaultConnectivity = false;
-					}
-
-					await this.TagProfile.SetDomain(Domain, DefaultConnectivity, Key, Secret);
-
-					/*!!! create an account based on the phone number */
-
-					this.OnStepCompleted(EventArgs.Empty);
+					await this.AddSelfiePhoto(CapturedPhotoPath, true);
 				}
-				else
+				else if (PhotoIndex == 1)
 				{
-					await this.TagProfile.InvalidatePhoneNumber();
-
-					await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["ErrorTitle"], LocalizationResourceManager.Current["UnableToVerifyCode"], LocalizationResourceManager.Current["Ok"]);
+					await this.AddIdFacePhoto(CapturedPhotoPath, true);
+				}
+				else if (PhotoIndex == 2)
+				{
+					await this.AddIdBackPhoto(CapturedPhotoPath, true);
 				}
 			}
 			catch (Exception ex)
 			{
-				await this.TagProfile.InvalidatePhoneNumber();
+				await this.UiSerializer.DisplayAlert(ex);
+			}
+		}
 
+		private async Task TakePhoto(int PhotoIndex)
+		{
+			// iOS emulator doesn't support take photos
+			if ((DeviceInfo.DeviceType == DeviceType.Virtual) && (Device.RuntimePlatform == Device.iOS))
+			{
+				await this.PickPhoto(PhotoIndex);
+				return;
+			}
+
+			if (!this.XmppService.FileUploadIsSupported)
+			{
+				await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["TakePhoto"], LocalizationResourceManager.Current["ServerDoesNotSupportFileUpload"]);
+				return;
+			}
+
+			string CapturedPhotoFilePath = await DeviceCamera.TakePhoto(100);
+
+			if (CapturedPhotoFilePath is not null)
+			{
+				await this.StoreCapturedPhoto(CapturedPhotoFilePath, PhotoIndex);
+			}
+		}
+
+		private async Task PickPhoto(int PhotoIndex)
+		{
+			if (!this.XmppService.FileUploadIsSupported)
+			{
+				await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["PickPhoto"], LocalizationResourceManager.Current["SelectingAPhotoIsNotSupported"]);
+				return;
+			}
+
+			FileResult pickedPhoto = await MediaPicker.PickPhotoAsync();
+
+			if (pickedPhoto is not null)
+			{
+				await this.StoreCapturedPhoto(pickedPhoto.FullPath, PhotoIndex);
+			}
+		}
+
+		private async Task AddSelfiePhoto(byte[] Bin, string ContentType, int Rotation, bool SaveLocalCopy, bool ShowAlert)
+		{
+			if (Bin.Length > this.TagProfile.HttpFileUploadMaxSize.GetValueOrDefault())
+			{
+				if (ShowAlert)
+					await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["ErrorTitle"], LocalizationResourceManager.Current["PhotoIsTooLarge"]);
+
+				return;
+			}
+
+			this.RemoveSelfie(SaveLocalCopy);
+
+			if (SaveLocalCopy)
+			{
+				try
+				{
+					File.WriteAllBytes(this.localSelfiePhotoFileName, Bin);
+				}
+				catch (Exception e)
+				{
+					this.LogService.LogException(e);
+				}
+			}
+
+			this.thePhoto = new LegalIdentityAttachment(this.localSelfiePhotoFileName, ContentType, Bin);
+			this.ImageRotation = Rotation;
+			this.Image = ImageSource.FromStream(() => new MemoryStream(Bin));
+
+			this.NextCommand.ChangeCanExecute();
+		}
+
+		private async Task AddIdFacePhoto(byte[] Bin, string ContentType, int Rotation, bool SaveLocalCopy, bool ShowAlert)
+		{
+			if (Bin.Length > this.TagProfile.HttpFileUploadMaxSize.GetValueOrDefault())
+			{
+				if (ShowAlert)
+					await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["ErrorTitle"], LocalizationResourceManager.Current["PhotoIsTooLarge"]);
+
+				return;
+			}
+
+			this.RemoveIdFacePhoto(SaveLocalCopy);
+
+			if (SaveLocalCopy)
+			{
+				try
+				{
+					File.WriteAllBytes(this.localIdFacePhotoFileName, Bin);
+				}
+				catch (Exception e)
+				{
+					this.LogService.LogException(e);
+				}
+			}
+
+			this.thePhoto = new LegalIdentityAttachment(this.localIdFacePhotoFileName, ContentType, Bin);
+			this.ImageRotation = Rotation;
+			this.Image = ImageSource.FromStream(() => new MemoryStream(Bin));
+
+			this.NextCommand.ChangeCanExecute();
+		}
+
+		private async Task AddIdBackPhoto(byte[] Bin, string ContentType, int Rotation, bool SaveLocalCopy, bool ShowAlert)
+		{
+			if (Bin.Length > this.TagProfile.HttpFileUploadMaxSize.GetValueOrDefault())
+			{
+				if (ShowAlert)
+					await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["ErrorTitle"], LocalizationResourceManager.Current["PhotoIsTooLarge"]);
+
+				return;
+			}
+
+			this.RemoveIdBackPhoto(SaveLocalCopy);
+
+			if (SaveLocalCopy)
+			{
+				try
+				{
+					File.WriteAllBytes(this.localIdBackPhotoFileName, Bin);
+				}
+				catch (Exception e)
+				{
+					this.LogService.LogException(e);
+				}
+			}
+
+			this.thePhoto = new LegalIdentityAttachment(this.localIdBackPhotoFileName, ContentType, Bin);
+			this.ImageRotation = Rotation;
+			this.Image = ImageSource.FromStream(() => new MemoryStream(Bin));
+
+			this.NextCommand.ChangeCanExecute();
+		}
+
+		private async Task AddSelfiePhoto(string FilePath, bool SaveLocalCopy)
+		{
+			try
+			{
+				bool FallbackOriginal = true;
+
+				if (SaveLocalCopy)
+				{
+					// try to downscale and compress the image
+					using FileStream InputStream = File.OpenRead(FilePath);
+					using SKData ImageData = DeviceCamera.CompressImage(InputStream);
+
+					if (ImageData is not null)
+					{
+						FallbackOriginal = false;
+						await this.AddSelfiePhoto(ImageData.ToArray(), Constants.MimeTypes.Jpeg, 0, SaveLocalCopy, true);
+					}
+				}
+
+				if (FallbackOriginal)
+				{
+					byte[] Bin = File.ReadAllBytes(FilePath);
+					if (!InternetContent.TryGetContentType(Path.GetExtension(FilePath), out string ContentType))
+						ContentType = "application/octet-stream";
+
+					await this.AddSelfiePhoto(Bin, ContentType, DeviceCamera.GetImageRotation(Bin), SaveLocalCopy, true);
+				}
+			}
+			catch (Exception ex)
+			{
+				await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["ErrorTitle"], LocalizationResourceManager.Current["FailedToLoadPhoto"]);
 				this.LogService.LogException(ex);
-				await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["ErrorTitle"], ex.Message, LocalizationResourceManager.Current["Ok"]);
+				return;
+			}
+		}
+
+		private async Task AddIdFacePhoto(string FilePath, bool SaveLocalCopy)
+		{
+			try
+			{
+				bool FallbackOriginal = true;
+
+				if (SaveLocalCopy)
+				{
+					// try to downscale and compress the image
+					using FileStream InputStream = File.OpenRead(FilePath);
+					using SKData ImageData = DeviceCamera.CompressImage(InputStream);
+
+					if (ImageData is not null)
+					{
+						FallbackOriginal = false;
+						await this.AddIdFacePhoto(ImageData.ToArray(), Constants.MimeTypes.Jpeg, 0, SaveLocalCopy, true);
+					}
+				}
+
+				if (FallbackOriginal)
+				{
+					byte[] Bin = File.ReadAllBytes(FilePath);
+					if (!InternetContent.TryGetContentType(Path.GetExtension(FilePath), out string ContentType))
+						ContentType = "application/octet-stream";
+
+					await this.AddIdFacePhoto(Bin, ContentType, DeviceCamera.GetImageRotation(Bin), SaveLocalCopy, true);
+				}
+			}
+			catch (Exception ex)
+			{
+				await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["ErrorTitle"], LocalizationResourceManager.Current["FailedToLoadPhoto"]);
+				this.LogService.LogException(ex);
+				return;
+			}
+		}
+
+		private async Task AddIdBackPhoto(string FilePath, bool SaveLocalCopy)
+		{
+			try
+			{
+				bool FallbackOriginal = true;
+
+				if (SaveLocalCopy)
+				{
+					// try to downscale and compress the image
+					using FileStream InputStream = File.OpenRead(FilePath);
+					using SKData ImageData = DeviceCamera.CompressImage(InputStream);
+
+					if (ImageData is not null)
+					{
+						FallbackOriginal = false;
+						await this.AddIdBackPhoto(ImageData.ToArray(), Constants.MimeTypes.Jpeg, 0, SaveLocalCopy, true);
+					}
+				}
+
+				if (FallbackOriginal)
+				{
+					byte[] Bin = File.ReadAllBytes(FilePath);
+					if (!InternetContent.TryGetContentType(Path.GetExtension(FilePath), out string ContentType))
+						ContentType = "application/octet-stream";
+
+					await this.AddIdBackPhoto(Bin, ContentType, DeviceCamera.GetImageRotation(Bin), SaveLocalCopy, true);
+				}
+			}
+			catch (Exception ex)
+			{
+				await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["ErrorTitle"], LocalizationResourceManager.Current["FailedToLoadPhoto"]);
+				this.LogService.LogException(ex);
+				return;
+			}
+		}
+
+		private void RemoveSelfie(bool RemoveFileOnDisc)
+		{
+			try
+			{
+				this.thePhoto = null;
+				this.Image = null;
+
+				if (RemoveFileOnDisc && File.Exists(this.localSelfiePhotoFileName))
+					File.Delete(this.localSelfiePhotoFileName);
+			}
+			catch (Exception e)
+			{
+				this.LogService.LogException(e);
+			}
+		}
+
+		private void RemoveIdFacePhoto(bool RemoveFileOnDisc)
+		{
+			try
+			{
+				this.thePhoto = null;
+				this.Image = null;
+
+				if (RemoveFileOnDisc && File.Exists(this.localIdFacePhotoFileName))
+					File.Delete(this.localIdFacePhotoFileName);
+			}
+			catch (Exception e)
+			{
+				this.LogService.LogException(e);
+			}
+		}
+
+		private void RemoveIdBackPhoto(bool RemoveFileOnDisc)
+		{
+			try
+			{
+				this.thePhoto = null;
+				this.Image = null;
+
+				if (RemoveFileOnDisc && File.Exists(this.localIdBackPhotoFileName))
+					File.Delete(this.localIdBackPhotoFileName);
+			}
+			catch (Exception e)
+			{
+				this.LogService.LogException(e);
+			}
+		}
+
+		private async Task AddPhoto()
+		{
+			this.SetIsBusy(this.NextCommand, this.TakePhotoCommand);
+
+			try
+			{
+				await this.TagProfile.AddLegalPhoto(this.thePhoto);
+				this.OnStepCompleted(EventArgs.Empty);
+			}
+			catch (Exception ex)
+			{
+				this.LogService.LogException(ex);
+				await this.UiSerializer.DisplayAlert(ex);
 			}
 			finally
 			{
-				this.BeginInvokeSetIsDone(this.VerifyPhoneNrCodeCommand);
+				this.BeginInvokeSetIsDone(this.NextCommand, this.TakePhotoCommand);
 			}
 		}
 
-		#endregion
-
-		#endregion
-
-		#region CanExecute
-
-		private bool VerifyPhoneNrCodeCanExecute()
+		/// <inheritdoc />
+		protected override async Task DoSaveState()
 		{
-			if (this.IsBusy) // is connecting
-				return false;
-
-			return this.VerifyPhoneCodeButtonEnabled;
+			await base.DoSaveState();
 		}
 
-		#endregion
-
-		#region Syntax
-
-		private string TrimPhoneNumber(string PhoneNr)
+		/// <inheritdoc />
+		protected override async Task DoRestoreState()
 		{
-			return PhoneNr.Trim().Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "");
+			try
+			{
+				switch (this.Step)
+				{
+					case RegistrationStep.GetUserPhotoImage:
+						if (File.Exists(this.localSelfiePhotoFileName))
+							await this.AddSelfiePhoto(this.localSelfiePhotoFileName, false);
+						break;
+					case RegistrationStep.GetIdFacePhotoImage:
+						if (File.Exists(this.localIdFacePhotoFileName))
+							await this.AddIdFacePhoto(this.localIdFacePhotoFileName, false);
+						break;
+					case RegistrationStep.GetIdBackPhotoImage:
+						if (File.Exists(this.localIdBackPhotoFileName))
+							await this.AddIdBackPhoto(this.localIdBackPhotoFileName, false);
+						break;
+				};
+			}
+			catch (Exception e)
+			{
+				this.LogService.LogException(e);
+			}
+
+			await base.DoRestoreState();
 		}
 
-		private bool IsVerificationCode(string Code)
+		/// <inheritdoc />
+		public override void ClearStepState()
 		{
-			return !string.IsNullOrEmpty(Code) && verificationCode.IsMatch(Code);
+			switch (this.Step)
+			{
+				case RegistrationStep.GetUserPhotoImage:
+					this.RemoveSelfie(true);
+					break;
+				case RegistrationStep.GetIdFacePhotoImage:
+					this.RemoveIdFacePhoto(true);
+					break;
+				case RegistrationStep.GetIdBackPhotoImage:
+					this.RemoveIdBackPhoto(true);
+					break;
+			};
 		}
-
-		private static readonly Regex internationalPhoneNr = new(@"^\+[1-9]\d{4,}$", RegexOptions.Singleline);
-		private static readonly Regex verificationCode = new(@"^[1-9]\d{5}$", RegexOptions.Singleline);
-		private static readonly Regex emailAddress = new(@"^[\w\d](\w|\d|[_\.-][\w\d])*@(\w|\d|[\.-][\w\d]+)+$", RegexOptions.Singleline);
-
-		#endregion
 	}
 }

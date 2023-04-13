@@ -44,6 +44,11 @@ namespace IdApp.Services.Tag
 
 #if ATLANTICAPP
 		/// <summary>
+		/// The legal identity of the current user/profile.
+		/// </summary>
+		LegalIdentityAttachment[] LegalPhotos { get; }
+
+		/// <summary>
 		/// Phone number to validate.
 		/// </summary>
 		string TrimmedNumber { get; }
@@ -219,6 +224,10 @@ namespace IdApp.Services.Tag
 		/// <summary>
 		/// </summary>
 		Task InvalidatePhoneNumber();
+
+		/// <summary>
+		/// </summary>
+		Task AddLegalPhoto(LegalIdentityAttachment LegalPhoto);
 #else
 		/// <summary>
 		/// An alternative Step 1, used for accounts with an obsoleted identity, - validate contact info (the same or updated) without changing account data.

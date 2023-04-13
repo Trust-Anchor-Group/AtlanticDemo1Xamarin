@@ -23,11 +23,11 @@
 			</StackLayout>
 
 			<pancakeview:PancakeView Style="{StaticResource PancakeViewButtonStyle}"
-									 IsEnabled="{Binding VerifyPhoneCodeButtonEnabled}"
+									 IsEnabled="{Binding HasPhoto}"
 									 xct:TouchEffect.AnimationDuration="100"
 									 xct:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
 									 xct:TouchEffect.PressedOpacity="0.75"
-									 xct:TouchEffect.Command="{Binding VerifyPhoneNrCodeCommand}">
+									 xct:TouchEffect.Command="{Binding NextCommand}">
 				<StackLayout Style="{StaticResource StackLayoutButtonStyle}">
 					<Label Style="{StaticResource LabelButtonStyle}" Text="{xct:Translate Text=Next}" TextTransform="Uppercase"/>
 					<controls:TintedSvgCachedImage Style="{StaticResource ImageButtonStyle}" Source="{x:Static resx:Svgs.ChevronRight}" />

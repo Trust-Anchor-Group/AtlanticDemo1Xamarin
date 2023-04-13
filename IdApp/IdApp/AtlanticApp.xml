@@ -4967,44 +4967,67 @@
         </member>
         <member name="T:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel">
             <summary>
-            The view model to bind to when showing Step 1 of the registration flow: choosing an operator.
+            The view model to bind to when showing Step 3 of the registration flow: registering an identity.
             </summary>
         </member>
         <member name="M:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.#ctor(IdApp.Services.Tag.RegistrationStep)">
             <summary>
-            Creates a new instance of the <see cref="T:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel"/> class.
+            Creates a new instance of the <see cref="T:IdApp.Pages.Registration.Atlantic.RegisterIdentityModel"/> class.
             </summary>
         </member>
         <member name="M:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.OnInitialize">
-            <summary>
-            Override this method to do view model specific setup when it's parent page/view appears on screen.
-            </summary>
-        </member>
-        <member name="M:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.OnDispose">
-            <inheritdoc/>
-        </member>
-        <member name="M:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.DoAssignProperties">
             <inheritdoc />
         </member>
-        <member name="F:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.PhoneNrVerificationCodeProperty">
+        <member name="M:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.OnDispose">
+            <inheritdoc />
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.TakePhotoCommand">
             <summary>
-            See <see cref="P:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.PhoneNrVerificationCode"/>
+            The command to bind to for taking a photo with the camera.
             </summary>
         </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.PhoneNrVerificationCode">
+        <member name="P:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.NextCommand">
             <summary>
-            Phone number
+            The command to bind to for performing the 'register' action.
             </summary>
         </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.VerifyPhoneCodeButtonEnabled">
+        <member name="F:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.HasPhotoProperty">
             <summary>
-            If Phone number is valid or not
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.HasPhoto"/>
             </summary>
         </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.VerifyPhoneNrCodeCommand">
+        <member name="P:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.HasPhoto">
             <summary>
-            The command to bind to for sending a phone message code verification request.
+            Gets or sets whether the user has selected a photo for their account or not.
             </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.ImageProperty">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.Image">
+            <summary>
+            The image source, i.e. the file representing the selected photo.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.ImageRotationProperty">
+            <summary>
+            See <see cref="P:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.ImageRotation"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.ImageRotation">
+            <summary>
+            Gets or sets whether the current user has a photo associated with the account.
+            </summary>
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.DoSaveState">
+            <inheritdoc />
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.DoRestoreState">
+            <inheritdoc />
+        </member>
+        <member name="M:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.ClearStepState">
+            <inheritdoc />
         </member>
         <member name="T:IdApp.Pages.Registration.Atlantic.RegisterIdentityModel">
             <summary>
@@ -11348,6 +11371,11 @@
             API Secret, for creating new account.
             </summary>
         </member>
+        <member name="P:IdApp.Services.Tag.ITagProfile.LegalPhotos">
+            <summary>
+            The legal identity of the current user/profile.
+            </summary>
+        </member>
         <member name="P:IdApp.Services.Tag.ITagProfile.TrimmedNumber">
             <summary>
             Phone number to validate.
@@ -11520,6 +11548,10 @@
             </summary>
         </member>
         <member name="M:IdApp.Services.Tag.ITagProfile.InvalidatePhoneNumber">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:IdApp.Services.Tag.ITagProfile.AddLegalPhoto(IdApp.Services.LegalIdentityAttachment)">
             <summary>
             </summary>
         </member>
@@ -11827,6 +11859,9 @@
         <member name="P:IdApp.Services.Tag.TagProfile.ApiSecret">
             <inheritdoc/>
         </member>
+        <member name="P:IdApp.Services.Tag.TagProfile.LegalPhotos">
+            <inheritdoc/>
+        </member>
         <member name="P:IdApp.Services.Tag.TagProfile.TrimmedNumber">
             <inheritdoc/>
         </member>
@@ -11906,6 +11941,9 @@
         <member name="M:IdApp.Services.Tag.TagProfile.InvalidatePhoneNumber">
             <summary>
             </summary>
+        </member>
+        <member name="M:IdApp.Services.Tag.TagProfile.AddLegalPhoto(IdApp.Services.LegalIdentityAttachment)">
+            <inheritdoc/>
         </member>
         <member name="M:IdApp.Services.Tag.TagProfile.SetAccount(System.String,System.String,System.String)">
             <inheritdoc/>
@@ -12027,6 +12065,11 @@
         <member name="P:IdApp.Services.TagConfiguration.ApiSecret">
             <summary>
             API Secret
+            </summary>
+        </member>
+        <member name="P:IdApp.Services.TagConfiguration.LegalPhotos">
+            <summary>
+            User's current legal identity.
             </summary>
         </member>
         <member name="P:IdApp.Services.TagConfiguration.TrimmedNumber">
@@ -12203,6 +12246,69 @@
             <param name="title">The title to display.</param>
             <param name="message">The message to display.</param>
             <returns>User input</returns>
+        </member>
+        <member name="T:IdApp.Services.UI.Photos.DeviceCamera">
+            <summary>
+            A helper class for manipulations with photos
+            </summary>
+        </member>
+        <member name="M:IdApp.Services.UI.Photos.DeviceCamera.TakePhoto(System.Int32)">
+            <summary>
+            Captures a photo
+            </summary>
+            <returns>Returns captured photo file path</returns>
+        </member>
+        <member name="M:IdApp.Services.UI.Photos.DeviceCamera.TryDownscaleAndCompressImage(System.String,System.String,System.String)">
+            <summary>
+            Tries to downscale and compress an image
+            </summary>
+            <returns>true - success, false - error occurred</returns>
+        </member>
+        <member name="M:IdApp.Services.UI.Photos.DeviceCamera.LoadPhotoFromFile(System.String)">
+            <summary>
+            Loads photo from the specified file path
+            </summary>
+            <param name="FilePath">file path to load</param>
+            <returns>Returns loaded photo or null if something went wrong</returns>
+        </member>
+        <member name="M:IdApp.Services.UI.Photos.DeviceCamera.GetImageRotation(System.Byte[])">
+            <summary>
+            Gets the rotation angle to use, to display the image correctly in Xamarin Forms.
+            </summary>
+            <param name="JpegImage">Binary representation of JPEG image.</param>
+            <returns>Rotation angle (degrees).</returns>
+        </member>
+        <member name="M:IdApp.Services.UI.Photos.DeviceCamera.GetImageRotation(Waher.Content.Images.Exif.ExifTag[])">
+            <summary>
+            Gets the rotation angle to use, to display the image correctly in Xamarin Forms.
+            </summary>
+            <param name="Tags">EXIF Tags encoded in image.</param>
+            <returns>Rotation angle (degrees).</returns>
+        </member>
+        <member name="M:IdApp.Services.UI.Photos.DeviceCamera.LoadPhoto(Waher.Networking.XMPP.Contracts.Attachment)">
+            <summary>
+            Loads a photo attachment.
+            </summary>
+            <param name="Attachment">Attachment containing photo.</param>
+            <returns>Photo, Content-Type, Rotation</returns>
+        </member>
+        <member name="M:IdApp.Services.UI.Photos.DeviceCamera.LoadPhotoAsTemporaryFile(Waher.Networking.XMPP.Contracts.Attachment[],System.Int32,System.Int32)">
+            <summary>
+            Tries to load a photo from a set of attachments.
+            </summary>
+            <param name="Attachments">Attachments</param>
+            <param name="MaxWith">Maximum width when displaying photo.</param>
+            <param name="MaxHeight">Maximum height when displaying photo.</param>
+            <returns>Filename, Width, Height, if loaded, (null,0,0) if not.</returns>
+        </member>
+        <member name="M:IdApp.Services.UI.Photos.DeviceCamera.LoadPhotoAsTemporaryFile(Waher.Networking.XMPP.Contracts.Attachment,System.Int32,System.Int32)">
+            <summary>
+            Tries to load a photo from an attachments.
+            </summary>
+            <param name="Attachment">Attachment</param>
+            <param name="MaxWith">Maximum width when displaying photo.</param>
+            <param name="MaxHeight">Maximum height when displaying photo.</param>
+            <returns>Filename, Width, Height, if loaded, (null,0,0) if not.</returns>
         </member>
         <member name="T:IdApp.Services.UI.Photos.Photo">
             <summary>

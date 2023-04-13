@@ -9,21 +9,23 @@
                        Shell.FlyoutBehavior="Disabled"
                        Shell.NavBarIsVisible="false">
     <ContentPage.Content>
-        <Grid RowDefinitions="*,auto,*,auto">
-			<!-- <ffimage:CachedImage Grid.Row="0" Grid.RowSpan="4" Source="tag_bg.jpg" Aspect="AspectFill"/> -->
+		<Grid RowDefinitions="*,auto,*,auto">
 			<StackLayout Grid.Row="1" Opacity="0" x:Name="LabelLayout" Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="Center" >
-				<Label Text="NEW" TextColor="Black" FontSize="16" VerticalTextAlignment="Center" />
-				<Label Text="WAYS" TextColor="Black" FontSize="24" VerticalTextAlignment="Center" />
-				<Label Text="OF" TextColor="Black"  FontSize="16" VerticalTextAlignment="Center"/>
-                <Label Text="WORLDMAKING" TextColor="Black"  FontSize="24"  VerticalTextAlignment="Center"/>
+				<Label Text="NEW" TextColor="{StaticResource PrimaryForegrowndColor}" FontFamily="SegoeUI-Bold" FontSize="16" VerticalTextAlignment="Center" />
+				<Label Text="WAYS" TextColor="{StaticResource PrimaryForegrowndColor}" FontFamily="SegoeUI-Bold" FontSize="24" VerticalTextAlignment="Center" />
+				<Label Text="OF" TextColor="{StaticResource PrimaryForegrowndColor}" FontFamily="SegoeUI-Bold" FontSize="16" VerticalTextAlignment="Center"/>
+				<Label Text="WORLDMAKING" TextColor="{StaticResource PrimaryForegrowndColor}" FontFamily="SegoeUI-Bold" FontSize="24"  VerticalTextAlignment="Center"/>
             </StackLayout>
 
-			<ActivityIndicator Grid.Row="2" IsVisible="true" IsRunning="true"
-							   VerticalOptions="Center" Color="Black"/>
+			<ActivityIndicator Grid.Row="2" VerticalOptions="Center"
+							   IsVisible="true" IsRunning="true"
+							   Color="{StaticResource PrimaryForegrowndColor}"/>
 
 			<Frame Grid.Row="3" IsVisible="{Binding Path=DisplayConnectionText}" CornerRadius="5" BackgroundColor="#99ffffff">
-                <Label Text="{Binding Path=ConnectionStateText}" HorizontalOptions="CenterAndExpand"
-					   LineBreakMode="WordWrap" FontSize="Medium" TextColor="Black"/>
+				<Label HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HorizontalTextAlignment="Center"
+					   FontFamily="SegoeUI-Regular" FontSize="18"
+					   TextColor="{StaticResource SecondaryForegrowndColor}"
+					   Text="{Binding Path=ConnectionStateText}" />
             </Frame>
         </Grid>
     </ContentPage.Content>

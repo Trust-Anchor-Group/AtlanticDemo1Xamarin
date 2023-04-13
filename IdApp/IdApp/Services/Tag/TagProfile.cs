@@ -112,7 +112,10 @@ namespace IdApp.Services.Tag
 		private string domain;
 		private string apiKey;
 		private string apiSecret;
+#if ATLANTICAPP
+		private LegalIdentityAttachment[] legalPhotos;
 		private string trimmedNumber;
+#endif
 		private string phoneNumber;
 		private string eMail;
 		private string account;
@@ -182,6 +185,7 @@ namespace IdApp.Services.Tag
 				ApiKey = this.ApiKey,
 				ApiSecret = this.ApiSecret,
 #if ATLANTICAPP
+				LegalPhotos = this.LegalPhotos,
 				TrimmedNumber = this.TrimmedNumber,
 #endif
 				PhoneNumber = this.PhoneNumber,
@@ -219,6 +223,7 @@ namespace IdApp.Services.Tag
 				this.ApiKey = configuration.ApiKey;
 				this.ApiSecret = configuration.ApiSecret;
 #if ATLANTICAPP
+				this.LegalPhotos = configuration.LegalPhotos;
 				this.TrimmedNumber = configuration.TrimmedNumber;
 #endif
 				this.PhoneNumber = configuration.PhoneNumber;
@@ -330,6 +335,21 @@ namespace IdApp.Services.Tag
 			}
 		}
 
+#if ATLANTICAPP
+		/// <inheritdoc/>
+		public LegalIdentityAttachment[] LegalPhotos
+		{
+			get => this.legalPhotos;
+			private set
+			{
+				if (!Equals(this.legalPhotos, value))
+				{
+					this.legalPhotos = value;
+					this.FlagAsDirty(nameof(this.LegalPhotos));
+				}
+			}
+		}
+
 		/// <inheritdoc/>
 		public string TrimmedNumber
 		{
@@ -343,6 +363,7 @@ namespace IdApp.Services.Tag
 				}
 			}
 		}
+#endif
 
 		/// <inheritdoc/>
 		public string PhoneNumber
@@ -764,6 +785,17 @@ namespace IdApp.Services.Tag
 		public async Task InvalidatePhoneNumber()
 		{
 			await this.DecrementConfigurationStep();
+		}
+
+		/// <inheritdoc/>
+		public async Task AddLegalPhoto(LegalIdentityAttachment LegalPhoto)
+		{
+			List<LegalIdentityAttachment> Photos = new(this.LegalPhotos);
+			Photos.Add(LegalPhoto);
+
+			this.LegalPhotos = Photos.ToArray();
+
+			await this.IncrementConfigurationStep();
 		}
 #else
 		/// <inheritdoc/>

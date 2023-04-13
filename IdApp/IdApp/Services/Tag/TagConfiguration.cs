@@ -35,11 +35,19 @@ namespace IdApp.Services
 		[DefaultValueStringEmpty]
 		public string ApiSecret { get; set; }
 
+#if ATLANTICAPP
+		/// <summary>
+		/// User's current legal identity.
+		/// </summary>
+		[DefaultValueNull]
+		public LegalIdentityAttachment[] LegalPhotos { get; set; }
+
 		/// <summary>
 		/// Verified Phone Number
 		/// </summary>
 		[DefaultValueStringEmpty]
 		public string TrimmedNumber { get; set; }
+#endif
 
 		/// <summary>
 		/// Verified Phone Number
