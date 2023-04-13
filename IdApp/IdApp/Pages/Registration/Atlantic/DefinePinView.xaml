@@ -12,7 +12,7 @@
                        x:DataType="model:DefinePinViewModel"
                        x:Class="IdApp.Pages.Registration.Atlantic.DefinePinView">
 	<ContentView.Content >
-		<StackLayout Margin="{StaticResource DefaultMargin}" x:Name="PinContent">
+		<StackLayout Margin="{StaticResource DefaultMargins}" x:Name="PinContent">
 			<StackLayout.Resources>
 				<ResourceDictionary>
 					<Style TargetType="Entry" x:Key="PinEntry">

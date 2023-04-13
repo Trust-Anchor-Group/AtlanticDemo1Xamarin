@@ -46,7 +46,7 @@
 
 		<StackLayout Orientation="Vertical">
 			<!-- HEADING -->
-			<Grid Padding="{StaticResource DefaultMargin}" ColumnDefinitions="auto,*,auto" RowDefinitions="auto" >
+			<Grid Padding="{StaticResource DefaultMargins}" ColumnDefinitions="auto,*,auto" RowDefinitions="auto" >
 				<ffimage:CachedImage Grid.Column="0" Grid.ColumnSpan="2" Source="{x:Static resx:Pngs.AtlanticLogo}" Aspect="Fill" HeightRequest="87" />
 				<controls:TintedSvgCachedImage Grid.Column="2" HeightRequest="60" WidthRequest="60" VerticalOptions="Center"
 											   Source="{x:Static resx:Svgs.Fingerprint}" TintColor="{StaticResource PrimaryForegrowndColor}" />

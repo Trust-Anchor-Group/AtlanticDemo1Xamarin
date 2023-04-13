@@ -12,7 +12,7 @@
     <ContentView.Content>
         <Grid>
             <ScrollView>
-                <StackLayout Margin="{StaticResource DefaultMargin}">
+                <StackLayout Margin="{StaticResource DefaultMargins}">
                     <Label Text="{x:Static resx:AppResources.ValidateIdentityInfo1Text}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" FontSize="Body" />
                     <Label Text="{x:Static resx:AppResources.ValidateIdentityInfo2Text}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" FontSize="Body" />
                     <Label Text="{x:Static resx:AppResources.ValidateIdentityInfo3Text}" HorizontalOptions="Start" VerticalOptions="CenterAndExpand" FontSize="Body" />
