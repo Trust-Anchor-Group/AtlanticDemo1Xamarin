@@ -49,18 +49,6 @@ namespace IdApp.Controls.Extended
 			BindableProperty.Create(nameof(Length), typeof(int), typeof(ExEntryCode), default, propertyChanged: OnLengthChanged);
 
 		/// <summary>
-		///  The FieldHeightRequestProperty
-		/// </summary>
-		public static readonly BindableProperty FieldHeightRequestProperty =
-			BindableProperty.Create(nameof(FieldHeightRequest), typeof(double), typeof(ExEntryCode), defaultValue: 40.0);
-
-		/// <summary>
-		///  The FieldWidthRequestProperty
-		/// </summary>
-		public static readonly BindableProperty FieldWidthRequestProperty =
-			BindableProperty.Create(nameof(FieldWidthRequest), typeof(double), typeof(ExEntryCode), defaultValue: 40.0);
-
-		/// <summary>
 		/// Gets or sets ReturnType
 		/// </summary>
 		public ReturnType ReturnType
@@ -96,23 +84,6 @@ namespace IdApp.Controls.Extended
 			set { this.SetValue(LengthProperty, value); }
 		}
 
-		/// <summary>
-		/// Gets or sets the FieldHeightRequest
-		/// </summary>
-		public double FieldHeightRequest
-		{
-			get { return (double)this.GetValue(FieldHeightRequestProperty); }
-			set { this.SetValue(FieldHeightRequestProperty, value); }
-		}
-
-		/// <summary>
-		/// Gets or sets the FieldWidthRequest
-		/// </summary>
-		public double FieldWidthRequest
-		{
-			get { return (double)this.GetValue(FieldWidthRequestProperty); }
-			set { this.SetValue(FieldWidthRequestProperty, value); }
-		}
 		#endregion Properties
 
 		#region Events
@@ -149,27 +120,26 @@ namespace IdApp.Controls.Extended
 
 			for (int i = 0; i < Length; i++)
 			{
-				control.ContainerGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+				control.ContainerGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Star });
 
 				Frame Frame = new()
 				{
 					HasShadow = false,
-					BackgroundColor = Color.LightGray,
+					BackgroundColor = (Color)Application.Current.Resources["PrimaryBackgrowndColor"],
+					BorderColor = (Color)Application.Current.Resources["SecondaryForegrowndColor"],
+					CornerRadius = 8,
 					Padding = new Thickness(0),
 					Margin= new Thickness(0),
-					HeightRequest = control.FieldHeightRequest,
-					WidthRequest = control.FieldWidthRequest
 				};
 
 				Label Label = new()
 				{
+					Style = (Style)Application.Current.Resources["EntryStyle"],
 					HorizontalTextAlignment = TextAlignment.Center,
 					VerticalTextAlignment = TextAlignment.Center,
 					HorizontalOptions = LayoutOptions.FillAndExpand,
 					VerticalOptions = LayoutOptions.FillAndExpand,
-					BackgroundColor = Color.Transparent,
-					TextColor = Color.Black,
-					Text = "_"
+					Text = " "
 				};
 
 				Frame.Content = Label;
@@ -186,29 +156,9 @@ namespace IdApp.Controls.Extended
 		protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{
 			switch (propertyName)
-			{			
+			{
 				case nameof(this.Length):
 					this.CodeEntry.MaxLength = this.Length;
-					break;
-
-				case nameof(this.FieldHeightRequest):
-					if (this.frameContainer is not null)
-					{
-						foreach (Frame Frame in this.frameContainer)
-						{
-							Frame.HeightRequest = this.FieldHeightRequest;
-						}
-					}
-					break;
-
-				case nameof(this.FieldWidthRequest):
-					if (this.frameContainer is not null)
-					{
-						foreach (Frame Frame in this.frameContainer)
-						{
-							Frame.WidthRequest = this.FieldWidthRequest;
-						}
-					}
 					break;
 			}
 		}
@@ -266,7 +216,7 @@ namespace IdApp.Controls.Extended
 				}
 				else
 				{
-					this.codeLabels[i].Text = "_";
+					this.codeLabels[i].Text = " ";
 				}
 			}
 

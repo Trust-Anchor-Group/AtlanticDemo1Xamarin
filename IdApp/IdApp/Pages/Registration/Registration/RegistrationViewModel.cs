@@ -275,27 +275,27 @@ namespace IdApp.Pages.Registration.Registration
 #if ATLANTICAPP
 				switch (CurrentStep)
 				{
-					/*!!!
-					case RegistrationStep.Account:
+					case RegistrationStep.ValidatePhoneNumber:
 						this.RegistrationSteps[this.CurrentStep].ClearStepState();
 						await this.TagProfile.ClearAccount();
 						break;
 
+						/*!!!
 					case RegistrationStep.RegisterIdentity:
-						this.RegistrationSteps[(int)RegistrationStep.Account].ClearStepState();
+						this.RegistrationSteps[(int)RegistrationStep.ValidatePhoneNumber].ClearStepState();
 						await this.TagProfile.ClearAccount(false);
 						this.RegistrationSteps[(int)RegistrationStep.RegisterIdentity].ClearStepState();
 						await this.TagProfile.ClearLegalIdentity();
-						await this.TagProfile.InvalidateContactInfo();
+						await this.TagProfile.InvalidatePhoneNumber();
 						break;
+						*/
 
 					case RegistrationStep.ValidateIdentity:
-						RegisterIdentity.RegisterIdentityViewModel vm = (RegisterIdentity.RegisterIdentityViewModel)this.RegistrationSteps[(int)RegistrationStep.RegisterIdentity];
+						Atlantic.RegisterIdentityViewModel vm = (Atlantic.RegisterIdentityViewModel)this.RegistrationSteps[(int)RegistrationStep.RegisterIdentity];
 						vm.PopulateFromTagProfile();
 						this.RegistrationSteps[this.CurrentStep].ClearStepState();
 						await this.TagProfile.ClearIsValidated();
 						break;
-					*/
 
 					case RegistrationStep.Pin:
 						this.RegistrationSteps[this.CurrentStep].ClearStepState();

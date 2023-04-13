@@ -960,16 +960,6 @@
              The LengthProperty
             </summary>
         </member>
-        <member name="F:IdApp.Controls.Extended.ExEntryCode.FieldHeightRequestProperty">
-            <summary>
-             The FieldHeightRequestProperty
-            </summary>
-        </member>
-        <member name="F:IdApp.Controls.Extended.ExEntryCode.FieldWidthRequestProperty">
-            <summary>
-             The FieldWidthRequestProperty
-            </summary>
-        </member>
         <member name="P:IdApp.Controls.Extended.ExEntryCode.ReturnType">
             <summary>
             Gets or sets ReturnType
@@ -988,16 +978,6 @@
         <member name="P:IdApp.Controls.Extended.ExEntryCode.Length">
             <summary>
             Gets or sets the Length
-            </summary>
-        </member>
-        <member name="P:IdApp.Controls.Extended.ExEntryCode.FieldHeightRequest">
-            <summary>
-            Gets or sets the FieldHeightRequest
-            </summary>
-        </member>
-        <member name="P:IdApp.Controls.Extended.ExEntryCode.FieldWidthRequest">
-            <summary>
-            Gets or sets the FieldWidthRequest
             </summary>
         </member>
         <member name="E:IdApp.Controls.Extended.ExEntryCode.TextChanged">

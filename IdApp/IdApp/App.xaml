@@ -17,15 +17,18 @@
             <On Platform="iOS" Value="FontAwesome5Free-Solid" />
         </OnPlatform>
 
-		<x:Double x:Key="DefaultMargin">12</x:Double>
-		<x:Double x:Key="DefaultColumnSpacing">8</x:Double>
 		<x:Double x:Key="DefaultRawSpacing">8</x:Double>
+		<x:Double x:Key="MediumRawSpacing">16</x:Double>
 		<x:Double x:Key="LargeRawSpacing">24</x:Double>
-
+		<x:Double x:Key="DefaultColumnSpacing">8</x:Double>
+		<x:Double x:Key="MediumColumnSpacing">16</x:Double>
+		<x:Double x:Key="LargeColumnSpacing">24</x:Double>
 		<Thickness x:Key="DefaultMargins">12</Thickness>
+		<Thickness x:Key="MediumMargins">24</Thickness>
+		<Thickness x:Key="LargeMargins">36</Thickness>
 
 		<Color x:Key="PrimaryBackgrowndColor">#FFFFFFFF</Color>
-
+		<Color x:Key="SecondaryBackgrowndColor">#FFFFFFFF</Color>
 		<Color x:Key="PrimaryForegrowndColor">#FF0017E6</Color>
 		<Color x:Key="SecondaryForegrowndColor">#FF8d8b8b</Color>
 

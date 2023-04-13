@@ -933,8 +933,7 @@ namespace IdApp.Services.Tag
 		public async Task ClearIsValidated()
 		{
 #if ATLANTICAPP
-			/*!!! await this.DecrementConfigurationStep(RegistrationStep.RegisterIdentity);
-			 */
+			await this.DecrementConfigurationStep(RegistrationStep.GetUserPhotoImage);
 #else
 			await this.DecrementConfigurationStep(RegistrationStep.RegisterIdentity);
 #endif

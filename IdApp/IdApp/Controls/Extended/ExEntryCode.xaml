@@ -8,11 +8,11 @@
 		<TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
 	</ContentView.GestureRecognizers>
 
-	<Grid x:Name="ContainerGrid" ColumnSpacing="10" HorizontalOptions="CenterAndExpand"
-		  RowDefinitions="auto" ColumnDefinitions="auto">
+	<Grid x:Name="ContainerGrid" ColumnSpacing="{StaticResource DefaultColumnSpacing}"
+		  HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 		<Entry x:Name="CodeEntry" Grid.Column="0"
-			   TextColor="Transparent"  BackgroundColor="Transparent"
-			   HorizontalOptions="Start" WidthRequest="10" HeightRequest="10"
+			   TextColor="Transparent"  BackgroundColor="Transparent" PlaceholderColor="Transparent"
+			   HeightRequest="10" WidthRequest="10"
 			   IsPassword="True" Keyboard="Numeric"
 			   Focused="HandleFocusChange"
 			   Unfocused="HandleFocusChange"

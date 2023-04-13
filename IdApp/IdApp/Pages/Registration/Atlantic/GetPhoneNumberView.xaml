@@ -13,8 +13,6 @@
 	x:Class="IdApp.Pages.Registration.Atlantic.GetPhoneNumberView">
 
 	<Grid Margin="0" Padding="{StaticResource DefaultMargins}" RowDefinitions="*,auto,*,auto">
-		<!-- <Image Source="tag_bg2.jpg" Aspect="AspectFill" /> -->
-
 		<StackLayout Grid.Row="0"/>
 
 		<StackLayout Grid.Row="1" Spacing="{StaticResource LargeRawSpacing}" >
@@ -37,13 +35,6 @@
 					<controls:TintedSvgCachedImage Style="{StaticResource ImageButtonStyle}" Source="{x:Static resx:Svgs.ChevronRight}" />
 				</StackLayout>
 			</pancakeview:PancakeView>
-
-
-			<!--
-			<Button Text="{Binding Path=PhoneButtonLabel}"
-					Command="{Binding Path=SendPhoneNrCodeCommand}"
-					IsEnabled="{Binding Path=PhoneButtonEnabled}" />
-			-->
         </StackLayout>
 
 		<StackLayout Grid.Row="2"/>
@@ -54,7 +45,7 @@
 					<Setter Property="Color" Value="Transparent" />
 				</DataTrigger>
 				<DataTrigger TargetType="ActivityIndicator" Binding="{Binding IsBusy}" Value="True">
-					<Setter Property="Color" Value="Black" />
+					<Setter Property="Color" Value="{StaticResource PrimaryForegrowndColor}" />
 				</DataTrigger>
 			</ActivityIndicator.Triggers>
 		</ActivityIndicator>
