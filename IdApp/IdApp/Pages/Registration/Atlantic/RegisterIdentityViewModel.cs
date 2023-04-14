@@ -1,32 +1,14 @@
-﻿using IdApp.Cv;
-using IdApp.Cv.ColorModels;
-using IdApp.Cv.Transformations;
-using IdApp.Cv.Transformations.Linear;
-using IdApp.Cv.Utilities;
-using IdApp.DeviceSpecific;
-using IdApp.Extensions;
+﻿using IdApp.Extensions;
 using IdApp.Services.Data.PersonalNumbers;
 using IdApp.Services.Tag;
-using IdApp.Services.UI.Photos;
 using IdApp.Services.Data.Countries;
-using Plugin.Media;
-using Plugin.Media.Abstractions;
 using System;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Waher.Content;
-using Waher.Content.Images;
-using Waher.Content.Images.Exif;
 using Waher.Networking.XMPP;
 using Waher.Networking.XMPP.Contracts;
-using Xamarin.Essentials;
 using Xamarin.Forms;
-using IdApp.Services.Ocr;
-using IdApp.Nfc.Extensions;
-using IdApp.Cv.Arithmetics;
-using SkiaSharp;
 using IdApp.Services;
 using Xamarin.CommunityToolkit.Helpers;
 
@@ -37,36 +19,21 @@ namespace IdApp.Pages.Registration.Atlantic
 	/// </summary>
 	public class RegisterIdentityViewModel : RegistrationStepViewModel
 	{
-		private const string profilePhotoFileName = "ProfilePhoto.jpg";
-		private readonly string localPhotoFileName;
-		private LegalIdentityAttachment photo;
-		private readonly PhotosLoader photosLoader;
-
 		/// <summary>
 		/// Creates a new instance of the <see cref="RegisterIdentityModel"/> class.
 		/// </summary>
 		public RegisterIdentityViewModel()
 		 : base(RegistrationStep.RegisterIdentity)
 		{
-			IDeviceInformation deviceInfo = DependencyService.Get<IDeviceInformation>();
-			this.DeviceId = deviceInfo?.GetDeviceId();
-
 			this.Countries = new ObservableCollection<string>();
 			foreach (string country in ISO_3166_1.Countries)
 				this.Countries.Add(country);
 
 			this.SelectedCountry = null;
-			this.RegisterCommand = new Command(async _ => await this.Register(), _ => this.CanRegister());
-			this.TakePhotoCommand = new Command(async _ => await this.TakePhoto(), _ => !this.IsBusy);
-			this.PickPhotoCommand = new Command(async _ => await this.PickPhoto(), _ => !this.IsBusy);
-			this.EPassportCommand = new Command(async _ => await this.ScanPassport(), _ => !this.IsBusy);
-			this.RemovePhotoCommand = new Command(_ => this.RemovePhoto(true));
+			this.RegisterCommand = new Command(async _ => await this.Register(), _ => this.CanRegister);
 
 			this.Title = LocalizationResourceManager.Current["PersonalLegalInformation"];
 			this.PersonalNumberPlaceholder = LocalizationResourceManager.Current["PersonalNumber"];
-
-			this.localPhotoFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), profilePhotoFileName);
-			this.photosLoader = new PhotosLoader();
 		}
 
 		/// <inheritdoc />
@@ -74,14 +41,14 @@ namespace IdApp.Pages.Registration.Atlantic
 		{
 			await base.OnInitialize();
 
-			this.RegisterCommand.ChangeCanExecute();
 			this.XmppService.ConnectionStateChanged += this.XmppService_ConnectionStateChanged;
+
+			await this.XmppService_ConnectionStateChanged(this, this.XmppService.State);
 		}
 
 		/// <inheritdoc />
 		protected override async Task OnDispose()
 		{
-			this.photosLoader.CancelLoadPhotos();
 			this.XmppService.ConnectionStateChanged -= this.XmppService_ConnectionStateChanged;
 
 			await base.OnDispose();
@@ -100,87 +67,17 @@ namespace IdApp.Pages.Registration.Atlantic
 		public ICommand RegisterCommand { get; }
 
 		/// <summary>
-		/// The command to bind to for taking a photo with the camera.
-		/// </summary>
-		public ICommand TakePhotoCommand { get; }
-
-		/// <summary>
-		/// The command to bind to for selecting a photo from the camera roll.
-		/// </summary>
-		public ICommand PickPhotoCommand { get; }
-
-		/// <summary>
-		/// The command to bind to for scanning an ePassport or eID.
-		/// </summary>
-		public ICommand EPassportCommand { get; }
-
-		/// <summary>
-		/// The command to bind to for removing the currently selected photo.
-		/// </summary>
-		public ICommand RemovePhotoCommand { get; }
-
-		/// <summary>
-		/// The <see cref="HasPhoto"/>
-		/// </summary>
-		public static readonly BindableProperty HasPhotoProperty =
-			BindableProperty.Create(nameof(HasPhoto), typeof(bool), typeof(RegisterIdentityViewModel), default(bool));
-
-		/// <summary>
-		/// Gets or sets whether the user has selected a photo for their account or not.
-		/// </summary>
-		public bool HasPhoto
-		{
-			get => (bool)this.GetValue(HasPhotoProperty);
-			set => this.SetValue(HasPhotoProperty, value);
-		}
-
-		/// <summary>
-		/// The <see cref="HasPhoto"/>
-		/// </summary>
-		public static readonly BindableProperty ImageProperty =
-			BindableProperty.Create(nameof(Image), typeof(ImageSource), typeof(RegisterIdentityViewModel), default(ImageSource), propertyChanged: (b, oldValue, newValue) =>
-			{
-				RegisterIdentityViewModel viewModel = (RegisterIdentityViewModel)b;
-				viewModel.HasPhoto = (newValue is not null);
-			});
-
-		/// <summary>
-		/// The image source, i.e. the file representing the selected photo.
-		/// </summary>
-		public ImageSource Image
-		{
-			get => (ImageSource)this.GetValue(ImageProperty);
-			set => this.SetValue(ImageProperty, value);
-		}
-
-		/// <summary>
-		/// See <see cref="ImageRotation"/>
-		/// </summary>
-		public static readonly BindableProperty ImageRotationProperty =
-			BindableProperty.Create(nameof(ImageRotation), typeof(int), typeof(Main.Main.MainViewModel), default(int));
-
-		/// <summary>
-		/// Gets or sets whether the current user has a photo associated with the account.
-		/// </summary>
-		public int ImageRotation
-		{
-			get => (int)this.GetValue(ImageRotationProperty);
-			set => this.SetValue(ImageRotationProperty, value);
-		}
-
-		/// <summary>
 		/// The list of all available countries a user can select from.
 		/// </summary>
 		public ObservableCollection<string> Countries { get; }
 
 		/// <summary>
-		/// The <see cref="HasPhoto"/>
 		/// </summary>
 		public static readonly BindableProperty SelectedCountryProperty =
 			BindableProperty.Create(nameof(SelectedCountry), typeof(string), typeof(RegisterIdentityViewModel), default(string), propertyChanged: (b, oldValue, newValue) =>
 			{
 				RegisterIdentityViewModel ViewModel = (RegisterIdentityViewModel)b;
-				ViewModel.RegisterCommand.ChangeCanExecute();
+				ViewModel.CanRegister = ViewModel.TryCanRegister().GetAwaiter().GetResult();
 
 				if (!string.IsNullOrWhiteSpace(ViewModel.SelectedCountry) &&
 					ISO_3166_1.TryGetCode(ViewModel.SelectedCountry, out string CountryCode))
@@ -370,27 +267,11 @@ namespace IdApp.Pages.Registration.Atlantic
 		}
 
 		/// <summary>
-		/// The <see cref="DeviceId"/>
-		/// </summary>
-		public static readonly BindableProperty DeviceIdProperty =
-			BindableProperty.Create(nameof(DeviceId), typeof(string), typeof(RegisterIdentityViewModel), default(string));
-
-		/// <summary>
-		/// The device id.
-		/// </summary>
-		public string DeviceId
-		{
-			get => (string)this.GetValue(DeviceIdProperty);
-			set => this.SetValue(DeviceIdProperty, value);
-		}
-
-		/// <summary>
 		/// The user's legal identity, set when the registration has occurred.
 		/// </summary>
 		public LegalIdentity LegalIdentity { get; private set; }
 
 		/// <summary>
-		/// The <see cref="HasPhoto"/>
 		/// </summary>
 		public static readonly BindableProperty IsConnectedProperty =
 			BindableProperty.Create(nameof(IsConnected), typeof(bool), typeof(RegisterIdentityViewModel), default(bool));
@@ -419,14 +300,33 @@ namespace IdApp.Pages.Registration.Atlantic
 			set => this.SetValue(ConnectionStateTextProperty, value);
 		}
 
+		/// <summary>
+		/// </summary>
+		public static readonly BindableProperty CanRegisterProperty =
+			BindableProperty.Create(nameof(CanRegister), typeof(bool), typeof(RegisterIdentityViewModel), false);
+
+		/// <summary>
+		/// </summary>
+		public bool CanRegister
+		{
+			get => (bool)this.GetValue(CanRegisterProperty);
+			set => this.SetValue(CanRegisterProperty, value);
+		}
+
 		#endregion
+
+		private async Task<bool> TryCanRegister()
+		{
+			bool Validated = await this.ValidateInput(false);
+			bool CanExecute = Validated && this.XmppService.IsOnline;
+			return CanExecute;
+		}
 
 		private Task XmppService_ConnectionStateChanged(object _, XmppState NewState)
 		{
 			this.UiSerializer.BeginInvokeOnMainThread(() =>
 			{
 				this.SetConnectionStateAndText(NewState);
-				this.RegisterCommand.ChangeCanExecute();
 			});
 
 			return Task.CompletedTask;
@@ -435,402 +335,13 @@ namespace IdApp.Pages.Registration.Atlantic
 		private static void OnPropertyChanged(BindableObject b, object oldValue, object newValue)
 		{
 			RegisterIdentityViewModel viewModel = (RegisterIdentityViewModel)b;
-			viewModel.RegisterCommand.ChangeCanExecute();
+			viewModel.CanRegister = viewModel.TryCanRegister().GetAwaiter().GetResult();
 		}
 
 		private void SetConnectionStateAndText(XmppState state)
 		{
 			this.IsConnected = state == XmppState.Connected;
 			this.ConnectionStateText = state.ToDisplayText();
-		}
-
-		private async Task TakePhoto()
-		{
-			if (!this.XmppService.FileUploadIsSupported)
-			{
-				await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["TakePhoto"], LocalizationResourceManager.Current["ServerDoesNotSupportFileUpload"]);
-				return;
-			}
-
-			if (Device.RuntimePlatform == Device.iOS)
-			{
-				MediaFile CapturedPhoto;
-
-				try
-				{
-					CapturedPhoto = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions()
-					{
-						CompressionQuality = 80,
-						RotateImage = false
-					});
-				}
-				catch (Exception ex)
-				{
-					await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["TakePhoto"], LocalizationResourceManager.Current["TakingAPhotoIsNotSupported"] + ": " + ex.Message);
-					return;
-				}
-
-				if (CapturedPhoto is not null)
-				{
-					try
-					{
-						await this.AddPhoto(CapturedPhoto.Path, true);
-					}
-					catch (Exception ex)
-					{
-						await this.UiSerializer.DisplayAlert(ex);
-					}
-				}
-			}
-			else
-			{
-				FileResult CapturedPhoto;
-
-				try
-				{
-					CapturedPhoto = await MediaPicker.CapturePhotoAsync();
-					if (CapturedPhoto is null)
-						return;
-				}
-				catch (Exception ex)
-				{
-					await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["TakePhoto"], LocalizationResourceManager.Current["TakingAPhotoIsNotSupported"] + ": " + ex.Message);
-					return;
-				}
-
-				if (CapturedPhoto is not null)
-				{
-					try
-					{
-						await this.AddPhoto(CapturedPhoto.FullPath, true);
-					}
-					catch (Exception ex)
-					{
-						await this.UiSerializer.DisplayAlert(ex);
-					}
-				}
-			}
-		}
-
-		private async Task PickPhoto()
-		{
-			if (!this.XmppService.FileUploadIsSupported)
-			{
-				await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["PickPhoto"], LocalizationResourceManager.Current["SelectingAPhotoIsNotSupported"]);
-				return;
-			}
-
-			FileResult PickedPhoto = await MediaPicker.PickPhotoAsync();
-
-			if (PickedPhoto is not null)
-				await this.AddPhoto(PickedPhoto.FullPath, true);
-		}
-
-		private async Task ScanPassport()
-		{
-			// TODO: Open Camera View with preview, constantly scanning for MRZ codes.
-
-			string FileName;
-
-			if (Device.RuntimePlatform == Device.iOS)
-			{
-				MediaFile CapturedPhoto;
-
-				try
-				{
-					CapturedPhoto = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions()
-					{
-						CompressionQuality = 80,
-						RotateImage = false
-					});
-				}
-				catch (Exception ex)
-				{
-					await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["TakePhoto"], LocalizationResourceManager.Current["TakingAPhotoIsNotSupported"] + ": " + ex.Message);
-					return;
-				}
-
-				if (CapturedPhoto is null)
-					return;
-
-				FileName = CapturedPhoto.Path;
-			}
-			else
-			{
-				FileResult CapturedPhoto;
-
-				try
-				{
-					CapturedPhoto = await MediaPicker.CapturePhotoAsync();
-					if (CapturedPhoto is null)
-						return;
-				}
-				catch (Exception ex)
-				{
-					await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["TakePhoto"], LocalizationResourceManager.Current["TakingAPhotoIsNotSupported"] + ": " + ex.Message);
-					return;
-				}
-
-				FileName = CapturedPhoto.FullPath;
-			}
-
-			try
-			{
-				IMatrix M = Bitmaps.FromBitmapFile(FileName, 600, 600);
-
-				if (EXIF.TryExtractFromJPeg(FileName, out ExifTag[] Tags))
-				{
-					switch (PhotosLoader.GetImageRotation(Tags))
-					{
-						case -90:
-							M = M.Rotate270();
-							break;
-
-						case 90:
-							M = M.Rotate90();
-							break;
-
-						case 180:
-							M = M.Rotate180();
-							break;
-					}
-				}
-
-				Matrix<int> Grayscale = (Matrix<int>)M.GrayScaleFixed();
-				Matrix<int> Mrz = Grayscale.ExtractMrzRegion();
-
-				if (Mrz is null)
-					return;
-
-				IOcrService OcrService = App.Instantiate<IOcrService>();
-
-				Mrz.Negate();
-				Mrz.Contrast();
-				string[] Rows = await OcrService.ProcessImage(Mrz, "mrz", PageSegmentationMode.SingleUniformBlockOfText);
-
-				if (Rows.Length == 0)
-				{
-					await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["ErrorTitle"], LocalizationResourceManager.Current["UnableToOcrImage"]);
-					return;
-				}
-
-				DocumentInformation DocInfo = null;
-				int c = Rows.Length;
-
-				if (c >= 3)
-				{
-					if (!BasicAccessControl.ParseMrz(Rows[c - 3] + "\n" + Rows[c - 2] + "\n" + Rows[c - 1], out DocInfo))
-						DocInfo = null;
-				}
-
-				if (DocInfo is null && c >= 2)
-				{
-					if (!BasicAccessControl.ParseMrz(Rows[c - 2] + "\n" + Rows[c - 1], out DocInfo))
-						DocInfo = null;
-				}
-
-				if (DocInfo is null)
-				{
-					await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["ErrorTitle"], LocalizationResourceManager.Current["UnableToExtractMachineReadableString"]);
-					return;
-				}
-			}
-			catch (Exception ex)
-			{
-				await this.UiSerializer.DisplayAlert(ex);
-			}
-			finally
-			{
-				File.Delete(FileName);
-			}
-		}
-
-		/// <summary>
-		/// Adds a photo from the specified path to use as a profile photo.
-		/// </summary>
-		/// <param name="Bin">Binary content</param>
-		/// <param name="ContentType">Content-Type</param>
-		/// <param name="Rotation">Rotation to use, to display the image correctly.</param>
-		/// <param name="saveLocalCopy">Set to <c>true</c> to save a local copy, <c>false</c> otherwise.</param>
-		/// <param name="showAlert">Set to <c>true</c> to show an alert if photo is too large; <c>false</c> otherwise.</param>
-		protected internal async Task AddPhoto(byte[] Bin, string ContentType, int Rotation, bool saveLocalCopy, bool showAlert)
-		{
-			if (Bin.Length > this.TagProfile.HttpFileUploadMaxSize.GetValueOrDefault())
-			{
-				if (showAlert)
-					await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["ErrorTitle"], LocalizationResourceManager.Current["PhotoIsTooLarge"]);
-
-				return;
-			}
-
-			this.RemovePhoto(saveLocalCopy);
-
-			if (saveLocalCopy)
-			{
-				try
-				{
-					File.WriteAllBytes(this.localPhotoFileName, Bin);
-				}
-				catch (Exception e)
-				{
-					this.LogService.LogException(e);
-				}
-			}
-
-			this.photo = new LegalIdentityAttachment(this.localPhotoFileName, ContentType, Bin);
-			this.ImageRotation = Rotation;
-			this.Image = ImageSource.FromStream(() => new MemoryStream(Bin));
-
-			this.RegisterCommand.ChangeCanExecute();
-		}
-
-		/// <summary>
-		/// Adds a photo from the specified path to use as a profile photo.
-		/// </summary>
-		/// <param name="FilePath">The full path to the file.</param>
-		/// <param name="SaveLocalCopy">Set to <c>true</c> to save a local copy, <c>false</c> otherwise.</param>
-		protected internal async Task AddPhoto(string FilePath, bool SaveLocalCopy)
-		{
-			try
-			{
-				bool FallbackOriginal = true;
-
-				if (SaveLocalCopy)
-				{
-					// try to downscale and comress the image
-					using FileStream InputStream = File.OpenRead(FilePath);
-					using SKData ImageData = this.CompressImage(InputStream);
-
-					if (ImageData is not null)
-					{
-						FallbackOriginal = false;
-						await this.AddPhoto(ImageData.ToArray(), Constants.MimeTypes.Jpeg, 0, SaveLocalCopy, true);
-					}
-				}
-
-				if (FallbackOriginal)
-				{
-					byte[] Bin = File.ReadAllBytes(FilePath);
-					if (!InternetContent.TryGetContentType(Path.GetExtension(FilePath), out string ContentType))
-						ContentType = "application/octet-stream";
-
-					await this.AddPhoto(Bin, ContentType, PhotosLoader.GetImageRotation(Bin), SaveLocalCopy, true);
-				}
-			}
-			catch (Exception ex)
-			{
-				await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["ErrorTitle"], LocalizationResourceManager.Current["FailedToLoadPhoto"]);
-				this.LogService.LogException(ex);
-				return;
-			}
-		}
-
-		private SKData CompressImage(Stream inputStream)
-		{
-			try
-			{
-				using SKManagedStream ManagedStream = new(inputStream);
-				using SKData ImageData = SKData.Create(ManagedStream);
-
-				SKCodec Codec = SKCodec.Create(ImageData);
-				SKBitmap SkBitmap = SKBitmap.Decode(ImageData);
-
-				SkBitmap = this.HandleOrientation(SkBitmap, Codec.EncodedOrigin);
-
-				bool Resize = false;
-				int Height = SkBitmap.Height;
-				int Width = SkBitmap.Width;
-
-				// downdsample to FHD
-				if ((Width >= Height) && (Width > 1920))
-				{
-					Height = (int)(Height * (1920.0 / Width) + 0.5);
-					Width = 1920;
-					Resize = true;
-				}
-				else if ((Height > Width) && (Height > 1920))
-				{
-					Width = (int)(Width * (1920.0 / Height) + 0.5);
-					Height = 1920;
-					Resize = true;
-				}
-
-				if (Resize)
-				{
-					SKImageInfo Info = SkBitmap.Info;
-					SKImageInfo NewInfo = new(Width, Height, Info.ColorType, Info.AlphaType, Info.ColorSpace);
-					SkBitmap = SkBitmap.Resize(NewInfo, SKFilterQuality.High);
-				}
-
-				return SkBitmap.Encode(SKEncodedImageFormat.Jpeg, 80);
-			}
-			catch (Exception ex)
-			{
-				this.LogService.LogException(ex);
-			}
-
-			return null;
-		}
-
-		private SKBitmap HandleOrientation(SKBitmap Bitmap, SKEncodedOrigin Orientation)
-		{
-			SKBitmap Rotated;
-
-			switch (Orientation)
-			{
-				case SKEncodedOrigin.BottomRight:
-					Rotated = new SKBitmap(Bitmap.Width, Bitmap.Height);
-
-					using (SKCanvas Surface = new(Rotated))
-					{
-						Surface.RotateDegrees(180, Bitmap.Width / 2, Bitmap.Height / 2);
-						Surface.DrawBitmap(Bitmap, 0, 0);
-					}
-					break;
-
-				case SKEncodedOrigin.RightTop:
-					Rotated = new SKBitmap(Bitmap.Height, Bitmap.Width);
-
-					using (SKCanvas Surface = new(Rotated))
-					{
-						Surface.Translate(Rotated.Width, 0);
-						Surface.RotateDegrees(90);
-						Surface.DrawBitmap(Bitmap, 0, 0);
-					}
-					break;
-
-				case SKEncodedOrigin.LeftBottom:
-					Rotated = new SKBitmap(Bitmap.Height, Bitmap.Width);
-
-					using (SKCanvas Surface = new(Rotated))
-					{
-						Surface.Translate(0, Rotated.Height);
-						Surface.RotateDegrees(270);
-						Surface.DrawBitmap(Bitmap, 0, 0);
-					}
-					break;
-
-				default:
-					return Bitmap;
-			}
-
-			return Rotated;
-		}
-
-		private void RemovePhoto(bool RemoveFileOnDisc)
-		{
-			try
-			{
-				this.photo = null;
-				this.Image = null;
-
-				if (RemoveFileOnDisc && File.Exists(this.localPhotoFileName))
-					File.Delete(this.localPhotoFileName);
-			}
-			catch (Exception e)
-			{
-				this.LogService.LogException(e);
-			}
 		}
 
 		private async Task Register()
@@ -867,12 +378,12 @@ namespace IdApp.Pages.Registration.Atlantic
 				return;
 			}
 
-			this.SetIsBusy(this.RegisterCommand, this.TakePhotoCommand, this.PickPhotoCommand, this.EPassportCommand);
+			this.SetIsBusy(this.RegisterCommand);
 
 			try
 			{
 				RegisterIdentityModel IdentityModel = this.CreateRegisterModel();
-				LegalIdentityAttachment[] Photos = { this.photo };
+				LegalIdentityAttachment[] Photos = this.TagProfile.LegalPhotos;
 
 				(bool Succeeded, LegalIdentity AddedIdentity) = await this.NetworkService.TryRequest(() =>
 					this.XmppService.AddLegalIdentity(IdentityModel, Photos));
@@ -883,7 +394,7 @@ namespace IdApp.Pages.Registration.Atlantic
 					await this.TagProfile.SetLegalIdentity(this.LegalIdentity);
 					this.UiSerializer.BeginInvokeOnMainThread(() =>
 					{
-						this.SetIsDone(this.RegisterCommand, this.TakePhotoCommand, this.PickPhotoCommand, this.EPassportCommand);
+						this.SetIsDone(this.RegisterCommand);
 						this.OnStepCompleted(EventArgs.Empty);
 					});
 				}
@@ -895,14 +406,8 @@ namespace IdApp.Pages.Registration.Atlantic
 			}
 			finally
 			{
-				this.BeginInvokeSetIsDone(this.RegisterCommand, this.TakePhotoCommand, this.PickPhotoCommand, this.EPassportCommand);
+				this.BeginInvokeSetIsDone(this.RegisterCommand);
 			}
-		}
-
-		private bool CanRegister()
-		{
-			// Ok to 'wait' on, since we're not actually waiting on anything.
-			return this.ValidateInput(false).GetAwaiter().GetResult() && this.XmppService.IsOnline;
 		}
 
 		private RegisterIdentityModel CreateRegisterModel()
@@ -996,14 +501,6 @@ namespace IdApp.Pages.Registration.Atlantic
 				return false;
 			}
 
-			if (this.photo is null)
-			{
-				if (AlertUser)
-					await this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["InformationIsMissingOrInvalid"], LocalizationResourceManager.Current["YouNeedToProvideAPhoto"]);
-
-				return false;
-			}
-
 			return true;
 		}
 
@@ -1039,24 +536,12 @@ namespace IdApp.Pages.Registration.Atlantic
 			this.ZipCode = await this.SettingsService.RestoreStringState(this.GetSettingsKey(nameof(this.ZipCode)));
 			this.Region = await this.SettingsService.RestoreStringState(this.GetSettingsKey(nameof(this.Region)));
 
-			try
-			{
-				if (this.TagProfile.Step > RegistrationStep.ValidatePhoneNumber && File.Exists(this.localPhotoFileName))
-					await this.AddPhoto(this.localPhotoFileName, false);
-			}
-			catch (Exception e)
-			{
-				this.LogService.LogException(e);
-			}
-
 			await base.DoRestoreState();
 		}
 
 		/// <inheritdoc />
 		public override void ClearStepState()
 		{
-			this.RemovePhoto(true);
-
 			this.SelectedCountry = null;
 			this.FirstName = string.Empty;
 			this.MiddleNames = string.Empty;
@@ -1105,28 +590,6 @@ namespace IdApp.Pages.Registration.Atlantic
 
 				if (!string.IsNullOrWhiteSpace(CountryCode) && ISO_3166_1.TryGetCountry(CountryCode, out string Country))
 					this.SelectedCountry = Country;
-
-				Attachment FirstAttachment = Identity.Attachments?.GetFirstImageAttachment();
-				if (FirstAttachment is not null)
-				{
-					// Don't await this one, just let it run asynchronously.
-					this.photosLoader
-						.LoadOnePhoto(FirstAttachment, SignWith.LatestApprovedIdOrCurrentKeys)
-						.ContinueWith(task =>
-						{
-							(byte[] Bin, string ContentType, int Rotation) = task.Result;
-							if (Bin is not null)
-							{
-								if (!this.IsAppearing) // Page no longer on screen when download is done?
-									return;
-
-								this.UiSerializer.BeginInvokeOnMainThread(async () =>
-								{
-									await this.AddPhoto(Bin, ContentType, Rotation, true, false);
-								});
-							}
-						}, TaskContinuationOptions.NotOnFaulted | TaskContinuationOptions.NotOnCanceled);
-				}
 			}
 		}
 	}

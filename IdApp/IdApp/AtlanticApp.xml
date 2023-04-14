@@ -5156,56 +5156,6 @@
             The command to bind to for performing the 'register' action.
             </summary>
         </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.TakePhotoCommand">
-            <summary>
-            The command to bind to for taking a photo with the camera.
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.PickPhotoCommand">
-            <summary>
-            The command to bind to for selecting a photo from the camera roll.
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.EPassportCommand">
-            <summary>
-            The command to bind to for scanning an ePassport or eID.
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.RemovePhotoCommand">
-            <summary>
-            The command to bind to for removing the currently selected photo.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.HasPhotoProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.HasPhoto"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.HasPhoto">
-            <summary>
-            Gets or sets whether the user has selected a photo for their account or not.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.ImageProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.HasPhoto"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.Image">
-            <summary>
-            The image source, i.e. the file representing the selected photo.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.ImageRotationProperty">
-            <summary>
-            See <see cref="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.ImageRotation"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.ImageRotation">
-            <summary>
-            Gets or sets whether the current user has a photo associated with the account.
-            </summary>
-        </member>
         <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.Countries">
             <summary>
             The list of all available countries a user can select from.
@@ -5213,7 +5163,6 @@
         </member>
         <member name="F:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.SelectedCountryProperty">
             <summary>
-            The <see cref="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.HasPhoto"/>
             </summary>
         </member>
         <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.SelectedCountry">
@@ -5331,16 +5280,6 @@
             The user's region
             </summary>
         </member>
-        <member name="F:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.DeviceIdProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.DeviceId"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.DeviceId">
-            <summary>
-            The device id.
-            </summary>
-        </member>
         <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.LegalIdentity">
             <summary>
             The user's legal identity, set when the registration has occurred.
@@ -5348,7 +5287,6 @@
         </member>
         <member name="F:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.IsConnectedProperty">
             <summary>
-            The <see cref="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.HasPhoto"/>
             </summary>
         </member>
         <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.IsConnected">
@@ -5366,22 +5304,13 @@
             The user friendly connection state text to display to the user.
             </summary>
         </member>
-        <member name="M:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.AddPhoto(System.Byte[],System.String,System.Int32,System.Boolean,System.Boolean)">
+        <member name="F:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.CanRegisterProperty">
             <summary>
-            Adds a photo from the specified path to use as a profile photo.
             </summary>
-            <param name="Bin">Binary content</param>
-            <param name="ContentType">Content-Type</param>
-            <param name="Rotation">Rotation to use, to display the image correctly.</param>
-            <param name="saveLocalCopy">Set to <c>true</c> to save a local copy, <c>false</c> otherwise.</param>
-            <param name="showAlert">Set to <c>true</c> to show an alert if photo is too large; <c>false</c> otherwise.</param>
         </member>
-        <member name="M:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.AddPhoto(System.String,System.Boolean)">
+        <member name="P:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.CanRegister">
             <summary>
-            Adds a photo from the specified path to use as a profile photo.
             </summary>
-            <param name="FilePath">The full path to the file.</param>
-            <param name="SaveLocalCopy">Set to <c>true</c> to save a local copy, <c>false</c> otherwise.</param>
         </member>
         <member name="M:IdApp.Pages.Registration.Atlantic.RegisterIdentityViewModel.DoSaveState">
             <inheritdoc />

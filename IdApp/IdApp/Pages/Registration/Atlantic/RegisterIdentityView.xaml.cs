@@ -16,10 +16,5 @@ namespace IdApp.Pages.Registration.Atlantic
         {
 			this.InitializeComponent();
         }
-
-		private void RegionEntry_Focused(object Sender, FocusEventArgs e)
-		{
-            this.RegistrationLayout.ScrollToAsync(this.RegisterButton, ScrollToPosition.MakeVisible, true);
-        }
 	}
 }

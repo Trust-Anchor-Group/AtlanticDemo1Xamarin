@@ -914,21 +914,11 @@ namespace IdApp.Services.Tag
 		{
 			this.LegalIdentity = Identity;
 
-#if ATLANTICAPP
-			/*!!!
 			if (this.Step == RegistrationStep.RegisterIdentity && Identity is not null &&
 				(Identity.State == IdentityState.Created || Identity.State == IdentityState.Approved))
 			{
 				await this.IncrementConfigurationStep();
 			}
-			*/
-#else
-			if (this.Step == RegistrationStep.RegisterIdentity && Identity is not null &&
-				(Identity.State == IdentityState.Created || Identity.State == IdentityState.Approved))
-			{
-				await this.IncrementConfigurationStep();
-			}
-#endif
 		}
 
 		/// <inheritdoc/>

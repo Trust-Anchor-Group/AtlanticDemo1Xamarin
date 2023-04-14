@@ -6,7 +6,6 @@
 	xmlns:resx="clr-namespace:IdApp.Resx"
 	xmlns:registration="clr-namespace:IdApp.Pages.Registration;assembly=IdApp"
 	xmlns:model="clr-namespace:IdApp.Pages.Registration.Atlantic;assembly=IdApp"
-	xmlns:extended="clr-namespace:IdApp.Controls.Extended"
 	xmlns:controls="clr-namespace:IdApp.Controls"
     xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
 	x:DataType="model:GetPhotoImageViewModel"
