@@ -2244,4 +2244,13 @@
   <data name="Next" xml:space="preserve">
     <value>Next</value>
   </data>
+  <data name="PhotoFace" xml:space="preserve">
+    <value>Face</value>
+  </data>
+  <data name="PhotoIdBack" xml:space="preserve">
+    <value>ID Card Back</value>
+  </data>
+  <data name="PhotoIdFace" xml:space="preserve">
+    <value>ID Card Front</value>
+  </data>
 </root>

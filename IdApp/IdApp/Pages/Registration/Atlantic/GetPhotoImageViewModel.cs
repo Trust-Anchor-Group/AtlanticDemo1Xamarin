@@ -85,6 +85,23 @@ namespace IdApp.Pages.Registration.Atlantic
 		public ICommand NextCommand { get; }
 
 		/// <summary>
+		/// </summary>
+		public string ControlTitleLabelText
+		{
+			get
+			{
+				return this.Step switch
+				{
+					RegistrationStep.GetUserPhotoImage => LocalizationResourceManager.Current["PhotoFace"],
+					RegistrationStep.GetIdFacePhotoImage => LocalizationResourceManager.Current["PhotoIdFace"],
+					RegistrationStep.GetIdBackPhotoImage => LocalizationResourceManager.Current["PhotoIdBack"],
+					_ => string.Empty
+				};
+			}
+		}
+
+
+		/// <summary>
 		/// The <see cref="HasPhoto"/>
 		/// </summary>
 		public static readonly BindableProperty HasPhotoProperty =
@@ -457,7 +474,19 @@ namespace IdApp.Pages.Registration.Atlantic
 
 			try
 			{
-				await this.TagProfile.AddLegalPhoto(this.thePhoto);
+				switch (this.Step)
+				{
+					case RegistrationStep.GetUserPhotoImage:
+						await this.TagProfile.AddLegalPhoto(this.thePhoto, 1);
+						break;
+					case RegistrationStep.GetIdFacePhotoImage:
+						await this.TagProfile.AddLegalPhoto(this.thePhoto, 2);
+						break;
+					case RegistrationStep.GetIdBackPhotoImage:
+						await this.TagProfile.AddLegalPhoto(this.thePhoto, 3);
+						break;
+				};
+
 				this.OnStepCompleted(EventArgs.Empty);
 			}
 			catch (Exception ex)

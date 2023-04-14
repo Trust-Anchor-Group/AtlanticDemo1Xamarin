@@ -3463,6 +3463,33 @@ namespace IdApp.Resx {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Face.
+        /// </summary>
+        internal static string PhotoFace {
+            get {
+                return ResourceManager.GetString("PhotoFace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ID Card Back.
+        /// </summary>
+        internal static string PhotoIdBack {
+            get {
+                return ResourceManager.GetString("PhotoIdBack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ID Card Front.
+        /// </summary>
+        internal static string PhotoIdFace {
+            get {
+                return ResourceManager.GetString("PhotoIdFace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Photo is too large.
         /// </summary>
         internal static string PhotoIsTooLarge {

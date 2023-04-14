@@ -788,10 +788,18 @@ namespace IdApp.Services.Tag
 		}
 
 		/// <inheritdoc/>
-		public async Task AddLegalPhoto(LegalIdentityAttachment LegalPhoto)
+		public async Task AddLegalPhoto(LegalIdentityAttachment LegalPhoto, int position)
 		{
-			List<LegalIdentityAttachment> Photos = new(this.LegalPhotos);
-			Photos.Add(LegalPhoto);
+			List<LegalIdentityAttachment> Photos = (this.LegalPhotos is not null) ? new(this.LegalPhotos) : new();
+
+			if (Photos.Count < position)
+			{
+				Photos.Add(LegalPhoto);
+			}
+			else
+			{
+				Photos[position - 1] = LegalPhoto;
+			}
 
 			this.LegalPhotos = Photos.ToArray();
 

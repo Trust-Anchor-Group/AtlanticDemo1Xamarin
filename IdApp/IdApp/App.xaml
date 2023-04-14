@@ -28,7 +28,7 @@
 		<Thickness x:Key="LargeMargins">36</Thickness>
 
 		<Color x:Key="PrimaryBackgrowndColor">#FFFFFFFF</Color>
-		<Color x:Key="SecondaryBackgrowndColor">#FFFFFFFF</Color>
+		<Color x:Key="SecondaryBackgrowndColor">#FFEEEEEE</Color>
 		<Color x:Key="PrimaryForegrowndColor">#FF0017E6</Color>
 		<Color x:Key="SecondaryForegrowndColor">#FF8d8b8b</Color>
 
@@ -51,6 +51,21 @@
 			<Setter Property="CornerRadius" Value="8" />
 			<Setter Property="HeightRequest" Value="50" />
 			<Setter Property="EntryStyle" Value="{StaticResource EntryStyle}" />
+		</Style>
+
+		<Style x:Key="PancakeViewPhotoStyle" TargetType="pancakeview:PancakeView">
+			<Setter Property="BackgroundColor" Value="{StaticResource SecondaryBackgrowndColor}" />
+			<Setter Property="HorizontalOptions" Value="FillAndExpand" />
+			<Setter Property="CornerRadius" Value="40" />
+			<Setter Property="HeightRequest" Value="250" />
+		</Style>
+
+		<Style x:Key="PancakeViewPhotoButtonStyle" TargetType="pancakeview:PancakeView">
+			<Setter Property="BackgroundColor" Value="{StaticResource SecondaryForegrowndColor}" />
+			<Setter Property="HorizontalOptions" Value="FillAndExpand" />
+			<Setter Property="CornerRadius" Value="20" />
+			<Setter Property="HeightRequest" Value="40" />
+			<Setter Property="WidthRequest" Value="40" />
 		</Style>
 
 		<Style x:Key="PancakeViewButtonStyle" TargetType="pancakeview:PancakeView">

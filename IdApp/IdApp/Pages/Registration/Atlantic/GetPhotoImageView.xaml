@@ -17,9 +17,23 @@
 
 		<StackLayout Grid.Row="1" Spacing="{StaticResource LargeRawSpacing}" >
 			<StackLayout Spacing="{StaticResource DefaultRawSpacing}" >
-				<Label Style="{StaticResource ControlTitleLabelStyle}" Text="{xct:Translate EnterPhoneNumber}" />
-				<extended:ExEntry Style="{StaticResource ExEntryStyle}"
-								  ClearButtonVisibilityEntry="WhileEditing" KeyBoardEntry="Plain" ReturnType="Done" />
+				<Label Style="{StaticResource ControlTitleLabelStyle}" Text="{Binding ControlTitleLabelText}" />
+				<pancakeview:PancakeView Style="{StaticResource PancakeViewPhotoStyle}">
+					<Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+						<Image HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+							   Aspect="AspectFill"
+							   Source="{Binding Image}" Rotation="{Binding ImageRotation}" />
+
+						<pancakeview:PancakeView Style="{StaticResource PancakeViewPhotoButtonStyle}"
+												 HorizontalOptions="Center" VerticalOptions="End"
+												 xct:TouchEffect.AnimationDuration="100"
+												 xct:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
+												 xct:TouchEffect.PressedOpacity="0.75"
+												 xct:TouchEffect.Command="{Binding TakePhotoCommand}">
+							<controls:TintedSvgCachedImage Style="{StaticResource ImageButtonStyle}" Source="{x:Static resx:Svgs.Camera}" />
+						</pancakeview:PancakeView>
+					</Grid>
+				</pancakeview:PancakeView>
 			</StackLayout>
 
 			<pancakeview:PancakeView Style="{StaticResource PancakeViewButtonStyle}"
@@ -28,6 +42,17 @@
 									 xct:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
 									 xct:TouchEffect.PressedOpacity="0.75"
 									 xct:TouchEffect.Command="{Binding NextCommand}">
+				<pancakeview:PancakeView.Triggers>
+					<DataTrigger TargetType="pancakeview:PancakeView" Binding="{Binding HasPhoto}" Value="False">
+						<Setter Property="BackgroundColor" Value="{StaticResource SecondaryForegrowndColor}" />
+					</DataTrigger>
+					<!--
+					<DataTrigger TargetType="pancakeview:PancakeView" Binding="{Binding HasPhoto}" Value="True">
+						<Setter Property="BackgroundColor" Value="{StaticResource PrimaryForegrowndColor}" />
+					</DataTrigger>
+					-->
+				</pancakeview:PancakeView.Triggers>
+
 				<StackLayout Style="{StaticResource StackLayoutButtonStyle}">
 					<Label Style="{StaticResource LabelButtonStyle}" Text="{xct:Translate Text=Next}" TextTransform="Uppercase"/>
 					<controls:TintedSvgCachedImage Style="{StaticResource ImageButtonStyle}" Source="{x:Static resx:Svgs.ChevronRight}" />

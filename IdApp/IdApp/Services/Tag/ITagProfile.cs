@@ -227,7 +227,7 @@ namespace IdApp.Services.Tag
 
 		/// <summary>
 		/// </summary>
-		Task AddLegalPhoto(LegalIdentityAttachment LegalPhoto);
+		Task AddLegalPhoto(LegalIdentityAttachment LegalPhoto, int position);
 #else
 		/// <summary>
 		/// An alternative Step 1, used for accounts with an obsoleted identity, - validate contact info (the same or updated) without changing account data.

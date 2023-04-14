@@ -4991,6 +4991,10 @@
             The command to bind to for performing the 'register' action.
             </summary>
         </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.ControlTitleLabelText">
+            <summary>
+            </summary>
+        </member>
         <member name="F:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.HasPhotoProperty">
             <summary>
             The <see cref="P:IdApp.Pages.Registration.Atlantic.GetPhotoImageViewModel.HasPhoto"/>
@@ -8102,6 +8106,21 @@
         <member name="P:IdApp.Resx.AppResources.Phone">
             <summary>
               Looks up a localized string similar to Phone.
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.PhotoFace">
+            <summary>
+              Looks up a localized string similar to Face.
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.PhotoIdBack">
+            <summary>
+              Looks up a localized string similar to ID Card Back.
+            </summary>
+        </member>
+        <member name="P:IdApp.Resx.AppResources.PhotoIdFace">
+            <summary>
+              Looks up a localized string similar to ID Card Front.
             </summary>
         </member>
         <member name="P:IdApp.Resx.AppResources.PhotoIsTooLarge">
@@ -11551,7 +11570,7 @@
             <summary>
             </summary>
         </member>
-        <member name="M:IdApp.Services.Tag.ITagProfile.AddLegalPhoto(IdApp.Services.LegalIdentityAttachment)">
+        <member name="M:IdApp.Services.Tag.ITagProfile.AddLegalPhoto(IdApp.Services.LegalIdentityAttachment,System.Int32)">
             <summary>
             </summary>
         </member>
@@ -11942,7 +11961,7 @@
             <summary>
             </summary>
         </member>
-        <member name="M:IdApp.Services.Tag.TagProfile.AddLegalPhoto(IdApp.Services.LegalIdentityAttachment)">
+        <member name="M:IdApp.Services.Tag.TagProfile.AddLegalPhoto(IdApp.Services.LegalIdentityAttachment,System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:IdApp.Services.Tag.TagProfile.SetAccount(System.String,System.String,System.String)">
