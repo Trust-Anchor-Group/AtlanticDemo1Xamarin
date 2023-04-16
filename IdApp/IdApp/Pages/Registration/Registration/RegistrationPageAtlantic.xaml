@@ -57,7 +57,7 @@
 		</StackLayout>
 		<!-- CONTENT -->
 		<CarouselView x:Name="CarouselView"
-					  IsSwipeEnabled="False"
+					  IsSwipeEnabled="False" Loop="False"
 					  HorizontalOptions="FillAndExpand"
 					  VerticalOptions="FillAndExpand"
 					  CurrentItemChangedCommand="{Binding Path=CurrentStepChangedCommand}"

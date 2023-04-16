@@ -30,13 +30,29 @@
 		<Color x:Key="PrimaryBackgrowndColor">#FFFFFFFF</Color>
 		<Color x:Key="SecondaryBackgrowndColor">#FFEEEEEE</Color>
 		<Color x:Key="PrimaryForegrowndColor">#FF0017E6</Color>
+		<Color x:Key="PrimaryDisabledForegrowndColor">#8F0017E6</Color>
 		<Color x:Key="SecondaryForegrowndColor">#FF8d8b8b</Color>
+		<Color x:Key="SecondaryDisabledForegrowndColor">#8F8d8b8b</Color>
+		<Color x:Key="ApprovedForegrowndColor">#FF35AA35</Color>
+		<Color x:Key="RejectedForegrowndColor">#FFEE3535</Color>
 
 		<pancakeview:BorderMarkup x:Key="ControlFrameBorder" Color="{StaticResource SecondaryForegrowndColor}" Thickness="1" />
 
 		<Style x:Key="ControlTitleLabelStyle" TargetType="Label">
 			<Setter Property="TextColor" Value="{StaticResource PrimaryForegrowndColor}" />
 			<Setter Property="FontFamily" Value="SegoeUI-Bold" />
+			<Setter Property="FontSize" Value="16" />
+		</Style>
+
+		<Style x:Key="TitleLabelStyle" TargetType="Label">
+			<Setter Property="TextColor" Value="{StaticResource PrimaryForegrowndColor}" />
+			<Setter Property="FontFamily" Value="SegoeUI-Bold" />
+			<Setter Property="FontSize" Value="20" />
+		</Style>
+
+		<Style x:Key="InfoLabelStyle" TargetType="Label">
+			<Setter Property="TextColor" Value="{StaticResource PrimaryForegrowndColor}" />
+			<Setter Property="FontFamily" Value="SegoeUI-Regular" />
 			<Setter Property="FontSize" Value="16" />
 		</Style>
 
@@ -66,6 +82,11 @@
 			<Setter Property="CornerRadius" Value="20" />
 			<Setter Property="HeightRequest" Value="40" />
 			<Setter Property="WidthRequest" Value="40" />
+			<Style.Triggers>
+				<Trigger TargetType="pancakeview:PancakeView" Property="IsEnabled" Value="False">
+					<Setter Property="BackgroundColor" Value="{StaticResource SecondaryDisabledForegrowndColor}" />
+				</Trigger>
+			</Style.Triggers>
 		</Style>
 
 		<Style x:Key="PancakeViewButtonStyle" TargetType="pancakeview:PancakeView">
@@ -74,6 +95,11 @@
 			<Setter Property="CornerRadius" Value="20" />
 			<Setter Property="HeightRequest" Value="40" />
 			<Setter Property="WidthRequest" Value="150" />
+			<Style.Triggers>
+				<Trigger TargetType="pancakeview:PancakeView" Property="IsEnabled" Value="False">
+					<Setter Property="BackgroundColor" Value="{StaticResource PrimaryDisabledForegrowndColor}" />
+				</Trigger>
+			</Style.Triggers>
 		</Style>
 
 		<Style x:Key="StackLayoutButtonStyle" TargetType="StackLayout">

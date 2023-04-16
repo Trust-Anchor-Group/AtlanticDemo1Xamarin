@@ -20,6 +20,14 @@
 		/// The chevron right icon
 		/// </summary>
 		public const string ChevronRight = "resource://IdApp.Resx.Svgs.chevron-right.svg";
+
+		/// <summary>
+		/// </summary>
+		public const string AcceptedFilled = "resource://IdApp.Resx.Svgs.check_filled.svg";
+
+		/// <summary>
+		/// </summary>
+		public const string RejectedFilled = "resource://IdApp.Resx.Svgs.x_filled.svg";
 #else
 		/// <summary>
 		/// The passport icon

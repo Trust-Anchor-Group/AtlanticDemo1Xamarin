@@ -5352,39 +5352,9 @@
         <member name="M:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.OnDispose">
             <inheritdoc />
         </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Photos">
-            <summary>
-            The list of photos associated with this legal identity.
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.InviteReviewerCommand">
-            <summary>
-            The command to bind to for inviting a reviewer to approve the user's identity.
-            </summary>
-        </member>
         <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.ContinueCommand">
             <summary>
             The command to bind to for continuing to the next step in the registration process.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.CreatedProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Created"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Created">
-            <summary>
-            Gets or sets the Created time stamp of the legal identity.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.UpdatedProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Updated"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Updated">
-            <summary>
-            Gets or sets the Updated time stamp of the legal identity.
             </summary>
         </member>
         <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.LegalIdProperty">
@@ -5412,34 +5382,8 @@
             Gets or sets the Bare Jid registered with the XMPP server.
             </summary>
         </member>
-        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.StateProperty">
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.FullName">
             <summary>
-            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.State"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.State">
-            <summary>
-            The current state of the user's legal identity.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.FromProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.From"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.From">
-            <summary>
-            Gets or sets the From time stamp (validity range) of the user's identity.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.ToProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.To"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.To">
-            <summary>
-            Gets or sets the To time stamp (validity range) of the user's identity.
             </summary>
         </member>
         <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.FirstNameProperty">
@@ -5472,122 +5416,22 @@
             The user's last name(s)
             </summary>
         </member>
-        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.PersonalNumberProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.PersonalNumber"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.PersonalNumber">
-            <summary>
-            The user's personal number
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.AddressProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Address"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Address">
-            <summary>
-            The user's address, line 1.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Address2Property">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Address2"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Address2">
-            <summary>
-            The user's address, line 2.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.ZipCodeProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.ZipCode"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.ZipCode">
-            <summary>
-            The user's zip code
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.AreaProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Area"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Area">
-            <summary>
-            The user's area
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.CityProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.City"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.City">
-            <summary>
-            The user's city
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.RegionProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Region"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Region">
-            <summary>
-            The user's region
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.CountryProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Country"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.Country">
-            <summary>
-            Gets or sets the user's country.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.CountryCodeProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.CountryCode"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.CountryCode">
-            <summary>
-            Gets or sets the user's country.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.PhoneNrProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.PhoneNr"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.PhoneNr">
-            <summary>
-            Gets or sets the user's country.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.EMailProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.EMail"/>
-            </summary>
-        </member>
-        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.EMail">
-            <summary>
-            Gets or sets the user's country.
-            </summary>
-        </member>
         <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.IsApprovedProperty">
             <summary>
             The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.IsApproved"/>
             </summary>
         </member>
         <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.IsApproved">
+            <summary>
+            Gets or sets if the user's identity is approved or not.
+            </summary>
+        </member>
+        <member name="F:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.IsRejectedProperty">
+            <summary>
+            The <see cref="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.IsRejected"/>
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.ValidateIdentityViewModel.IsRejected">
             <summary>
             Gets or sets if the user's identity is approved or not.
             </summary>
@@ -9926,6 +9770,14 @@
         <member name="F:IdApp.Resx.Svgs.ChevronRight">
             <summary>
             The chevron right icon
+            </summary>
+        </member>
+        <member name="F:IdApp.Resx.Svgs.AcceptedFilled">
+            <summary>
+            </summary>
+        </member>
+        <member name="F:IdApp.Resx.Svgs.RejectedFilled">
+            <summary>
             </summary>
         </member>
         <member name="T:IdApp.Services.AttachmentCache.AttachmentCacheService">

@@ -143,17 +143,6 @@
 										 xct:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
 										 xct:TouchEffect.PressedOpacity="0.75"
 										 xct:TouchEffect.Command="{Binding RegisterCommand}">
-					<pancakeview:PancakeView.Triggers>
-						<DataTrigger TargetType="pancakeview:PancakeView" Binding="{Binding CanRegister}" Value="False">
-							<Setter Property="BackgroundColor" Value="{StaticResource SecondaryForegrowndColor}" />
-						</DataTrigger>
-						<!--
-						<DataTrigger TargetType="pancakeview:PancakeView" Binding="{Binding CanRegister}" Value="True">
-							<Setter Property="BackgroundColor" Value="{StaticResource PrimaryForegrowndColor}" />
-						</DataTrigger>
-						-->
-					</pancakeview:PancakeView.Triggers>
-
 					<StackLayout Style="{StaticResource StackLayoutButtonStyle}">
 						<Label Style="{StaticResource LabelButtonStyle}" Text="{xct:Translate Text=Next}" TextTransform="Uppercase"/>
 						<controls:TintedSvgCachedImage Style="{StaticResource ImageButtonStyle}" Source="{x:Static resx:Svgs.ChevronRight}" />

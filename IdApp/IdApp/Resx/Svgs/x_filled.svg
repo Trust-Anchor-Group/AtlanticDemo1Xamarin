@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1080" height="1080" viewBox="0 0 1080 1080" xml:space="preserve">
+<g transform="matrix(5.74 0 0 5.74 540 540)" id="Icon_material-cancel"  >
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(246,154,154); fill-rule: nonzero; opacity: 1;"  transform=" translate(-97, -97)" d="M 97 3 C 45.08523351590543 3 3 45.08523351590543 3 97 C 3 148.91476648409457 45.08523351590543 191 97 191 C 148.91476648409457 191 191 148.91476648409457 191 97 C 191.0228463868704 72.06265312247916 181.1266401429446 48.140108821120435 163.49326566091207 30.506734339087913 C 145.85989117887956 12.87335985705539 121.93734687752084 2.9771536131295875 97 3 Z M 144 130.74599999999998 L 130.746 144 L 97 110.254 L 63.254 144 L 50 130.746 L 83.746 97 L 50 63.254 L 63.254 50 L 97 83.746 L 130.746 50 L 144 63.254 L 110.254 97 Z" stroke-linecap="round" />
+</g>
+</svg>

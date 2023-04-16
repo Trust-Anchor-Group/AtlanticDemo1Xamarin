@@ -34,12 +34,14 @@
     <None Remove="Resx\Pngs\logo.png" />
     <None Remove="Resx\Svgs\camera.svg" />
     <None Remove="Resx\Svgs\check.svg" />
+    <None Remove="Resx\Svgs\check_filled.svg" />
     <None Remove="Resx\Svgs\chevron-right.svg" />
     <None Remove="Resx\Svgs\fingerprint.svg" />
     <None Remove="Resx\Svgs\images.svg" />
     <None Remove="Resx\Svgs\passport.svg" />
     <None Remove="Resx\Svgs\trash.svg" />
     <None Remove="Resx\Svgs\xmark.svg" />
+    <None Remove="Resx\Svgs\x_filled.svg" />
     <None Remove="Services\Data\PersonalNumbers\PersonalNumberSchemes.xml" />
     <None Remove="Helpers\" />
     <None Remove="Controls\Extended\" />
@@ -113,12 +115,14 @@
     <EmbeddedResource Include="Resx\Pngs\logo.png" />
     <EmbeddedResource Include="Resx\Svgs\camera.svg" />
     <EmbeddedResource Include="Resx\Svgs\check.svg" />
+    <EmbeddedResource Include="Resx\Svgs\check_filled.svg" />
     <EmbeddedResource Include="Resx\Svgs\chevron-right.svg" />
     <EmbeddedResource Include="Resx\Svgs\fingerprint.svg" />
     <EmbeddedResource Include="Resx\Svgs\images.svg" />
     <EmbeddedResource Include="Resx\Svgs\passport.svg" />
     <EmbeddedResource Include="Resx\Svgs\trash.svg" />
     <EmbeddedResource Include="Resx\Svgs\xmark.svg" />
+    <EmbeddedResource Include="Resx\Svgs\x_filled.svg" />
     <EmbeddedResource Include="Services\Data\PersonalNumbers\PersonalNumberSchemes.xml" />
   </ItemGroup>
 
