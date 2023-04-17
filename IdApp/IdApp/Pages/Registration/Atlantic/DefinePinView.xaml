@@ -1,104 +1,89 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<views:ContentBaseView xmlns="http://xamarin.com/schemas/2014/forms"
-                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                       xmlns:helpers="clr-namespace:IdApp.Helpers;assembly=IdApp"
-                       xmlns:templatedSwitch="clr-namespace:IdApp.Controls.TemplatedSwitch;assembly=IdApp"
-                       xmlns:resx="clr-namespace:IdApp.Resx;assembly=IdApp"
-					   xmlns:tag="clr-namespace:IdApp.Services.Tag;assembly=IdApp"
-                       xmlns:views="clr-namespace:IdApp.Pages;assembly=IdApp"
-                       xmlns:behaviors="clr-namespace:IdApp.Behaviors;assembly=IdApp"
-                       xmlns:converters="clr-namespace:IdApp.Converters;assembly=IdApp"
-                       xmlns:model="clr-namespace:IdApp.Pages.Registration.Atlantic;assembly=IdApp"
-                       x:DataType="model:DefinePinViewModel"
-                       x:Class="IdApp.Pages.Registration.Atlantic.DefinePinView">
-	<ContentView.Content >
-		<StackLayout Margin="{StaticResource DefaultMargins}" x:Name="PinContent">
-			<StackLayout.Resources>
-				<ResourceDictionary>
-					<Style TargetType="Entry" x:Key="PinEntry">
-						<!-- VerticalOptions="Center" is required so that the size of the eye does not affect the size of the Entry. -->
-						<Setter Property="VerticalOptions" Value="Center" />
-						<Setter Property="IsPassword" Value="True" />
-						<Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LabelTextColorLightTheme}, Dark={StaticResource LabelTextColorDarkTheme}}"/>
-                <Setter Property="PlaceholderColor" Value="{StaticResource HintColor}"/>
-					</Style>
-					<Style TargetType="templatedSwitch:TemplatedSwitch" BasedOn="{StaticResource PasswordToggler}">
-						<Setter Property="HorizontalOptions" Value="End" />
-						<Setter Property="VerticalOptions" Value="Center" />
-						<!-- Padding increases the area which responds to taps without increasing the eye visual size. -->
-						<Setter Property="Padding" Value="16,12,8,12" />
-					</Style>
-				</ResourceDictionary>
-			</StackLayout.Resources>
+<registration:RegistrationStepView
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+	xmlns:resx="clr-namespace:IdApp.Resx"
+	xmlns:registration="clr-namespace:IdApp.Pages.Registration;assembly=IdApp"
+	xmlns:model="clr-namespace:IdApp.Pages.Registration.Atlantic;assembly=IdApp"
+	xmlns:extended="clr-namespace:IdApp.Controls.Extended"
+	xmlns:controls="clr-namespace:IdApp.Controls"
+    xmlns:pancakeview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+	xmlns:behaviors="clr-namespace:IdApp.Behaviors;assembly=IdApp"
+	xmlns:converters="clr-namespace:IdApp.Converters;assembly=IdApp"
+	xmlns:tag="clr-namespace:IdApp.Services.Tag;assembly=IdApp"
+	x:DataType="model:DefinePinViewModel"
+	x:Class="IdApp.Pages.Registration.Atlantic.DefinePinView">
 
-			<Label Text="{Binding Path=YouCanProtectYourWalletPinInfo}" HorizontalOptions="Center" VerticalOptions="Start" Margin="{StaticResource DefaultBottomOnlyMargin}" />
+	<Grid Margin="0" Padding="{StaticResource MediumMargins}" RowDefinitions="*,auto,2*">
+		<StackLayout Grid.Row="0"/>
 
-			<Label Text="{x:Static resx:AppResources.PinOrPassword}"/>
-			<Grid>
-				<Entry
-                    x:Name="PinEntry"
-					Style="{StaticResource PinEntry}"
-                    helpers:PasswordMask.IsEnabled="{Binding IsToggled, Source={Reference PinEntryPasswordToggler}}"
-                    Text="{Binding Path=Pin}">
-					<Entry.Behaviors>
-						<behaviors:SetFocusOnCompletedBehavior
-                            SetFocusTo="RetypePinEntry"
-                            BindingContext="{Binding BindingContext, Source={x:Reference PinContent}}"/>
-					</Entry.Behaviors>
-				</Entry>
-				<templatedSwitch:TemplatedSwitch x:Name="PinEntryPasswordToggler" />
-			</Grid>
-			<Label
-                Text="{Binding Path=PinStrength, Converter={converters:PinStrengthToErrorMessage}}"
-                IsVisible="False"
-                Style="{StaticResource AlertLabel}"
-                Margin="{StaticResource DefaultBottomOnlyMargin}">
-				<Label.Triggers>
-					<MultiTrigger TargetType="Label">
-						<MultiTrigger.Conditions>
-							<BindingCondition Binding="{Binding Path=PinStrength, Converter={converters:EqualsParameter}, ConverterParameter={Static tag:PinStrength.Strong}}" Value="False" />
-							<BindingCondition Binding="{Binding Path=EnteringPinStarted}" Value="True" />
-						</MultiTrigger.Conditions>
-						<Setter Property="IsVisible" Value="True" />
-					</MultiTrigger>
-				</Label.Triggers>
-			</Label>
+		<StackLayout x:Name="PinContent" Grid.Row="1" Spacing="{StaticResource LargeRawSpacing}" >
+			<StackLayout Spacing="{StaticResource DefaultRawSpacing}">
+				<Label Style="{StaticResource ControlTitleLabelStyle}" Text="{xct:Translate Text=PinOrPassword}"/>
 
-			<Label Text="{x:Static resx:AppResources.RetypePinOrPassword}"/>
-			<Grid>
-				<Entry
-                    x:Name="RetypePinEntry"
-					Style="{StaticResource PinEntry}"
-                    helpers:PasswordMask.IsEnabled="{Binding IsToggled, Source={Reference RetypePinEntryPasswordToggler}}"
-                    Text="{Binding Path=RetypedPin}">
-					<Entry.Behaviors>
-						<behaviors:SetFocusOnCompletedBehavior
-                            SetFocusTo="OkButton"
-                            BindingContext="{Binding BindingContext, Source={x:Reference PinContent}}"/>
-					</Entry.Behaviors>
-				</Entry>
-				<templatedSwitch:TemplatedSwitch x:Name="RetypePinEntryPasswordToggler" />
-			</Grid>
-			<Label
-                Text="{x:Static resx:AppResources.PinsDoNotMatch}"
-                IsVisible="False"
-                Style="{StaticResource AlertLabel}"
-                Margin="{StaticResource DefaultBottomOnlyMargin}">
-				<Label.Triggers>
-					<MultiTrigger TargetType="Label">
-						<MultiTrigger.Conditions>
-							<BindingCondition Binding="{Binding PinsMatch}" Value="False" />
-							<BindingCondition Binding="{Binding EnteringRetypedPinStarted}" Value="True" />
-						</MultiTrigger.Conditions>
-						<Setter Property="IsVisible" Value="True" />
-					</MultiTrigger>
-				</Label.Triggers>
-			</Label>
+				<extended:ExEntry Style="{StaticResource ExEntryStyle}"
+								  EntryText="{Binding Path=Pin, Mode=TwoWay}"
+								  EntryIsPassword="True" ClearButtonVisibilityEntry="WhileEditing" >
+					<extended:ExEntry.EntryBehaviors>
+						<behaviors:SetFocusOnCompletedBehavior SetFocusTo="RetypePinEntry"
+															   BindingContext="{Binding BindingContext, Source={x:Reference PinContent}}"/>
+					</extended:ExEntry.EntryBehaviors>
+				</extended:ExEntry>
 
-			<Label x:Name="ConnectionState" HorizontalOptions="CenterAndExpand" Text="{Binding Path=ConnectionStateText}" IsVisible="{Binding Path=IsConnected, Converter={converters:LogicalNot}}"/>
+				<Label Text="{Binding Path=PinStrength, Converter={converters:PinStrengthToErrorMessage}}" IsVisible="False"
+					   FontSize="14" FontFamily="SegoeUI-Regular" TextColor="{StaticResource RejectedForegrowndColor}">
+					<Label.Triggers>
+						<MultiTrigger TargetType="Label">
+							<MultiTrigger.Conditions>
+								<BindingCondition Binding="{Binding Path=PinStrength, Converter={converters:EqualsParameter}, ConverterParameter={Static tag:PinStrength.Strong}}" Value="False" />
+								<BindingCondition Binding="{Binding Path=EnteringPinStarted}" Value="True" />
+							</MultiTrigger.Conditions>
+							<Setter Property="IsVisible" Value="True" />
+						</MultiTrigger>
+					</Label.Triggers>
+				</Label>
+			</StackLayout>
 
-			<Button x:Name="OkButton" Text="{x:Static resx:AppResources.Ok}" Command="{Binding Path=ContinueCommand}" Margin="{StaticResource DefaultTopOnlyMargin}" />
-			<Button x:Name="SkipButton" Text="{x:Static resx:AppResources.Skip}" Command="{Binding Path=SkipCommand}" />
+			<StackLayout Spacing="{StaticResource DefaultRawSpacing}">
+				<Label Style="{StaticResource ControlTitleLabelStyle}" Text="{xct:Translate Text=RetypePinOrPassword}"/>
+
+				<extended:ExEntry x:Name="RetypePinEntry" Style="{StaticResource ExEntryStyle}"
+								  EntryText="{Binding Path=RetypedPin}"
+								  EntryIsPassword="True" ClearButtonVisibilityEntry="WhileEditing">
+					<extended:ExEntry.EntryBehaviors>
+						<behaviors:SetFocusOnCompletedBehavior SetFocusTo="OkButton"
+															   BindingContext="{Binding BindingContext, Source={x:Reference PinContent}}"/>
+					</extended:ExEntry.EntryBehaviors>
+				</extended:ExEntry>
+
+				<Label Text="{xct:Translate Text=PinsDoNotMatch}" IsVisible="False"
+					   FontSize="14" FontFamily="SegoeUI-Regular" TextColor="{StaticResource RejectedForegrowndColor}">
+					<Label.Triggers>
+						<MultiTrigger TargetType="Label">
+							<MultiTrigger.Conditions>
+								<BindingCondition Binding="{Binding PinsMatch}" Value="False" />
+								<BindingCondition Binding="{Binding EnteringRetypedPinStarted}" Value="True" />
+							</MultiTrigger.Conditions>
+							<Setter Property="IsVisible" Value="True" />
+						</MultiTrigger>
+					</Label.Triggers>
+				</Label>
+			</StackLayout>
+
+			<pancakeview:PancakeView x:Name="OkButton" Style="{StaticResource PancakeViewButtonStyle}"
+									 IsEnabled="{Binding CanContinue}"
+									 xct:TouchEffect.AnimationDuration="100"
+									 xct:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
+									 xct:TouchEffect.PressedOpacity="0.75"
+									 xct:TouchEffect.Command="{Binding ContinueCommand}">
+				<StackLayout Style="{StaticResource StackLayoutButtonStyle}">
+					<Label Style="{StaticResource LabelButtonStyle}" Text="{xct:Translate Text=Next}" TextTransform="Uppercase"/>
+					<controls:TintedSvgCachedImage Style="{StaticResource ImageButtonStyle}" Source="{x:Static resx:Svgs.ChevronRight}" />
+				</StackLayout>
+			</pancakeview:PancakeView>
 		</StackLayout>
-	</ContentView.Content>
-</views:ContentBaseView>
+
+		<StackLayout Grid.Row="2"/>
+	</Grid>
+</registration:RegistrationStepView>

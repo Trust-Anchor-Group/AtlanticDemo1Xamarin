@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 using Xamarin.Forms;
+using IdApp.Controls.Extended;
+using System.Data.SqlTypes;
 
 namespace IdApp.Helpers
 {
@@ -16,13 +18,24 @@ namespace IdApp.Helpers
 			defaultValue: true,
 			propertyChanged: (bindable, oldValue, newValue) =>
 			{
+				Entry Control = null;
+
 				if (bindable is Entry Entry)
 				{
+					Control = Entry;
+				}
+				else if (bindable is ExEntry ExEntry)
+				{
+					Control = ExEntry.GetEntry();
+				}
+
+				if (Control is not null)
+				{
 					string TogglerEffectName = $"{Constants.Effects.ResolutionGroupName}.{Constants.Effects.PasswordMaskTogglerEffect}";
-					if (!Entry.Effects.Any(Effect => Effect.ResolveId == TogglerEffectName))
+					if (!Control.Effects.Any(Effect => Effect.ResolveId == TogglerEffectName))
 					{
 						Effect Effect = Effect.Resolve(TogglerEffectName);
-						Entry.Effects.Add(Effect);
+						Control.Effects.Add(Effect);
 					}
 				}
 			});

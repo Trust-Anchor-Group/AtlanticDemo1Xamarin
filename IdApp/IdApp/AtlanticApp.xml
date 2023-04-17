@@ -905,6 +905,10 @@
             Creates a new instance of the <see cref="T:IdApp.Controls.Extended.ExEntry"/> class.
             </summary>
         </member>
+        <member name="M:IdApp.Controls.Extended.ExEntry.GetEntry">
+            <summary>
+            </summary>
+        </member>
         <member name="E:IdApp.Controls.Extended.ExEntry.TextChanged">
             <summary>
             Evento TextChanged
@@ -4823,24 +4827,12 @@
             The retyped pin to use for validation against <see cref="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.Pin"/>.
             </summary>
         </member>
-        <member name="F:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.EnteringPinStartedProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.EnteringPinStarted"/>
-            </summary>
-        </member>
         <member name="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.EnteringPinStarted">
             <summary>
-            Gets or sets a value indicating if the user has started entering PIN.
-            </summary>
-        </member>
-        <member name="F:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.EnteringRetypedPinStartedProperty">
-            <summary>
-            The <see cref="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.EnteringRetypedPinStarted"/>
             </summary>
         </member>
         <member name="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.EnteringRetypedPinStarted">
             <summary>
-            Gets or sets a value indicating if the user has started entering retyped PIN.
             </summary>
         </member>
         <member name="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.PinStrength">
@@ -4881,6 +4873,10 @@
         <member name="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.YouCanProtectYourWalletPinInfo">
             <summary>
             Enter PIN text to display to the user.
+            </summary>
+        </member>
+        <member name="P:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.CanContinue">
+            <summary>
             </summary>
         </member>
         <member name="M:IdApp.Pages.Registration.Atlantic.DefinePinViewModel.OnPropertyChanged(System.String)">

@@ -448,6 +448,13 @@ namespace IdApp.Controls.Extended
 		}
 
 		/// <summary>
+		/// </summary>
+		public Entry GetEntry()
+		{
+			return this.InnerEntry;
+		}
+
+		/// <summary>
 		/// Evento TextChanged
 		/// </summary>
 		public event EventHandler<TextChangedEventArgs> TextChanged;

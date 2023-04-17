@@ -118,28 +118,3 @@
 		</Grid>
 	</Grid>
 </registration:RegistrationStepView>
-
-	<!--
-			<StackLayout Spacing="{StaticResource DefaultRawSpacing}" >
-				<Label Style="{StaticResource ControlTitleLabelStyle}" Text="{Binding ControlTitleLabelText}" />
-				<pancakeview:PancakeView Style="{StaticResource PancakeViewPhotoStyle}">
-					<Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-
-						<pancakeview:PancakeView Style="{StaticResource PancakeViewPhotoButtonStyle}"
-												 HorizontalOptions="Center" VerticalOptions="End"
-												 xct:TouchEffect.AnimationDuration="100"
-												 xct:TouchEffect.AnimationEasing="{x:Static Easing.CubicInOut}"
-												 xct:TouchEffect.PressedOpacity="0.75"
-												 xct:TouchEffect.Command="{Binding TakePhotoCommand}">
-							<controls:TintedSvgCachedImage Style="{StaticResource ImageButtonStyle}" Source="{x:Static resx:Svgs.Camera}" />
-						</pancakeview:PancakeView>
-					</Grid>
-				</pancakeview:PancakeView>
-			</StackLayout>
-
-
-
-
-
-
-	-->

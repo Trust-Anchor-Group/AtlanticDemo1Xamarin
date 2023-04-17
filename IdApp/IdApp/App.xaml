@@ -124,6 +124,5 @@
 			<Setter Property="VerticalOptions" Value="Center" />
 			<Setter Property="HorizontalOptions" Value="Center" />
 		</Style>
-
 	</Application.Resources>
 </Application>

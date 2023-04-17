@@ -2,9 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using IdApp.Extensions;
-using Waher.Networking.XMPP;
 using Xamarin.Forms;
-using IdApp.Services.Xmpp;
 using IdApp.Services.Tag;
 using System.Runtime.CompilerServices;
 using Xamarin.CommunityToolkit.Helpers;
@@ -22,8 +20,8 @@ namespace IdApp.Pages.Registration.Atlantic
 		public DefinePinViewModel()
 			: base(RegistrationStep.Pin)
 		{
-			this.ContinueCommand = new Command(_ => this.Continue(), _ => this.CanContinue());
-			this.SkipCommand = new Command(_ => this.Skip(), _ => this.CanSkip());
+			this.ContinueCommand = new Command(_ => this.Continue());
+			this.SkipCommand = new Command(_ => this.Skip());
 			this.Title = LocalizationResourceManager.Current["DefinePin"];
 		}
 
@@ -32,15 +30,12 @@ namespace IdApp.Pages.Registration.Atlantic
 		{
 			await base.OnInitialize();
 
-			this.AssignProperties(this.XmppService.State);
-			this.XmppService.ConnectionStateChanged += this.XmppService_ConnectionStateChanged;
+			this.AssignProperties();
 		}
 
 		/// <inheritdoc />
 		protected override async Task OnDispose()
 		{
-			this.XmppService.ConnectionStateChanged -= this.XmppService_ConnectionStateChanged;
-
 			await base.OnDispose();
 		}
 
@@ -48,10 +43,7 @@ namespace IdApp.Pages.Registration.Atlantic
 		public override void ClearStepState()
 		{
 			this.Pin = string.Empty;
-			this.EnteringPinStarted = false;
-
 			this.RetypedPin = string.Empty;
-			this.EnteringRetypedPinStarted = false;
 		}
 
 		#region Properties
@@ -60,6 +52,7 @@ namespace IdApp.Pages.Registration.Atlantic
 		/// The command to bind to for continuing to the next step in the registration flow.
 		/// </summary>
 		public ICommand ContinueCommand { get; }
+
 		/// <summary>
 		/// The command to bind to for skipping this step and moving on to the next step in the registration flow.
 		/// </summary>
@@ -96,39 +89,29 @@ namespace IdApp.Pages.Registration.Atlantic
 		}
 
 		/// <summary>
-		/// The <see cref="EnteringPinStarted"/>
-		/// </summary>
-		public static readonly BindableProperty EnteringPinStartedProperty =
-			BindableProperty.Create(nameof(EnteringPinStarted), typeof(bool), typeof(DefinePinViewModel), false);
-
-		/// <summary>
-		/// Gets or sets a value indicating if the user has started entering PIN.
 		/// </summary>
 		public bool EnteringPinStarted
 		{
-			get => (bool)this.GetValue(EnteringPinStartedProperty);
-			set => this.SetValue(EnteringPinStartedProperty, value);
+			get
+			{
+				return !string.IsNullOrEmpty(this.Pin);
+			}
 		}
 
 		/// <summary>
-		/// The <see cref="EnteringRetypedPinStarted"/>
-		/// </summary>
-		public static readonly BindableProperty EnteringRetypedPinStartedProperty =
-			BindableProperty.Create(nameof(EnteringRetypedPinStarted), typeof(bool), typeof(DefinePinViewModel), false);
-
-		/// <summary>
-		/// Gets or sets a value indicating if the user has started entering retyped PIN.
 		/// </summary>
 		public bool EnteringRetypedPinStarted
 		{
-			get => (bool)this.GetValue(EnteringRetypedPinStartedProperty);
-			set => this.SetValue(EnteringRetypedPinStartedProperty, value);
+			get
+			{
+				return !string.IsNullOrEmpty(this.RetypedPin);
+			}
 		}
 
 		/// <summary>
 		/// Gets the value indicating how strong the <see cref="Pin"/> is.
 		/// </summary>
-		public PinStrength PinStrength => this.TagProfile.ValidatePinStrength(this.Pin);
+		public PinStrength PinStrength => string.IsNullOrEmpty(this.Pin) ? PinStrength.Strong : this.TagProfile.ValidatePinStrength(this.Pin);
 
 		/// <summary>
 		/// Gets the value indicating whether the entered <see cref="Pin"/> is the same as the entered <see cref="RetypedPin"/>.
@@ -180,6 +163,17 @@ namespace IdApp.Pages.Registration.Atlantic
 			set => this.SetValue(YouCanProtectYourWalletPinInfoProperty, value);
 		}
 
+
+		/// <summary>
+		/// </summary>
+		public bool CanContinue
+		{
+			get
+			{
+				return !string.IsNullOrEmpty(this.Pin) && this.PinStrength == PinStrength.Strong && this.PinsMatch;
+			}
+		}
+
 		#endregion
 
 		/// <inheritdoc/>
@@ -189,43 +183,22 @@ namespace IdApp.Pages.Registration.Atlantic
 
 			if (PropertyName == nameof(this.Pin))
 			{
-				this.EnteringPinStarted = true;
+				this.OnPropertyChanged(nameof(this.EnteringPinStarted));
+				this.OnPropertyChanged(nameof(this.PinsMatch));
 				this.OnPropertyChanged(nameof(this.PinStrength));
+				this.OnPropertyChanged(nameof(this.CanContinue));
 			}
 
 			if (PropertyName == nameof(this.RetypedPin))
 			{
-				this.EnteringRetypedPinStarted = true;
-			}
-
-			if (PropertyName == nameof(this.Pin) || PropertyName == nameof(this.RetypedPin))
-			{
+				this.OnPropertyChanged(nameof(this.EnteringRetypedPinStarted));
 				this.OnPropertyChanged(nameof(this.PinsMatch));
-				this.ContinueCommand.ChangeCanExecute();
+				this.OnPropertyChanged(nameof(this.CanContinue));
 			}
 		}
 
-		private Task XmppService_ConnectionStateChanged(object _, XmppState NewState)
+		private void AssignProperties()
 		{
-			this.UiSerializer.BeginInvokeOnMainThread(() =>
-			{
-				this.AssignProperties(NewState);
-			});
-
-			return Task.CompletedTask;
-		}
-
-		private void AssignProperties(XmppState State)
-		{
-			this.SetConnectionStateAndText(State);
-			this.ContinueCommand.ChangeCanExecute();
-			this.SkipCommand.ChangeCanExecute();
-		}
-
-		private void SetConnectionStateAndText(XmppState State)
-		{
-			this.IsConnected = State == XmppState.Connected;
-			this.ConnectionStateText = State.ToDisplayText();
 			this.YouCanProtectYourWalletPinInfo = this.TagProfile.HasPin
 				? LocalizationResourceManager.Current["YouCanProtectYourWalletPinInfoChange"]
 				: LocalizationResourceManager.Current["YouCanProtectYourWalletPinInfo"];
@@ -234,11 +207,6 @@ namespace IdApp.Pages.Registration.Atlantic
 		private void Skip()
 		{
 			this.Complete(AddOrUpdatePin: false);
-		}
-
-		private bool CanSkip()
-		{
-			return this.XmppService.IsOnline;
 		}
 
 		private void Continue()
@@ -267,11 +235,6 @@ namespace IdApp.Pages.Registration.Atlantic
 
 			if (this.TagProfile.TestOtpTimestamp is not null)
 				this.UiSerializer.DisplayAlert(LocalizationResourceManager.Current["WarningTitle"], LocalizationResourceManager.Current["TestOtpUsed"], LocalizationResourceManager.Current["Ok"]);
-		}
-
-		private bool CanContinue()
-		{
-			return this.PinStrength == PinStrength.Strong && this.PinsMatch && this.XmppService.IsOnline;
 		}
 	}
 }
